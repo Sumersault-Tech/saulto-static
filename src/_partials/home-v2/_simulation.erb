@@ -43,8 +43,8 @@
             <circle cx="<%= gauge_size/2 %>" cy="<%= (gauge_size*0.58).round %>" r="<%= r.round %>" fill="none" stroke="rgba(0,0,0,0.07)" stroke-width="<%= (gauge_size*0.055).round %>"
               stroke-dasharray="<%= arc.round %> <%= (circ - arc).round %>" stroke-dashoffset="<%= (-arc*0.375).round %>" stroke-linecap="round" />
             <circle data-gauge-target="arc" cx="<%= gauge_size/2 %>" cy="<%= (gauge_size*0.58).round %>" r="<%= r.round %>" fill="none" stroke="var(--hv2-green)" stroke-width="<%= (gauge_size*0.055).round %>"
-              stroke-dasharray="<%= arc.round %> <%= (circ - arc).round %>" stroke-dashoffset="<%= (-arc*0.375 + arc).round %>" stroke-linecap="round"
-              style="transition: stroke-dashoffset 0.04s linear;" />
+              stroke-dasharray="0 <%= circ.round %>" stroke-dashoffset="<%= (-arc*0.375).round %>" stroke-linecap="round"
+              style="transition: stroke-dasharray 0.04s linear;" />
           </svg>
           <div style="position: absolute; bottom: 2px; left: 0; right: 0; text-align: center;">
             <span data-gauge-target="number" style="font-family: var(--hv2-serif); font-size: <%= (gauge_size * 0.25).round %>px; font-weight: 500; color: var(--hv2-ink); line-height: 1;">0%</span>

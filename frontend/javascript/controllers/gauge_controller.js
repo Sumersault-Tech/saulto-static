@@ -28,10 +28,10 @@ export default class extends Controller {
     const circ = 2 * Math.PI * r
     const arc = circ * 0.75
     const pct = this.displayed / 100
-    const dashOffset = arc - pct * arc
+    const filled = pct * arc
 
     if (this.hasArcTarget) {
-      this.arcTarget.setAttribute("stroke-dashoffset", -arc * 0.375 + dashOffset)
+      this.arcTarget.setAttribute("stroke-dasharray", `${filled} ${circ}`)
     }
     if (this.hasNumberTarget) {
       this.numberTarget.textContent = `${this.displayed}%`
