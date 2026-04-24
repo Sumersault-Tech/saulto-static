@@ -1,0 +1,126 @@
+<%
+  pillars = [
+    { num: "01", title: "Forecast", body: "Current probability of hitting the goal, updated continuously" },
+    { num: "02", title: "Diagnosis", body: "The specific drivers moving the number, ranked by impact" },
+    { num: "03", title: "Ownership", body: "Which team is accountable for each underperforming driver" },
+    { num: "04", title: "Playbook", body: "Specific, quantified actions recommended in response to what the model surfaces — separate from the model itself" }
+  ]
+%>
+
+<section id="s-system" class="px-6 py-28 md:py-36" style="border-top: 1px solid var(--pv-border); background: var(--pv-surface);">
+  <div class="max-w-3xl mx-auto">
+    <div class="flex items-center gap-3 mb-10 reveal" data-controller="reveal">
+      <span style="font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--pv-accent); opacity: 0.75;">06</span>
+      <span style="font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--pv-text-dim);">The System</span>
+    </div>
+    <div class="reveal" data-controller="reveal">
+      <h2 class="font-display font-light" style="font-size: clamp(2rem,4.5vw,3.2rem); color: var(--pv-text); line-height: 1.2; margin-bottom: 1rem; max-width: 560px;">
+        Not a dashboard.<br>An operating system<br>for running the business.
+      </h2>
+    </div>
+    <div class="reveal" data-controller="reveal">
+      <p style="font-size: 1.05rem; font-family: 'Inter',sans-serif; font-weight: 300; color: var(--pv-text-mid); line-height: 1.78; max-width: 520px; margin-bottom: 3rem;">
+        Saulto gives every leader, regardless of how deep they are in the operational detail, four things at all times. Click any pillar to see what it looks like in practice.
+      </p>
+    </div>
+
+    <%# Clickable pillar cards %>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4" data-controller="scenario-tabs">
+      <% pillars.each_with_index do |p, i| %>
+        <button data-scenario-tabs-target="tab" data-action="click->scenario-tabs#select" data-index="<%= i %>"
+                class="rounded-2xl p-5 text-left w-full reveal" data-controller="reveal"
+                style="background: var(--pv-bg); border: 1px solid var(--pv-border); cursor: pointer; transition: background 0.22s, border-color 0.22s;">
+          <p style="font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--pv-accent); margin-bottom: 0.55rem;"><%= p[:num] %></p>
+          <p class="font-display font-light" style="font-size: 1.15rem; color: var(--pv-text); margin-bottom: 0.5rem;"><%= p[:title] %></p>
+          <p style="font-size: 0.72rem; font-weight: 300; line-height: 1.62; color: var(--pv-text-dim);"><%= p[:body] %></p>
+          <p style="font-size: 0.6rem; letter-spacing: 0.1em; color: var(--pv-text-dim); margin-top: 0.75rem;">↓ click to expand</p>
+        </button>
+      <% end %>
+
+      <%# Expanded detail panels %>
+      <%# 01 Forecast %>
+      <div data-scenario-tabs-target="panel" class="col-span-2 md:col-span-4 rounded-3xl p-7 md:p-9" style="background: var(--pv-bg); border: 1px solid var(--pv-border); display: none;">
+        <p style="font-size: 0.58rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--pv-accent); margin-bottom: 0.75rem;">Q3 Revenue Goal: $4.2M</p>
+        <p style="font-size: 1rem; font-weight: 300; color: var(--pv-text-mid); line-height: 1.75; margin-bottom: 1.5rem; max-width: 500px;">
+          The model runs 10,000 simulations across your pipeline, close rates, and retention data. This number updates continuously as conditions change.
+        </p>
+        <div class="flex items-baseline gap-3 mb-5">
+          <span class="font-display font-light" style="font-size: 3.8rem; color: var(--pv-warn); line-height: 1;">62%</span>
+          <span style="font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--pv-text-dim);">current probability of hitting the goal</span>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <% ["Live model", "10,000 simulations", "Updated hourly"].each do |t| %>
+            <span class="rounded-full px-3 py-1" style="font-size: 0.68rem; color: var(--pv-accent); background: var(--pv-accent-dim); border: 1px solid var(--pv-accent-border);"><%= t %></span>
+          <% end %>
+        </div>
+      </div>
+
+      <%# 02 Diagnosis %>
+      <div data-scenario-tabs-target="panel" class="col-span-2 md:col-span-4 rounded-3xl p-7 md:p-9" style="background: var(--pv-bg); border: 1px solid var(--pv-border); display: none;">
+        <p style="font-size: 0.58rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--pv-accent); margin-bottom: 0.75rem;">3 drivers below threshold</p>
+        <p style="font-size: 1rem; font-weight: 300; color: var(--pv-text-mid); line-height: 1.75; margin-bottom: 1.5rem; max-width: 500px;">
+          Saulto decomposes the probability number into the specific metrics pulling it in the wrong direction, ranked by their effect on the outcome.
+        </p>
+        <div class="space-y-2">
+          <% [
+            { label: "Close rate", delta: "-8pp", team: "Sales" },
+            { label: "Pipeline coverage", delta: "-12pp", team: "Marketing" },
+            { label: "Retention rate", delta: "-4pp", team: "Customer Success" }
+          ].each do |r| %>
+            <div class="flex items-center justify-between rounded-xl px-4 py-3" style="background: var(--pv-surface); border: 1px solid var(--pv-border);">
+              <p style="font-size: 0.88rem; color: var(--pv-text);"><%= r[:label] %></p>
+              <div class="flex items-center gap-2">
+                <span style="font-size: 0.8rem; color: var(--pv-miss);"><%= r[:delta] %></span>
+                <span class="rounded-md px-2.5 py-0.5" style="font-size: 0.62rem; color: var(--pv-accent); background: var(--pv-accent-dim); border: 1px solid var(--pv-accent-border);"><%= r[:team] %></span>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <%# 03 Ownership %>
+      <div data-scenario-tabs-target="panel" class="col-span-2 md:col-span-4 rounded-3xl p-7 md:p-9" style="background: var(--pv-bg); border: 1px solid var(--pv-border); display: none;">
+        <p style="font-size: 0.58rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--pv-accent); margin-bottom: 0.75rem;">Every risk has a name on it</p>
+        <p style="font-size: 1rem; font-weight: 300; color: var(--pv-text-mid); line-height: 1.75; margin-bottom: 1.5rem; max-width: 500px;">
+          Each underperforming driver is assigned to the team responsible. No ambiguity about who needs to act and who is being held accountable.
+        </p>
+        <div class="space-y-2">
+          <% [
+            { driver: "Close rate", team: "Sales", contact: "Head of Sales" },
+            { driver: "Pipeline coverage", team: "Marketing", contact: "CMO" },
+            { driver: "Retention rate", team: "Customer Success", contact: "VP of CS" }
+          ].each do |r| %>
+            <div class="grid gap-2 rounded-xl px-4 py-3" style="grid-template-columns: 1fr 1fr 1fr; background: var(--pv-surface); border: 1px solid var(--pv-border);">
+              <p style="font-size: 0.88rem; color: var(--pv-text);"><%= r[:driver] %></p>
+              <p style="font-size: 0.82rem; color: var(--pv-accent); font-weight: 500;"><%= r[:team] %></p>
+              <p style="font-size: 0.75rem; color: var(--pv-text-dim);"><%= r[:contact] %></p>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <%# 04 Playbook %>
+      <div data-scenario-tabs-target="panel" class="col-span-2 md:col-span-4 rounded-3xl p-7 md:p-9" style="background: var(--pv-bg); border: 1px solid var(--pv-border); display: none;">
+        <p style="font-size: 0.58rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--pv-accent); margin-bottom: 0.75rem;">Actions with numbers attached</p>
+        <p style="font-size: 1rem; font-weight: 300; color: var(--pv-text-mid); line-height: 1.75; margin-bottom: 1.5rem; max-width: 500px;">
+          Not general advice. Each playbook item is a specific move with a quantified impact on the probability number, assigned to the team that owns it.
+        </p>
+        <div class="space-y-2">
+          <% [
+            { action: "Focus senior reps on Segment A, where conversion is 2.3x the company average", impact: "+8 to 12pp", owner: "Sales" },
+            { action: "Shift 25% of budget to enterprise outbound, where CAC is 40% lower than inbound", impact: "+6 to 10pp", owner: "Marketing" },
+            { action: "Introduce 90-day health score check-in for at-risk accounts", impact: "+3 to 5pp", owner: "Customer Success" }
+          ].each do |a| %>
+            <div class="flex items-center justify-between rounded-xl px-4 py-3 gap-4" style="background: var(--pv-accent-dim); border: 1px solid var(--pv-accent-border);">
+              <div>
+                <p style="font-size: 0.88rem; color: var(--pv-text); line-height: 1.5;"><%= a[:action] %></p>
+                <p style="font-size: 0.68rem; color: var(--pv-text-dim); margin-top: 2px;"><%= a[:owner] %></p>
+              </div>
+              <span style="font-size: 0.82rem; color: var(--pv-accent); font-weight: 600; white-space: nowrap;"><%= a[:impact] %></span>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

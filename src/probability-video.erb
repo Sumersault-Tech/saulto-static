@@ -1,0 +1,63 @@
+---
+layout: video
+title: "Saulto | Probability-Driven Execution"
+page_class: probability-video
+---
+
+<style>
+  :root {
+    --pv-bg: #f7f9f8;
+    --pv-accent: #1a6044;
+    --pv-accent-dim: rgba(26,96,68,0.07);
+    --pv-accent-border: rgba(26,96,68,0.17);
+    --pv-text: #192920;
+    --pv-text-dim: rgba(25,41,32,0.38);
+    --pv-text-mid: rgba(25,41,32,0.60);
+    --pv-surface: rgba(25,41,32,0.04);
+    --pv-border: rgba(25,41,32,0.09);
+    --pv-miss: rgba(165,55,45,0.65);
+    --pv-warn: #995018;
+  }
+  .probability-video { background: var(--pv-bg); color: var(--pv-text); }
+
+  .pv-expandable-content {
+    max-height: 0; opacity: 0; overflow: hidden;
+    transition: max-height 0.26s ease-in-out, opacity 0.26s ease-in-out;
+  }
+
+  /* Bell curve animation */
+  .bell-curve-path {
+    stroke-dasharray: 1; stroke-dashoffset: 1;
+    transition: stroke-dashoffset 1.4s ease-in-out;
+  }
+  .is-animated .bell-curve-path { stroke-dashoffset: 0; }
+  .bell-curve-fill { opacity: 0; transition: opacity 0.7s ease 0.7s; }
+  .is-animated .bell-curve-fill { opacity: 1; }
+
+  /* Micro-animations for affordance cues */
+  @keyframes pulse-opacity {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.9; }
+  }
+  @keyframes gentle-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+  }
+  @keyframes gentle-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+  }
+</style>
+
+<%= render "probability-video/scroll_progress" %>
+<%= render "probability-video/section_nav" %>
+<%= render "probability-video/sticky_header" %>
+
+<%= render "probability-video/hero" %>
+<%= render "probability-video/simulation" %>
+<%= render "probability-video/signal" %>
+<%= render "probability-video/diagnosis" %>
+<%= render "probability-video/lever" %>
+<%= render "probability-video/scenarios" %>
+<%= render "probability-video/system" %>
+<%= render "probability-video/footer" %>

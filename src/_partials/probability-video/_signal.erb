@@ -1,0 +1,87 @@
+<section id="s-signal" class="px-6 py-28 md:py-36" style="border-top: 1px solid var(--pv-border); background: var(--pv-surface);">
+  <div class="max-w-3xl mx-auto">
+    <div class="flex items-center gap-3 mb-10 reveal" data-controller="reveal">
+      <span style="font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--pv-accent); opacity: 0.75;">02</span>
+      <span style="font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--pv-text-dim);">The Signal</span>
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+      <%# Left: bell curve + flip number %>
+      <div class="reveal" data-controller="reveal">
+        <div class="flex flex-col items-center">
+          <div style="max-width: 360px; width: 100%; margin-bottom: 1rem;" data-controller="bell-curve">
+            <svg data-bell-curve-target="svg" viewBox="0 0 360 108" width="360" height="108" style="max-width: 100%; display: block; margin: 0 auto;">
+              <defs>
+                <linearGradient id="hitGv2" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stop-color="var(--pv-accent)" stop-opacity="0.07" />
+                  <stop offset="100%" stop-color="var(--pv-accent)" stop-opacity="0.26" />
+                </linearGradient>
+              </defs>
+              <path class="bell-curve-fill" data-bell-curve-target="missFill" fill="rgba(165,55,45,0.09)" d="" />
+              <path class="bell-curve-fill" data-bell-curve-target="hitFill" fill="url(#hitGv2)" d="" />
+              <path class="bell-curve-path" data-bell-curve-target="curve" fill="none" stroke="rgba(25,41,32,0.24)" stroke-width="1.6" d="" />
+              <line data-bell-curve-target="goalLine" stroke="rgba(115,95,50,0.58)" stroke-width="1" stroke-dasharray="4,3" />
+              <text data-bell-curve-target="goalLabel" fill="rgba(115,95,50,0.75)" font-size="8" font-family="Inter,system-ui">GOAL</text>
+              <line data-bell-curve-target="baseline" stroke="var(--pv-border)" stroke-width="1" />
+            </svg>
+          </div>
+
+          <%# Legend %>
+          <div class="flex items-center justify-center gap-5 mb-5">
+            <% [{ c: "rgba(165,55,45,0.65)", l: "miss" }, { c: "rgba(115,95,50,0.68)", l: "goal" }, { c: "var(--pv-accent)", l: "hit" }].each do |x| %>
+              <span class="flex items-center gap-1.5" style="font-size: 0.62rem; color: <%= x[:c] %>;">
+                <span style="display: inline-block; width: 14px; height: 1.5px; background: <%= x[:c] %>;"></span><%= x[:l] %>
+              </span>
+            <% end %>
+          </div>
+
+          <%# Flip number %>
+          <div data-controller="flip-number">
+            <button data-action="click->flip-number#toggle" style="background: none; border: none; cursor: pointer; padding: 0; width: 100%;" title="Click to see the other side">
+              <div data-flip-number-target="hit" class="flex flex-col items-center">
+                <div class="flex items-baseline justify-center gap-3">
+                  <span class="font-display font-light tabular-nums leading-none" style="font-size: clamp(4rem,12vw,6.5rem); color: var(--pv-warn);"
+                        data-controller="counter" data-counter-target="number" data-counter-to-value="62" data-counter-duration-value="1800" data-counter-suffix-value="%">0%</span>
+                  <div>
+                    <p style="font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--pv-text-dim);">probability</p>
+                    <p style="font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--pv-text-dim);">of hitting</p>
+                  </div>
+                </div>
+              </div>
+              <div data-flip-number-target="miss" class="flex flex-col items-center" style="display: none;">
+                <div class="flex items-baseline justify-center gap-3">
+                  <span class="font-display font-light tabular-nums leading-none" style="font-size: clamp(4rem,12vw,6.5rem); color: rgba(165,55,45,0.88);">38%</span>
+                  <div>
+                    <p style="font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--pv-text-dim);">chance of</p>
+                    <p style="font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(165,55,45,0.78);">missing</p>
+                  </div>
+                </div>
+              </div>
+            </button>
+            <p style="font-size: 0.72rem; color: var(--pv-accent); margin-top: 0.9rem; text-align: center; letter-spacing: 0.04em; animation: pulse-opacity 2.4s ease-in-out infinite;">
+              Tap the number to see the other side
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <%# Right: copy %>
+      <div>
+        <div class="reveal" data-controller="reveal">
+          <h2 class="font-display font-light" style="font-size: clamp(2rem,4.5vw,3.2rem); color: var(--pv-text); line-height: 1.2; margin-bottom: 1.5rem;">
+            Not a forecast.<br><span style="color: var(--pv-warn);">A confidence level.</span>
+          </h2>
+        </div>
+        <div class="reveal" data-controller="reveal">
+          <p style="font-size: 1.05rem; font-family: 'Inter',sans-serif; font-weight: 300; color: var(--pv-text-mid); line-height: 1.78; margin-bottom: 1.25rem;">
+            Those 10,000 simulations resolve into a single number: your probability of hitting the target. 62% means a 38% chance of missing, and you can see that now, not at the end of the quarter.
+          </p>
+        </div>
+        <div class="reveal" data-controller="reveal">
+          <p style="font-size: 1.05rem; font-family: 'Inter',sans-serif; font-weight: 300; color: var(--pv-text-mid); line-height: 1.78;">
+            That is a warning signal with enough time to act. The question becomes: which levers move that number?
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

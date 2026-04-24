@@ -1,0 +1,135 @@
+<%
+  scenarios = [
+    {
+      tag: "B2B Software",
+      situation: "Pipeline looks strong and leadership is confident. Saulto identifies a risk below the surface.",
+      before: 58, after: 76,
+      drivers: [
+        { label: "Close rate", detail: "declining quarter over quarter" },
+        { label: "Deal velocity", detail: "sales cycle extending by 3 weeks" }
+      ],
+      actions: [
+        { action: "Improve close rate by 12%", impact: "+14pp probability" },
+        { action: "Reduce sales cycle by 10%", impact: "+4pp probability" }
+      ]
+    },
+    {
+      tag: "DTC Brand",
+      situation: "Revenue is stable, but margin compression is forming before it shows up in the financials.",
+      before: 61, after: 79,
+      drivers: [
+        { label: "Customer acquisition cost", detail: "rising 18% year over year" },
+        { label: "Repeat purchase rate", detail: "declining across all cohorts" }
+      ],
+      actions: [
+        { action: "Improve retention by 8%", impact: "+10pp probability" },
+        { action: "Rebalance acquisition channels", impact: "+8pp probability" }
+      ]
+    },
+    {
+      tag: "Private Equity Portfolio",
+      situation: "EBITDA growth is expected ahead of exit, but the model shows only 64% confidence.",
+      before: 64, after: 81,
+      drivers: [
+        { label: "Pipeline coverage", detail: "insufficient across all regions" },
+        { label: "Conversion rates", detail: "inconsistent across regions" }
+      ],
+      actions: [
+        { action: "Add 20% more pipeline coverage", impact: "+11pp probability" },
+        { action: "Standardise the sales process", impact: "+6pp probability" }
+      ]
+    },
+    {
+      tag: "Professional Services",
+      situation: "Strong inbound demand, but quarterly revenue targets are consistently being missed.",
+      before: 55, after: 73,
+      drivers: [
+        { label: "Utilisation rate", detail: "below target across delivery teams" },
+        { label: "Project timelines", detail: "delays eroding billable hours" }
+      ],
+      actions: [
+        { action: "Improve utilisation by 10%", impact: "+12pp probability" },
+        { action: "Tighten project timeline controls", impact: "+6pp probability" }
+      ]
+    }
+  ]
+%>
+
+<section id="s-practice" class="px-6 py-28 md:py-36" style="border-top: 1px solid var(--pv-border);">
+  <div class="max-w-3xl mx-auto">
+    <div class="flex items-center gap-3 mb-10 reveal" data-controller="reveal">
+      <span style="font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--pv-accent); opacity: 0.75;">05</span>
+      <span style="font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--pv-text-dim);">In Practice</span>
+    </div>
+    <div class="reveal" data-controller="reveal">
+      <h2 class="font-display font-light" style="font-size: clamp(2rem,4.5vw,3.2rem); color: var(--pv-text); line-height: 1.2; margin-bottom: 1rem;">
+        Across every type of business.
+      </h2>
+    </div>
+    <div class="reveal" data-controller="reveal">
+      <p style="font-size: 1.05rem; font-family: 'Inter',sans-serif; font-weight: 300; color: var(--pv-text-mid); line-height: 1.75; margin-bottom: 2.5rem;">
+        The same model, applied to four different operating contexts. Select your sector.
+      </p>
+    </div>
+
+    <div class="reveal" data-controller="reveal">
+      <div data-controller="scenario-tabs">
+        <%# Sector tabs %>
+        <div class="flex items-center gap-3 mb-4">
+          <span style="font-size: 0.72rem; color: var(--pv-accent); letter-spacing: 0.12em; text-transform: uppercase;">Select your sector</span>
+          <div style="flex: 1; height: 1px; background: var(--pv-accent-border);"></div>
+        </div>
+        <div class="flex flex-wrap gap-2 mb-8">
+          <% scenarios.each_with_index do |s, i| %>
+            <button data-scenario-tabs-target="tab" data-action="click->scenario-tabs#select" data-index="<%= i %>"
+                    class="rounded-full px-4 py-2 transition-all duration-200"
+                    style="background: var(--pv-surface); color: var(--pv-text-mid); border: 1px solid var(--pv-border); font-size: 0.78rem;">
+              <%= s[:tag] %>
+            </button>
+          <% end %>
+        </div>
+
+        <%# Scenario panels %>
+        <% scenarios.each_with_index do |s, i| %>
+          <div data-scenario-tabs-target="panel" class="rounded-3xl p-7 md:p-9" style="background: var(--pv-surface); border: 1px solid var(--pv-border); display: none;">
+            <p style="font-size: 1rem; font-weight: 300; color: var(--pv-text-mid); line-height: 1.75; margin-bottom: 2rem;"><%= s[:situation] %></p>
+            <div class="flex items-center gap-6 mb-7">
+              <div>
+                <p class="font-display font-light" style="font-size: 2.8rem; color: var(--pv-warn); line-height: 1;"><%= s[:before] %>%</p>
+                <p style="font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--pv-text-dim); margin-top: 4px;">probability today</p>
+              </div>
+              <span style="font-size: 1.2rem; color: var(--pv-text-dim);">→</span>
+              <div>
+                <p class="font-display font-light" style="font-size: 2.8rem; color: var(--pv-accent); line-height: 1;"><%= s[:after] %>%</p>
+                <p style="font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--pv-text-dim); margin-top: 4px;">after actions</p>
+              </div>
+              <span class="rounded-full px-3 py-1 ml-1" style="background: var(--pv-accent-dim); border: 1px solid var(--pv-accent-border); font-size: 0.78rem; color: var(--pv-accent);">
+                +<%= s[:after] - s[:before] %>pp
+              </span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="rounded-2xl p-5" style="background: var(--pv-bg); border: 1px solid var(--pv-border);">
+                <p style="font-size: 0.6rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--pv-text-dim); margin-bottom: 0.85rem;">Risk drivers</p>
+                <% s[:drivers].each do |d| %>
+                  <div class="mb-3">
+                    <p style="font-size: 0.88rem; font-weight: 400; color: var(--pv-text);"><%= d[:label] %></p>
+                    <p style="font-size: 0.72rem; color: var(--pv-text-dim); margin-top: 2px;"><%= d[:detail] %></p>
+                  </div>
+                <% end %>
+              </div>
+              <div class="rounded-2xl p-5" style="background: var(--pv-accent-dim); border: 1px solid var(--pv-accent-border);">
+                <p style="font-size: 0.6rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--pv-accent); opacity: 0.85; margin-bottom: 0.85rem;">Recommended actions</p>
+                <% s[:actions].each do |a| %>
+                  <div class="mb-3">
+                    <p style="font-size: 0.88rem; font-weight: 400; color: var(--pv-text);"><%= a[:action] %></p>
+                    <p style="font-size: 0.72rem; color: var(--pv-accent); margin-top: 2px;"><%= a[:impact] %></p>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,30 @@
+<section id="s-hero" class="relative flex flex-col items-center justify-center text-center min-h-screen px-6 pb-24 pt-32">
+  <div class="reveal" data-controller="reveal" style="margin-bottom: 3rem;">
+    <%# Branching paths SVG %>
+    <svg viewBox="0 0 300 90" width="260" style="max-width: 100%; overflow: visible;">
+      <% [[190,10],[190,20],[190,32],[190,46],[190,62]].each_with_index do |(ex,ey), i| %>
+        <line x1="128" y1="40" x2="<%= ex %>" y2="<%= ey %>"
+          stroke="<%= i == 1 ? 'rgba(26,96,68,0.55)' : "rgba(165,55,45,#{0.15 + i * 0.05})" %>"
+          stroke-width="1.2" stroke-linecap="round" />
+      <% end %>
+      <circle cx="128" cy="40" r="3" fill="rgba(164,144,96,0.82)" />
+    </svg>
+  </div>
+
+  <div class="reveal" data-controller="reveal">
+    <h1 class="font-display font-light" style="font-size: clamp(3rem,7.5vw,5.5rem); color: var(--pv-text); line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 1.5rem;">
+      One number<br>is not enough.
+    </h1>
+  </div>
+
+  <div class="reveal" data-controller="reveal">
+    <p style="font-size: clamp(1rem,2vw,1.2rem); font-family: 'Inter',sans-serif; font-weight: 300; color: var(--pv-text-mid); max-width: 520px; line-height: 1.75; margin-bottom: 3.5rem;">
+      Most companies run on a single forecast, one expectation for how the quarter will unfold. But reality diverges from that line the moment the quarter begins.
+    </p>
+  </div>
+
+  <div class="reveal" data-controller="reveal" style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+    <div style="width: 1px; height: 36px; background: linear-gradient(to bottom, transparent, var(--pv-text-dim));"></div>
+    <p style="font-size: 0.6rem; font-family: 'Inter',sans-serif; letter-spacing: 0.26em; text-transform: uppercase; color: var(--pv-text-dim);">scroll</p>
+  </div>
+</section>

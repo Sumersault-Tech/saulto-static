@@ -1,0 +1,101 @@
+<section id="s-lever" class="px-6 py-28 md:py-36" style="border-top: 1px solid var(--pv-border); background: var(--pv-surface);">
+  <div class="max-w-3xl mx-auto">
+    <div class="flex items-center gap-3 mb-10 reveal" data-controller="reveal">
+      <span style="font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--pv-accent); opacity: 0.75;">04</span>
+      <span style="font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--pv-text-dim);">The Lever</span>
+    </div>
+    <div class="max-w-xl mx-auto text-center mb-10">
+      <div class="reveal" data-controller="reveal">
+        <h2 class="font-display font-light" style="font-size: clamp(2rem,4.5vw,3.2rem); color: var(--pv-text); line-height: 1.2; margin-bottom: 1rem;">
+          Move the levers.<br><span style="color: var(--pv-accent);">Watch the number change.</span>
+        </h2>
+      </div>
+      <div class="reveal" data-controller="reveal">
+        <p style="font-size: 1.05rem; font-family: 'Inter',sans-serif; font-weight: 300; color: var(--pv-text-mid); line-height: 1.75;">
+          Adjust any driver to see its effect on the probability. The distribution shifts in real time.
+        </p>
+      </div>
+    </div>
+
+    <div class="reveal" data-controller="reveal">
+      <div class="rounded-3xl p-7 md:p-9" style="background: var(--pv-bg); border: 1px solid var(--pv-border);"
+           data-controller="lever">
+
+        <%# Affordance cue %>
+        <div class="flex justify-center mb-6">
+          <div class="inline-flex items-center gap-2 rounded-full px-4 py-2" style="background: var(--pv-accent-dim); border: 1px solid var(--pv-accent-border); animation: gentle-pulse 2.2s ease-in-out infinite;">
+            <span style="font-size: 0.82rem; color: var(--pv-accent); letter-spacing: 0.01em;">
+              ← Drag the sliders below to model your drivers →
+            </span>
+          </div>
+        </div>
+
+        <%# Probability bar %>
+        <div class="flex items-center justify-center gap-8 mb-7">
+          <div class="text-center">
+            <p class="font-display font-light" style="font-size: clamp(2.4rem,7vw,3.4rem); color: var(--pv-warn); line-height: 1;">62%</p>
+            <p style="font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--pv-text-dim); margin-top: 4px;">current</p>
+          </div>
+          <span style="font-size: 1.3rem; color: var(--pv-text-dim);">→</span>
+          <div class="text-center">
+            <p class="font-display font-light" data-lever-target="projected" style="font-size: clamp(2.4rem,7vw,3.4rem); line-height: 1; color: var(--pv-warn); transition: color 0.35s;">62%</p>
+            <p style="font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--pv-text-dim); margin-top: 4px;">projected</p>
+          </div>
+        </div>
+
+        <%# Live mini distribution curve %>
+        <div class="mb-7" style="border-radius: 12px; overflow: hidden; background: var(--pv-surface); padding: 12px 8px 4px;">
+          <svg viewBox="0 0 400 80" width="100%" style="display: block; overflow: visible;">
+            <path data-lever-target="missArea" fill="rgba(165,55,45,0.10)" d="" />
+            <path data-lever-target="hitArea" fill="rgba(26,96,68,0.13)" d="" />
+            <path data-lever-target="curve" fill="none" stroke="rgba(25,41,32,0.24)" stroke-width="1.8" d="" />
+            <line x1="200" y1="0" x2="200" y2="80" stroke="rgba(115,95,50,0.5)" stroke-width="1.5" stroke-dasharray="3 3" />
+            <text x="204" y="12" fill="rgba(115,95,50,0.75)" font-size="8" font-family="Inter,system-ui">Goal</text>
+            <line x1="0" y1="80" x2="400" y2="80" stroke="var(--pv-border)" stroke-width="1" />
+            <text x="178" y="77" fill="var(--pv-text-dim)" font-size="7.5" font-family="Inter,system-ui">miss</text>
+            <text x="205" y="77" fill="var(--pv-accent)" font-size="7.5" font-family="Inter,system-ui">hit</text>
+          </svg>
+          <p style="font-size: 0.62rem; color: var(--pv-text-dim); text-align: center; margin-top: 4px;">
+            Distribution shifts right as drivers improve
+          </p>
+        </div>
+
+        <%# Sliders %>
+        <div class="space-y-5">
+          <% [
+            { label: "Close rate", sublabel: "Sales", name: "closeRate", max: 20 },
+            { label: "Pipeline coverage", sublabel: "Marketing", name: "pipeline", max: 25 },
+            { label: "Retention rate", sublabel: "Customer Success", name: "retention", max: 15 }
+          ].each do |s| %>
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <div class="flex items-center gap-2">
+                  <p style="font-size: 0.85rem; color: var(--pv-text-mid);"><%= s[:label] %></p>
+                  <span class="rounded-full px-2 py-0.5" style="font-size: 0.58rem; color: var(--pv-accent); background: var(--pv-accent-dim); border: 1px solid var(--pv-accent-border);"><%= s[:sublabel] %></span>
+                </div>
+                <p data-slider-value="<%= s[:name] %>" style="font-size: 0.82rem; color: var(--pv-text-dim); font-weight: 400;">no change</p>
+              </div>
+              <input type="range" min="0" max="<%= s[:max] %>" value="0"
+                     data-lever-target="<%= s[:name] %>"
+                     data-action="input->lever#update"
+                     class="w-full cursor-pointer" style="accent-color: var(--pv-accent);" />
+            </div>
+          <% end %>
+        </div>
+
+        <%# Combined impact %>
+        <div data-lever-target="impact" class="rounded-xl px-4 py-3.5 mt-5" style="background: var(--pv-accent-dim); border: 1px solid var(--pv-accent-border); display: none;">
+          <div class="flex items-center justify-between">
+            <p style="font-size: 0.82rem; color: var(--pv-text-mid);">Combined probability impact</p>
+            <p data-impact-num style="font-size: 0.88rem; color: var(--pv-accent); font-weight: 600;">+0pp</p>
+          </div>
+        </div>
+
+        <%# Reset %>
+        <button data-lever-target="resetBtn" data-action="click->lever#reset" style="margin-top: 1rem; font-size: 0.72rem; color: var(--pv-text-dim); background: none; border: none; cursor: pointer; padding: 0; display: none;">
+          Reset all drivers
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

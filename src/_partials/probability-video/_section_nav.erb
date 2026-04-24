@@ -1,0 +1,16 @@
+<div data-controller="section-nav" class="hidden md:flex" style="position: fixed; right: 18px; top: 50%; transform: translateY(-50%); z-index: 100; flex-direction: column; gap: 12px;">
+  <% [
+    { id: "s-hero",      label: "Introduction" },
+    { id: "s-method",    label: "The Method" },
+    { id: "s-signal",    label: "The Signal" },
+    { id: "s-diagnosis", label: "The Diagnosis" },
+    { id: "s-lever",     label: "The Lever" },
+    { id: "s-practice",  label: "In Practice" },
+    { id: "s-system",    label: "The System" },
+  ].each do |nav| %>
+    <button data-section-nav-target="dot" data-section="<%= nav[:id] %>" data-action="click->section-nav#scrollTo"
+      aria-label="Jump to <%= nav[:label] %>"
+      style="width: 7px; height: 7px; border-radius: 50%; background: transparent; border: 1.5px solid var(--pv-text-dim); cursor: pointer; padding: 0; transition: all 0.2s; flex-shrink: 0;">
+    </button>
+  <% end %>
+</div>

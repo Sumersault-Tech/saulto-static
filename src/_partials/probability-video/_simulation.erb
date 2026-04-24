@@ -1,0 +1,42 @@
+<section id="s-method" class="px-6 py-28 md:py-36" style="border-top: 1px solid var(--pv-border);">
+  <div class="max-w-3xl mx-auto">
+    <div class="flex items-center gap-3 mb-10 reveal" data-controller="reveal">
+      <span style="font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--pv-accent); opacity: 0.75;">01</span>
+      <span style="font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--pv-text-dim);">The Method</span>
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+      <div>
+        <div class="reveal" data-controller="reveal">
+          <h2 class="font-display font-light" style="font-size: clamp(2rem,4.5vw,3.2rem); color: var(--pv-text); line-height: 1.2; margin-bottom: 1.5rem;">
+            10,000 simulations.<br><span style="color: var(--pv-accent);">Built from your data.</span>
+          </h2>
+        </div>
+        <div class="reveal" data-controller="reveal">
+          <p style="font-size: 1.05rem; font-family: 'Inter',sans-serif; font-weight: 300; color: var(--pv-text-mid); line-height: 1.78; margin-bottom: 1.25rem;">
+            Saulto uses Monte Carlo simulation to model thousands of possible futures. Each simulation samples from your real performance distributions: close rate, pipeline velocity, and retention, then runs them forward.
+          </p>
+        </div>
+        <div class="reveal" data-controller="reveal">
+          <p style="font-size: 1.05rem; font-family: 'Inter',sans-serif; font-weight: 300; color: var(--pv-text-mid); line-height: 1.78;">
+            Together, those paths show you the full range of where the business is likely to land, not a single point but a distribution of futures.
+          </p>
+        </div>
+      </div>
+      <div class="reveal" data-controller="reveal">
+        <div data-controller="counter path-fan">
+          <div class="flex items-baseline justify-center gap-2 mb-5">
+            <span class="font-display font-light tabular-nums" style="font-size: clamp(2.8rem,8vw,4.2rem); color: var(--pv-accent);"
+                  data-counter-target="number" data-controller="counter" data-counter-to-value="10000" data-counter-duration-value="2000">0</span>
+            <span style="font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--pv-text-dim);">simulations</span>
+          </div>
+          <div data-controller="path-fan" data-path-fan-width-value="420" data-path-fan-height-value="158">
+            <canvas data-path-fan-target="canvas" style="width: 420px; height: 158px; max-width: 100%; display: block; margin: 0 auto;"></canvas>
+          </div>
+          <p style="font-size: 0.72rem; color: var(--pv-text-dim); text-align: center; margin-top: 0.75rem;">
+            Green paths hit the goal. Each line is one possible future.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
