@@ -1,0 +1,23 @@
+<div>
+  <%# Section heading %>
+  <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 20px;">
+    <div style="width: 3px; height: 24px; background: var(--mn-dark); border-radius: 2px; flex-shrink: 0;"></div>
+    <h2 style="font-family: var(--mn-serif); font-size: 22px; font-weight: 500; color: var(--mn-dark); margin: 0;">What Saulto does</h2>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 0;">
+    <% [
+      { n: "1", title: "Connects to your accounting system and business data.", body: "Your ERP, accounting software, and CRM. Saulto normalizes your financial data automatically. No manual exports. Nothing to rebuild. One connection, continuous data." },
+      { n: "2", title: "Tracks financial health and team performance every day.", body: "Revenue, margin, team capacity, and goal pace together as one picture. We know what on-track looks like for your business, and we know the moment the numbers start to drift." },
+      { n: "3", title: "Shows you the probability of hitting your targets, and exactly what to do.", body: "Not after a retailer calls you. Not after a ship date is missed. Weeks ahead, with specific actions ranked by their impact on your numbers." },
+    ].each_with_index do |item, i| %>
+      <div style="display: flex; gap: 20px; padding: 20px 0; <%= i < 2 ? "border-bottom: 1px solid var(--mn-border);" : "" %>">
+        <span style="font-family: var(--mn-serif); font-size: 40px; font-weight: 400; color: var(--mn-border); line-height: 1; flex-shrink: 0; width: 32px; text-align: right;"><%= item[:n] %></span>
+        <div>
+          <p style="font-family: var(--mn-serif); font-size: 18px; font-weight: 500; color: var(--mn-text); line-height: 1.3; margin: 0 0 6px;"><%= item[:title] %></p>
+          <p style="font-family: var(--mn-sans); font-size: 13px; color: var(--mn-muted); line-height: 1.65; margin: 0;"><%= item[:body] %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

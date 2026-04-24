@@ -1,0 +1,63 @@
+<%
+  gauge_size = 180
+  r = (gauge_size / 2.0) * 0.72
+  circ = 2 * Math::PI * r
+  arc = circ * 0.75
+%>
+<section class="reveal" data-controller="reveal" style="background: var(--hv2-bg); padding: 100px 24px;">
+  <div class="hv2-two-col" style="max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
+    <%# Dashboard Chaos Visual %>
+    <div style="display: flex; justify-content: center;">
+      <div data-controller="dashboard-chaos" style="position: relative; width: 320px; height: 300px; display: flex; align-items: center; justify-content: center;">
+        <%# Scattered cards %>
+        <div data-dashboard-chaos-target="cards">
+          <% [
+            { label: "Salesforce", value: "$4.2M", color: "#1a6bcc", x: -90, y: -60, rot: -8 },
+            { label: "QuickBooks", value: "$3.8M", color: "#2b8a44", x: 80,  y: -70, rot: 6 },
+            { label: "HubSpot",    value: "$4.6M", color: "#e05c1a", x: -60, y: 30,  rot: -5 },
+            { label: "Jira",       value: "72 pts",color: "#1a66cc", x: 90,  y: 20,  rot: 9 },
+            { label: "Spreadsheet",value: "$4.1M", color: "#5a5a5a", x: 0,   y: 60,  rot: -3 },
+          ].each do |c| %>
+            <div style="position: absolute; left: 50%; top: 50%; transform: translate(calc(-50% + <%= c[:x] %>px), calc(-50% + <%= c[:y] %>px)) rotate(<%= c[:rot] %>deg); background: #fff; border: 1.5px solid var(--hv2-border); border-radius: 10px; padding: 10px 14px; min-width: 110px; box-shadow: 0 4px 16px rgba(0,0,0,0.08);">
+              <p style="font-family: var(--hv2-sans); font-size: 9px; font-weight: 700; color: <%= c[:color] %>; letter-spacing: 0.1em; text-transform: uppercase; margin: 0 0 4px;"><%= c[:label] %></p>
+              <p style="font-family: var(--hv2-serif); font-size: 20px; font-weight: 500; color: var(--hv2-ink); margin: 0;"><%= c[:value] %></p>
+            </div>
+          <% end %>
+        </div>
+        <%# Collapsed gauge (hidden until collapse) %>
+        <div data-dashboard-chaos-target="gauge" style="display: none; flex-direction: column; align-items: center; gap: 10px;"
+             data-controller="gauge" data-gauge-value-value="87" data-gauge-size-value="<%= gauge_size %>" data-gauge-animated-value="false">
+          <div style="position: relative; width: <%= gauge_size %>px; height: <%= (gauge_size * 0.82).round %>px;">
+            <svg width="<%= gauge_size %>" height="<%= (gauge_size * 0.82).round %>" viewBox="0 0 <%= gauge_size %> <%= (gauge_size * 0.82).round %>">
+              <circle cx="<%= gauge_size/2 %>" cy="<%= (gauge_size*0.58).round %>" r="<%= r.round %>" fill="none" stroke="rgba(0,0,0,0.07)" stroke-width="<%= (gauge_size*0.055).round %>"
+                stroke-dasharray="<%= arc.round %> <%= (circ - arc).round %>" stroke-dashoffset="<%= (-arc*0.375).round %>" stroke-linecap="round" />
+              <circle data-gauge-target="arc" cx="<%= gauge_size/2 %>" cy="<%= (gauge_size*0.58).round %>" r="<%= r.round %>" fill="none" stroke="var(--hv2-green)" stroke-width="<%= (gauge_size*0.055).round %>"
+                stroke-dasharray="<%= arc.round %> <%= (circ - arc).round %>" stroke-dashoffset="<%= (-arc*0.375).round %>" stroke-linecap="round" />
+            </svg>
+            <div style="position: absolute; bottom: 2px; left: 0; right: 0; text-align: center;">
+              <span data-gauge-target="number" style="font-family: var(--hv2-serif); font-size: <%= (gauge_size * 0.25).round %>px; font-weight: 500; color: var(--hv2-ink); line-height: 1;">87%</span>
+            </div>
+          </div>
+          <p style="font-family: var(--hv2-sans); font-size: 12px; font-weight: 700; color: var(--hv2-green); letter-spacing: 0.08em; text-transform: uppercase; margin: 0;">One number. One source of truth.</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p style="font-family: var(--hv2-sans); font-size: 10px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: var(--hv2-muted); margin: 0 0 20px;">Problem 2 of 3</p>
+      <h2 style="font-family: var(--hv2-serif); font-size: clamp(32px, 3.5vw, 48px); font-weight: 500; color: var(--hv2-ink); line-height: 1.1; margin: 0 0 24px;">
+        "What if we hire two<br>more engineers?"
+      </h2>
+      <p style="font-family: var(--hv2-sans); font-size: 16px; color: var(--hv2-muted); line-height: 1.7; margin: 0 0 16px;">
+        That question gets answered with opinions, not numbers. Nobody can tell you the cost, the capacity change, the quarterly P&L shift, or how it changes your trajectory for the year.
+      </p>
+      <p style="font-family: var(--hv2-sans); font-size: 16px; color: var(--hv2-muted); line-height: 1.7; margin: 0 0 32px;">
+        Hiring, canceling a project, delaying a launch. Every decision has ripple effects across your P&L, team capacity, and goal trajectory. Right now you're committing blind.
+      </p>
+      <div style="background: var(--hv2-dark); border-radius: 14px; padding: 20px 24px;">
+        <p style="font-family: var(--hv2-sans); font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--hv2-gold); margin: 0 0 8px;">Scenario Intelligence Engine</p>
+        <p style="font-family: var(--hv2-serif); font-size: 22px; font-weight: 500; color: #fff; margin: 0 0 6px; line-height: 1.25;">Quantify every "what if" before you commit. Capacity, cost, P&L, trajectory. All of it.</p>
+        <p style="font-family: var(--hv2-sans); font-size: 12px; color: rgba(255,255,255,0.45); margin: 0;">Built on your actual financial data and team capacity.</p>
+      </div>
+    </div>
+  </div>
+</section>

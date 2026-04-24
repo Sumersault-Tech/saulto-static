@@ -1,0 +1,59 @@
+<section class="reveal" data-controller="reveal" style="background: #fff; padding: 100px 24px;">
+  <div style="max-width: 860px; margin: 0 auto;">
+    <div style="text-align: center; margin-bottom: 52px;">
+      <h2 style="font-family: var(--hv2-serif); font-size: clamp(32px, 3.5vw, 52px); font-weight: 500; color: var(--hv2-ink); line-height: 1.1; margin: 0;">
+        What Saulto replaces.
+      </h2>
+    </div>
+    <div class="hv2-replace-grid" style="display: grid; grid-template-columns: 1fr 64px 1fr; align-items: stretch;">
+      <%# Before %>
+      <div style="background: var(--hv2-bg); border: 1.5px solid var(--hv2-border); border-radius: 16px 0 0 16px; padding: 32px; display: flex; flex-direction: column; gap: 16px;">
+        <p style="font-family: var(--hv2-sans); font-size: 10px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; color: var(--hv2-muted); margin: 0;">Before</p>
+        <% [
+          { label: "Spreadsheet forecasting",      sub: "single-point estimates with no distribution" },
+          { label: "Let me model that in Excel",    sub: "opinions instead of quantified impact" },
+          { label: "Monthly board report prep",     sub: "static, backward-looking, hours to produce" },
+          { label: "Asana / Monday for strategy",   sub: "task completion with no financial linkage" },
+          { label: "Manual ERP reporting",          sub: "copy-paste from accounting into slides" },
+          { label: "OKR platforms",                 sub: "Red/yellow/green with no forward view" },
+        ].each do |item| %>
+          <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="width: 32px; height: 32px; border-radius: 8px; background: #fff; border: 1.5px solid var(--hv2-border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;">
+              <span style="font-family: var(--hv2-sans); font-size: 10px; color: var(--hv2-muted);">&mdash;</span>
+            </div>
+            <div>
+              <p style="font-family: var(--hv2-sans); font-size: 14px; font-weight: 700; color: var(--hv2-ink); margin: 0 0 2px;"><%= item[:label] %></p>
+              <p style="font-family: var(--hv2-sans); font-size: 12px; color: var(--hv2-muted); margin: 0;"><%= item[:sub] %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <%# Arrow %>
+      <div style="display: flex; align-items: center; justify-content: center; background: var(--hv2-dark);">
+        <span style="font-size: 24px; color: var(--hv2-gold);">&rarr;</span>
+      </div>
+      <%# Saulto %>
+      <div style="background: var(--hv2-dark); border-radius: 0 16px 16px 0; padding: 32px; display: flex; flex-direction: column; gap: 16px;">
+        <p style="font-family: var(--hv2-sans); font-size: 10px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; color: var(--hv2-gold); margin: 0;">Saulto</p>
+        <% [
+          { label: "Forecast Engine",          sub: "10,000 simulated futures from your real data" },
+          { label: "Scenario Engine",          sub: "quantified what-if with live financial and capacity data" },
+          { label: "Exposure Engine",          sub: "real-time Pace Score with AI recommendations" },
+          { label: "Strategic Execution",      sub: "initiatives connected to financial impact and trajectory" },
+          { label: "Financial Normalization",  sub: "auto-normalized across 700+ integrations" },
+          { label: "Team Decomposition",       sub: "KPIs connected to simulated outcome data" },
+        ].each do |item| %>
+          <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="width: 32px; height: 32px; border-radius: 8px; background: rgba(255,255,255,0.08); border: 1.5px solid rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;">
+              <span style="font-family: var(--hv2-sans); font-size: 10px; color: var(--hv2-gold);">&check;</span>
+            </div>
+            <div>
+              <p style="font-family: var(--hv2-sans); font-size: 14px; font-weight: 700; color: #fff; margin: 0 0 2px;"><%= item[:label] %></p>
+              <p style="font-family: var(--hv2-sans); font-size: 12px; color: rgba(255,255,255,0.45); margin: 0;"><%= item[:sub] %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>

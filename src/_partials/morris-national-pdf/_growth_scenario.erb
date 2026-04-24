@@ -1,0 +1,155 @@
+<div>
+  <%# Section heading %>
+  <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 20px;">
+    <div style="width: 3px; height: 24px; background: var(--mn-dark); border-radius: 2px; flex-shrink: 0;"></div>
+    <h2 style="font-family: var(--mn-serif); font-size: 22px; font-weight: 500; color: var(--mn-dark); margin: 0;">The growth scenario</h2>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 16px;">
+
+    <%# Step 1: Metrics %>
+    <div style="background: #fff; border: 1.5px solid var(--mn-border); border-radius: 12px; padding: 18px 20px;">
+      <p style="font-family: var(--mn-sans); font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mn-muted); margin: 0 0 10px;">Step 1: Revenue is building. The year is taking shape.</p>
+      <p style="font-family: var(--mn-sans); font-size: 13px; color: var(--mn-muted); margin: 0 0 14px; line-height: 1.6;">
+        Revenue is running ahead of last year across all channels. Saulto is already tracking your pace against your annual goal from your accounting and CRM data.
+      </p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;">
+        <% [
+          { label: "Revenue YTD",        value: "$2.1M",  note: "+14% YoY" },
+          { label: "Core confectionery",  value: "$890K",  note: "+11% YoY" },
+          { label: "Annual Goal",         value: "$3.2M",  note: "66% to target" },
+        ].each do |m| %>
+          <div style="background: var(--mn-light); border-radius: 10px; padding: 12px 14px; border: 1px solid var(--mn-border);">
+            <p style="font-family: var(--mn-sans); font-size: 10px; color: var(--mn-muted); margin: 0 0 4px;"><%= m[:label] %></p>
+            <p style="font-family: var(--mn-serif); font-size: 22px; font-weight: 500; color: var(--mn-dark); margin: 0 0 2px;"><%= m[:value] %></p>
+            <p style="font-family: var(--mn-sans); font-size: 10px; color: #2a7a50; font-weight: 600; margin: 0;"><%= m[:note] %></p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <%# Step 2: Bars %>
+    <div style="background: #fff; border: 1.5px solid var(--mn-border); border-radius: 12px; padding: 18px 20px;">
+      <p style="font-family: var(--mn-sans); font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mn-muted); margin: 0 0 10px;">Step 2: Cost and capacity start tightening</p>
+      <p style="font-family: var(--mn-sans); font-size: 13px; color: var(--mn-muted); margin: 0 0 14px; line-height: 1.6;">
+        Your operations team is near full utilization. Costs are running ahead of budget. Saulto tracks team utilization and cost structure alongside your revenue pace.
+      </p>
+      <% [
+        { fill: 96, color: "var(--mn-warn-b)", label: "Operations team",        sub: "Near full utilization. Stretched thin." },
+        { fill: 91, color: "#b07030",          label: "Cost vs. budget",        sub: "Spending ahead of pace. Margin at risk." },
+        { fill: 88, color: "var(--mn-dark)",    label: "Revenue vs. annual goal", sub: "Revenue pace vs. annual target. Running strong." },
+      ].each do |bar| %>
+        <div style="margin-bottom: 12px;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+            <span style="font-family: var(--mn-sans); font-size: 11px; font-weight: 700; color: var(--mn-text);"><%= bar[:label] %></span>
+            <span style="font-family: var(--mn-sans); font-size: 11px; font-weight: 800; color: <%= bar[:color] %>;"><%= bar[:fill] %>%</span>
+          </div>
+          <div style="height: 7px; border-radius: 4px; background: #e0ede8; overflow: hidden; margin-bottom: 3px;">
+            <div style="width: <%= bar[:fill] %>%; height: 100%; border-radius: 4px; background: <%= bar[:color] %>;"></div>
+          </div>
+          <p style="font-family: var(--mn-sans); font-size: 10px; color: var(--mn-muted); margin: 0;"><%= bar[:sub] %></p>
+        </div>
+      <% end %>
+      <div style="margin-top: 10px; padding: 10px 14px; border-radius: 10px; background: var(--mn-warn-l); border: 1px solid var(--mn-warn-b);">
+        <p style="font-family: var(--mn-sans); font-size: 12px; font-weight: 700; color: var(--mn-warn); margin: 0;">
+          Revenue, cost, and capacity move together. Saulto tracks all of it as one picture.
+        </p>
+      </div>
+    </div>
+
+    <%# Step 3: Status signals %>
+    <div style="background: #fff; border: 1.5px solid var(--mn-border); border-radius: 12px; padding: 18px 20px;">
+      <p style="font-family: var(--mn-sans); font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mn-muted); margin: 0 0 10px;">Step 3: The numbers start drifting</p>
+      <p style="font-family: var(--mn-sans); font-size: 13px; color: var(--mn-muted); margin: 0 0 14px; line-height: 1.6;">
+        Saulto reads your financial data every night. It knows what your annual baseline looks like. And it is starting to see something that does not look right.
+      </p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;">
+        <% [
+          { label: "Annual goal pace",        status: "Accelerating",       status_color: "var(--mn-dark)", note: "Revenue climbing across all channels" },
+          { label: "Revenue vs. cost growth", status: "Margin gap opening",  status_color: "var(--mn-warn)", note: "Costs rising faster than revenue" },
+          { label: "Annual goal trajectory",  status: "Falling behind pace", status_color: "var(--mn-warn)", note: "Revenue-to-goal gap widening" },
+        ].each do |s| %>
+          <div style="background: var(--mn-light); border-radius: 10px; padding: 12px 14px; border: 1px solid var(--mn-border);">
+            <p style="font-family: var(--mn-sans); font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mn-muted); margin: 0 0 8px;"><%= s[:label] %></p>
+            <div style="display: flex; align-items: center; gap: 5px;">
+              <div style="width: 7px; height: 7px; border-radius: 50%; background: <%= s[:status_color] %>; flex-shrink: 0;"></div>
+              <span style="font-family: var(--mn-sans); font-size: 11px; font-weight: 700; color: <%= s[:status_color] %>;"><%= s[:status] %></span>
+            </div>
+            <p style="font-family: var(--mn-sans); font-size: 10px; color: var(--mn-muted); margin: 4px 0 0;"><%= s[:note] %></p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <%# Step 4: Alert %>
+    <div style="background: var(--mn-warn-l); border: 1.5px solid var(--mn-warn-b); border-radius: 12px; padding: 18px 20px;">
+      <p style="font-family: var(--mn-sans); font-size: 10px; font-weight: 800; color: var(--mn-warn); letter-spacing: 0.18em; text-transform: uppercase; margin: 0 0 10px;">Step 4: Saulto catches it</p>
+      <p style="font-family: var(--mn-sans); font-size: 13px; color: var(--mn-text); line-height: 1.55; margin: 0 0 14px;">
+        Revenue and capacity are diverging. At current trajectory, the annual goal is at risk. Saulto tells you now, not after you have missed something.
+      </p>
+      <div style="display: flex; align-items: baseline; gap: 8px;">
+        <span style="font-family: var(--mn-serif); font-size: 44px; font-weight: 500; color: var(--mn-warn); line-height: 1;">$420,000</span>
+        <span style="font-family: var(--mn-sans); font-size: 13px; color: var(--mn-warn); font-weight: 700;">at risk in your annual number</span>
+      </div>
+    </div>
+
+    <%# Step 5: Actions + Gauge %>
+    <div style="background: #fff; border: 1.5px solid var(--mn-border); border-radius: 12px; padding: 18px 20px;">
+      <p style="font-family: var(--mn-sans); font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mn-muted); margin: 0 0 10px;">Step 5: Saulto shows you exactly what to do</p>
+      <p style="font-family: var(--mn-sans); font-size: 13px; color: var(--mn-muted); margin: 0 0 16px; line-height: 1.6;">
+        Three prioritized actions. Each ranked by its impact on your probability of hitting the annual goal.
+      </p>
+      <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px;">
+        <% [
+          { action: "Accelerate the 3 product lines with fastest revenue growth",    tag: "Highest impact",    revenue: "+$180K", from: 62, to: 74 },
+          { action: "Reallocate team capacity from low-margin work to key accounts", tag: "Fastest path",      revenue: "+$120K", from: 74, to: 81 },
+          { action: "Protect commitments to your top 5 retail accounts",            tag: "Protects accounts", revenue: "+$120K", from: 81, to: 87 },
+        ].each do |p| %>
+          <div style="background: var(--mn-light); border: 1.5px solid var(--mn-border); border-radius: 12px; padding: 13px 16px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+              <p style="font-family: var(--mn-sans); font-size: 13px; font-weight: 700; color: var(--mn-text); line-height: 1.3; margin: 0; flex: 1;"><%= p[:action] %></p>
+              <span style="font-family: var(--mn-sans); font-size: 13px; font-weight: 800; color: var(--mn-dark); margin-left: 12px; flex-shrink: 0;"><%= p[:revenue] %></span>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <span style="font-family: var(--mn-sans); font-size: 10px; font-weight: 700; color: var(--mn-muted); background: rgba(11,61,46,0.08); padding: 3px 8px; border-radius: 100px;"><%= p[:tag] %></span>
+              <span style="font-family: var(--mn-sans); font-size: 11px; font-weight: 700; color: var(--mn-dark);"><%= p[:from] %>% to <%= p[:to] %>%</span>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <%# Static SVG gauge %>
+      <div style="display: flex; align-items: center; gap: 24px;">
+        <%
+          gauge_value = 87
+          gauge_size = 110
+          r = gauge_size * 0.37
+          cx = gauge_size / 2.0
+          cy = gauge_size / 2.0
+          circ = 2 * Math::PI * r
+          dash = (gauge_value / 100.0) * circ
+          sw = gauge_size * 0.07
+        %>
+        <div style="position: relative; width: <%= gauge_size %>px; height: <%= gauge_size %>px; flex-shrink: 0;">
+          <svg width="<%= gauge_size %>" height="<%= gauge_size %>" style="transform: rotate(-90deg); display: block;">
+            <circle cx="<%= cx %>" cy="<%= cy %>" r="<%= r %>" fill="none" stroke="var(--mn-light)" stroke-width="<%= sw %>" />
+            <circle cx="<%= cx %>" cy="<%= cy %>" r="<%= r %>" fill="none" stroke="var(--mn-dark)" stroke-width="<%= sw %>"
+              stroke-linecap="round"
+              stroke-dasharray="<%= circ %>"
+              stroke-dashoffset="<%= circ - dash %>" />
+          </svg>
+          <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <span style="font-family: var(--mn-serif); font-size: <%= gauge_size * 0.23 %>px; font-weight: 500; color: var(--mn-dark); line-height: 1;"><%= gauge_value %>%</span>
+            <span style="font-family: var(--mn-sans); font-size: <%= gauge_size * 0.08 %>px; color: var(--mn-muted); margin-top: 2px;">probability</span>
+          </div>
+        </div>
+        <div>
+          <p style="font-family: var(--mn-sans); font-size: 11px; font-weight: 700; color: var(--mn-muted); margin: 0 0 4px; letter-spacing: 0.1em; text-transform: uppercase;">Probability of hitting annual goal</p>
+          <p style="font-family: var(--mn-serif); font-size: 24px; font-weight: 500; color: var(--mn-dark); margin: 0 0 6px;">After all three actions</p>
+          <p style="font-family: var(--mn-sans); font-size: 12px; color: var(--mn-muted); margin: 0; line-height: 1.5;">Up from 62% baseline. Revenue recovered through fast action.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<div>
+  <%# Section heading %>
+  <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 20px;">
+    <div style="width: 3px; height: 24px; background: var(--mn-dark); border-radius: 2px; flex-shrink: 0;"></div>
+    <h2 style="font-family: var(--mn-serif); font-size: 22px; font-weight: 500; color: var(--mn-dark); margin: 0;">The result</h2>
+  </div>
+
+  <div style="background: var(--mn-dark); border-radius: 16px; padding: 28px;">
+    <div style="display: grid; grid-template-columns: 80px 1fr 1fr; gap: 8px; margin-bottom: 10px;">
+      <div></div>
+      <p style="font-family: var(--mn-sans); font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.35); margin: 0; letter-spacing: 0.14em; text-transform: uppercase;">Without Saulto</p>
+      <p style="font-family: var(--mn-sans); font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.35); margin: 0; letter-spacing: 0.14em; text-transform: uppercase;">With Saulto</p>
+    </div>
+    <% [
+      { label: "Shipments",  before: "Delayed to Walmart and Kroger",   after: "Protected on schedule" },
+      { label: "Revenue",    before: "$420K at risk",                    after: "Recovered through fast action" },
+      { label: "Production", before: "Out of sync with demand",          after: "Realigned to top SKUs" },
+      { label: "Retailers",  before: "Risk of missed commitments",       after: "Accounts protected" },
+    ].each do |r| %>
+      <div style="display: grid; grid-template-columns: 80px 1fr 1fr; gap: 8px; margin-bottom: 6px;">
+        <p style="font-family: var(--mn-sans); font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.45); margin: 0; display: flex; align-items: center;"><%= r[:label] %></p>
+        <div style="background: rgba(255,255,255,0.06); border-radius: 8px; padding: 8px 12px; border: 1px solid rgba(255,255,255,0.08);">
+          <p style="font-family: var(--mn-sans); font-size: 12px; color: rgba(255,255,255,0.4); margin: 0; line-height: 1.4;"><%= r[:before] %></p>
+        </div>
+        <div style="background: rgba(255,255,255,0.13); border-radius: 8px; padding: 8px 12px; border: 1px solid rgba(255,255,255,0.22);">
+          <p style="font-family: var(--mn-sans); font-size: 12px; font-weight: 700; color: #fff; margin: 0; line-height: 1.4;"><%= r[:after] %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

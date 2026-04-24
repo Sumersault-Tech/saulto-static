@@ -1,0 +1,34 @@
+<div>
+  <%# Section heading %>
+  <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 20px;">
+    <div style="width: 3px; height: 24px; background: var(--mn-dark); border-radius: 2px; flex-shrink: 0;"></div>
+    <h2 style="font-family: var(--mn-serif); font-size: 22px; font-weight: 500; color: var(--mn-dark); margin: 0;">What Saulto connects to</h2>
+  </div>
+
+  <p style="font-family: var(--mn-sans); font-size: 13px; color: var(--mn-muted); line-height: 1.65; margin: 0 0 20px;">
+    Your accounting system, your CRM, your team KPIs. We normalize your financial data and build the full picture from what is already there.
+  </p>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+    <% [
+      { icon: "QBO", name: "QuickBooks Online",      what: "Monthly P&L, revenue by product line, COGS, gross margin",  sub: "Morris National's accounting system. Syncs automatically." },
+      { icon: "CRM", name: "CRM / Sales data",       what: "Booked orders, key account status, pipeline by channel",    sub: "Retail account tracking. Walmart, Kroger, Loblaw, regional." },
+      { icon: "KPI", name: "Team KPI data",           what: "Sales, operations, and fulfilment performance vs. target",  sub: "Each team tracked against their annual goals." },
+      { icon: "TGT", name: "Company targets",         what: "Annual revenue goal, EBITDA target, North Star metric",     sub: "Set during onboarding. Anchors all probability analysis." },
+      { icon: "CAP", name: "Capacity and headcount",  what: "Team utilization, active initiatives, available bandwidth", sub: "Who has capacity. Who is stretched. Updated continuously." },
+    ].each do |s| %>
+      <div style="background: #fff; border: 1.5px solid var(--mn-border); border-radius: 12px; padding: 18px 20px;">
+        <div style="display: flex; align-items: flex-start; gap: 12px;">
+          <div style="width: 32px; height: 32px; border-radius: 8px; background: var(--mn-light); border: 1px solid var(--mn-border); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+            <span style="font-family: var(--mn-sans); font-size: 8px; font-weight: 800; color: var(--mn-dark);"><%= s[:icon] %></span>
+          </div>
+          <div>
+            <p style="font-family: var(--mn-sans); font-size: 12px; font-weight: 700; color: var(--mn-text); margin: 0 0 2px;"><%= s[:name] %></p>
+            <p style="font-family: var(--mn-sans); font-size: 11px; color: var(--mn-muted); margin: 0 0 3px; line-height: 1.4;"><%= s[:what] %></p>
+            <p style="font-family: var(--mn-sans); font-size: 10px; color: var(--mn-border); margin: 0; line-height: 1.4;"><%= s[:sub] %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

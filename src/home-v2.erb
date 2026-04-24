@@ -1,0 +1,67 @@
+---
+layout: video
+title: "Saulto | Strategic Operating System"
+page_class: home-v2
+---
+
+<style>
+  :root {
+    --hv2-dark: #0B3D2E;
+    --hv2-light: #F7F5F1;
+    --hv2-gold: #C9A462;
+    --hv2-ink: #111a14;
+    --hv2-muted: #6b8c74;
+    --hv2-border: #cce6d6;
+    --hv2-red: #B03020;
+    --hv2-amber: #C07020;
+    --hv2-green: #1E6B3C;
+    --hv2-bg: #f2f0ec;
+    --hv2-serif: 'Cormorant Garamond', serif;
+    --hv2-sans: 'Inter', sans-serif;
+  }
+  .home-v2 { background: var(--hv2-bg); margin: 0; }
+
+  @keyframes hv2-fade-up {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes hv2-fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes hv2-collapse-in {
+    from { opacity: 0; transform: scale(0.6); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+
+  .hv2-reveal {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1), transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .hv2-reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    .hv2-two-col { grid-template-columns: 1fr !important; }
+    .hv2-three-col { grid-template-columns: 1fr !important; }
+    .hv2-replace-grid { grid-template-columns: 1fr !important; }
+  }
+  @media print {
+    .home-v2 { background: white; }
+    section { break-inside: avoid; page-break-inside: avoid; }
+    * { animation: none !important; transition: none !important; opacity: 1 !important; transform: none !important; }
+  }
+</style>
+
+<%= render "home-v2/nav" %>
+<div>
+  <%= render "home-v2/hero" %>
+  <%= render "home-v2/hard_break" %>
+  <%= render "home-v2/problem_one" %>
+  <%= render "home-v2/problem_two" %>
+  <%= render "home-v2/problem_three" %>
+  <%= render "home-v2/cost_comparison" %>
+  <%= render "home-v2/simulation" %>
+  <%= render "home-v2/what_this_replaces" %>
+  <%= render "home-v2/how_it_works" %>
+  <%= render "home-v2/close" %>
+</div>

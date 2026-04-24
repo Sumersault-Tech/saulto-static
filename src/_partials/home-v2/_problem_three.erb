@@ -1,0 +1,56 @@
+<section class="reveal" data-controller="reveal" style="background: #fff; padding: 100px 24px;">
+  <div class="hv2-two-col" style="max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
+    <div>
+      <p style="font-family: var(--hv2-sans); font-size: 10px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: var(--hv2-muted); margin: 0 0 20px;">Problem 3 of 3</p>
+      <h2 style="font-family: var(--hv2-serif); font-size: clamp(32px, 3.5vw, 48px); font-weight: 500; color: var(--hv2-ink); line-height: 1.1; margin: 0 0 24px;">
+        The P&L tells you<br>what happened. Not where to act.
+      </h2>
+      <p style="font-family: var(--hv2-sans); font-size: 16px; color: var(--hv2-muted); line-height: 1.7; margin: 0 0 16px;">
+        CEOs see company-level financials. But can't trace which teams are driving success and which are dragging the company below target.
+      </p>
+      <p style="font-family: var(--hv2-sans); font-size: 16px; color: var(--hv2-muted); line-height: 1.7; margin: 0 0 32px;">
+        Marketing may be the single biggest lever for your number. Or Engineering's utilization is the bottleneck. Without team-level decomposition, you're managing a company-sized black box.
+      </p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+        <% [
+          { n: "4",    label: "time horizons tracked simultaneously" },
+          { n: "10K",  label: "simulated futures per company" },
+          { n: "Team", label: "level trajectory decomposition" },
+          { n: "Live", label: "updates after every data sync" },
+        ].each do |s| %>
+          <div style="background: var(--hv2-light); border: 1.5px solid var(--hv2-border); border-radius: 12px; padding: 14px 16px;">
+            <p style="font-family: var(--hv2-serif); font-size: 26px; font-weight: 500; color: var(--hv2-dark); margin: 0 0 2px;"><%= s[:n] %></p>
+            <p style="font-family: var(--hv2-sans); font-size: 11px; color: var(--hv2-muted); margin: 0;"><%= s[:label] %></p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <%# Data Unification Visual %>
+    <div style="display: flex; justify-content: center;">
+      <div style="width: 320px; display: flex; flex-direction: column; align-items: center;">
+        <div style="display: flex; gap: 10px; margin-bottom: 0;">
+          <% ["ERP", "CRM", "PM", "HR", "SSO"].each_with_index do |t, i|
+            colors = ["var(--hv2-dark)", "#1a6bcc", "#e05c1a", "#5a5a5a", "#2b8a44"]
+          %>
+            <div style="width: 52px; height: 52px; border-radius: 12px; background: #fff; border: 2px solid var(--hv2-border); display: flex; align-items: center; justify-content: center;">
+              <span style="font-family: var(--hv2-sans); font-size: 9px; font-weight: 800; color: <%= colors[i] %>;"><%= t %></span>
+            </div>
+          <% end %>
+        </div>
+        <div style="width: 2px; height: 36px; background: rgba(11,61,46,0.19);"></div>
+        <div style="background: var(--hv2-dark); border-radius: 16px; padding: 14px 28px;">
+          <p style="font-family: var(--hv2-sans); font-size: 11px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: var(--hv2-gold); margin: 0 0 4px;">Saulto</p>
+          <p style="font-family: var(--hv2-sans); font-size: 12px; color: rgba(255,255,255,0.6); margin: 0;">Unified data model</p>
+        </div>
+        <div style="width: 2px; height: 36px; background: rgba(30,107,60,0.31);"></div>
+        <div style="display: flex; gap: 10px;">
+          <% ["Confidence", "Pace Score", "Actions"].each do |o| %>
+            <div style="background: var(--hv2-light); border: 1.5px solid var(--hv2-border); border-radius: 10px; padding: 10px 12px; text-align: center;">
+              <p style="font-family: var(--hv2-sans); font-size: 10px; font-weight: 700; color: var(--hv2-dark); margin: 0;"><%= o %></p>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -182,3 +182,8 @@
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Print utilities */
+@media print {
+  .no-print { display: none !important; }
+}

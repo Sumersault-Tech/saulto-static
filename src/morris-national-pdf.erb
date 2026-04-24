@@ -1,0 +1,41 @@
+---
+layout: video
+title: "Morris National | Annual Growth Scenario"
+page_class: morris-national-pdf
+---
+
+<style>
+  :root {
+    --mn-dark: #0B3D2E;
+    --mn-light: #f0faf5;
+    --mn-muted: #5a806e;
+    --mn-border: #c8e6d4;
+    --mn-text: #0c1f16;
+    --mn-warn: #7a3010;
+    --mn-warn-l: #fdf2e9;
+    --mn-warn-b: #d4905a;
+    --mn-serif: 'Cormorant Garamond', serif;
+    --mn-sans: 'Inter', sans-serif;
+  }
+  .morris-national-pdf { background: #f5f5f0; }
+  @media print {
+    .morris-national-pdf { background: white; }
+    .page { box-shadow: none !important; margin: 0 !important; border-radius: 0 !important; max-width: 100% !important; }
+    .page-break { page-break-before: always; }
+  }
+</style>
+
+<%= render "morris-national-pdf/print_nav" %>
+
+<div style="padding-top: 56px; padding-bottom: 40px; min-height: 100dvh;">
+  <div class="page" style="max-width: 800px; margin: 24px auto; background: #fff; border-radius: 16px; box-shadow: 0 8px 48px rgba(0,0,0,0.1); overflow: hidden;">
+    <%= render "morris-national-pdf/cover" %>
+    <div style="padding: 44px 52px; display: flex; flex-direction: column; gap: 44px;">
+      <%= render "morris-national-pdf/what_saulto_does" %>
+      <%= render "morris-national-pdf/data_connections" %>
+      <%= render "morris-national-pdf/growth_scenario" %>
+      <%= render "morris-national-pdf/result" %>
+      <%= render "morris-national-pdf/footer_cta" %>
+    </div>
+  </div>
+</div>

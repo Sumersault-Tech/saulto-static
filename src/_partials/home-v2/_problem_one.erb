@@ -1,0 +1,44 @@
+<section class="reveal" data-controller="reveal" style="background: #fff; padding: 100px 24px;">
+  <div class="hv2-two-col" style="max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
+    <div>
+      <p style="font-family: var(--hv2-sans); font-size: 10px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: var(--hv2-muted); margin: 0 0 20px;">Problem 1 of 3</p>
+      <h2 style="font-family: var(--hv2-serif); font-size: clamp(32px, 3.5vw, 48px); font-weight: 500; color: var(--hv2-ink); line-height: 1.1; margin: 0 0 24px;">
+        The annual plan is stale<br>before Q2 ends.
+      </h2>
+      <p style="font-family: var(--hv2-sans); font-size: 16px; color: var(--hv2-muted); line-height: 1.7; margin: 0 0 16px;">
+        Annual plans are built in spreadsheets, disconnected from live financial data. By Q2, the numbers have moved. By Q4, the plan is a fiction nobody references.
+      </p>
+      <p style="font-family: var(--hv2-sans); font-size: 16px; color: var(--hv2-muted); line-height: 1.7; margin: 0 0 32px;">
+        Teams keep executing. But nobody can tell you whether all that work actually adds up to the goal.
+      </p>
+      <div style="border-left: 3px solid var(--hv2-dark); padding-left: 18px;">
+        <p style="font-family: var(--hv2-serif); font-size: 20px; font-weight: 500; color: var(--hv2-dark); margin: 0; line-height: 1.4;">
+          Saulto keeps your plan live. Connected to real financial actuals. Every team traces their work back to your North Star. Updated continuously.
+        </p>
+      </div>
+    </div>
+    <%# Vision Gap Visual %>
+    <div style="display: flex; justify-content: center;">
+      <div style="display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 360px;">
+        <% [
+          { label: "Founder's goal", sub: "$50M revenue", color: "var(--hv2-dark)", bg: "var(--hv2-dark)", text_color: "#fff", sub_color: "var(--hv2-gold)" },
+          { label: "Team strategy",  sub: "???",          color: "var(--hv2-amber)", bg: "rgba(0,0,0,0.03)", text_color: "var(--hv2-ink)", sub_color: "var(--hv2-amber)" },
+          { label: "Daily work",     sub: "???",          color: "var(--hv2-red)",   bg: "rgba(0,0,0,0.03)", text_color: "var(--hv2-ink)", sub_color: "var(--hv2-red)" },
+        ].each_with_index do |l, i| %>
+          <div style="width: 100%; background: <%= l[:bg] %>; border: 1.5px solid <%= i == 0 ? l[:color] : 'var(--hv2-border)' %>; border-radius: 12px; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-family: var(--hv2-sans); font-size: 13px; font-weight: 700; color: <%= l[:text_color] %>;"><%= l[:label] %></span>
+            <span style="font-family: var(--hv2-serif); font-size: 16px; font-weight: 500; color: <%= l[:sub_color] %>;"><%= l[:sub] %></span>
+          </div>
+          <% if i < 2 %>
+            <div style="display: flex; justify-content: center; padding: 4px 0;">
+              <div style="width: 2px; height: 28px; background: <%= i == 0 ? 'rgba(11,61,46,0.25)' : 'rgba(176,48,32,0.25)' %>; border-radius: 2px;"></div>
+            </div>
+          <% end %>
+        <% end %>
+        <p style="font-family: var(--hv2-sans); font-size: 11px; color: var(--hv2-red); font-weight: 700; text-align: center; margin-top: 12px; letter-spacing: 0.1em; text-transform: uppercase;">
+          Chain is broken. Nobody sees it.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

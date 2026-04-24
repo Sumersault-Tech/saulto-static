@@ -1,0 +1,13 @@
+<div class="no-print" data-controller="print" style="position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: 14px 40px; background: rgba(247,245,241,0.88); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(0,0,0,0.06);">
+  <img src="<%= relative_url '/images/saulto-logo.png' %>" alt="Saulto" style="height: 36px; filter: brightness(0) saturate(100%) invert(17%) sepia(44%) saturate(700%) hue-rotate(120deg) brightness(85%) contrast(95%);" />
+  <div style="display: flex; align-items: center; gap: 16px;">
+    <a href="https://sumersaulttech.com" target="_blank" rel="noopener noreferrer"
+      style="font-family: var(--hv2-sans); font-size: 13px; font-weight: 600; color: var(--hv2-muted); text-decoration: none;">
+      sumersaulttech.com
+    </a>
+    <button data-action="click->print#print"
+      style="background: var(--hv2-dark); color: #fff; border: none; border-radius: 100px; padding: 10px 24px; font-family: var(--hv2-sans); font-size: 13px; font-weight: 700; cursor: pointer; letter-spacing: 0.03em;">
+      Save as PDF
+    </button>
+  </div>
+</div>

@@ -1,0 +1,125 @@
+<%
+  cards = [
+    { label: "Revenue &middot; Q3",      value: "$4.3M",   sub: "72% of goal &middot; on track",          dot: true,  x: "4%",  y: "11%", delay: 0,    float_anim: "floatA", dur: 11 },
+    { label: "Execution Score",    value: "92",       sub: "+6 pts vs last quarter",           dot: false, x: "40%", y: "16%", delay: 0.35, float_anim: "floatB", dur: 13 },
+    { label: "Board Ready",        value: "96/100",   sub: "8 pts from last review",           dot: true,  x: "76%", y: "11%", delay: 0.7,  float_anim: "floatC", dur: 12 },
+    { label: "Alert &middot; Enterprise", value: "+12 days", sub: "3 deals at risk &middot; flagged early", dot: true,  x: "4%",  y: "72%", delay: 1.0,  float_anim: "floatB", dur: 14 },
+    { label: "Cash Runway",        value: "14 mo",    sub: "Recalibrated from actuals",        dot: false, x: "40%", y: "76%", delay: 1.25, float_anim: "floatC", dur: 11 },
+    { label: "Initiative Impact",  value: "3 of 6",   sub: "Moving the ARR trajectory",       dot: true,  x: "76%", y: "72%", delay: 1.5,  float_anim: "floatA", dur: 13 },
+  ]
+  green = "hsl(155,55%,32%)"
+  dark = "hsl(155,28%,13%)"
+%>
+
+<div class="w-full text-white font-sans relative" style="height: 100dvh; background: <%= dark %>;">
+
+  <%# Background orbs %>
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute rounded-full"
+      style="width: 70vw; height: 70vw; top: -15vh; left: -10vw; filter: blur(140px); background: radial-gradient(circle, hsl(155,35%,24%) 0%, hsl(155,28%,14%) 70%); animation: orb-drift-1 22s ease-in-out infinite;"></div>
+    <div class="absolute rounded-full"
+      style="width: 50vw; height: 50vw; bottom: -10vh; right: -5vw; filter: blur(120px); background: radial-gradient(circle, hsl(155,42%,20%) 0%, hsl(155,28%,13%) 70%); animation: orb-drift-2 18s ease-in-out infinite;"></div>
+    <div class="absolute rounded-full"
+      style="width: 35vw; height: 35vw; top: 30vh; left: 15vw; filter: blur(100px); background: radial-gradient(circle, hsl(155,50%,22%) 0%, transparent 70%); animation: orb-drift-3 15s ease-in-out infinite;"></div>
+    <div class="absolute inset-0"
+      style="background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 34px 34px;"></div>
+  </div>
+
+  <%# Saulto logo — dead center %>
+  <div class="pointer-events-none"
+    style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 30; animation: ev-logo-enter 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;">
+    <img src="<%= relative_url '/images/saulto-logo.png' %>" alt="Saulto" class="h-16 md:h-24 w-auto object-contain brightness-0 invert" />
+  </div>
+
+  <%# Live label — desktop %>
+  <div class="hidden md:flex absolute top-20 left-0 right-0 z-20 justify-center pointer-events-none"
+    style="animation: ev-label-enter 0.9s ease 0.8s both;">
+    <div class="flex items-center gap-2 uppercase tracking-[0.32em] text-[10px] font-semibold"
+      style="color: rgba(255,255,255,0.50);">
+      <span style="animation: ev-pulse 1.4s infinite;">&bull;</span>
+      Executive Operations. Live.
+    </div>
+  </div>
+
+  <%# Desktop: absolute positioned floating cards %>
+  <div class="hidden md:block absolute inset-0 z-10">
+    <% cards.each do |card| %>
+      <div class="absolute rounded-2xl px-4 py-3 w-44 glass-card-green"
+        style="left: <%= card[:x] %>; top: <%= card[:y] %>; animation: ev-card-enter 1.1s cubic-bezier(0.16, 1, 0.3, 1) <%= card[:delay] %>s both, <%= card[:float_anim] %> <%= card[:dur] %>s ease-in-out infinite;">
+        <p class="text-[8px] font-semibold tracking-widest uppercase mb-1.5 text-center"
+          style="color: rgba(255,255,255,0.35);"><%= card[:label] %></p>
+        <p class="text-xl font-light leading-none mb-2 text-center"
+          style="color: rgba(255,255,255,0.52);"><%= card[:value] %></p>
+        <div class="flex items-center justify-center gap-1.5">
+          <% if card[:dot] %>
+            <span class="w-1 h-1 rounded-full shrink-0" style="background: <%= green %>;"></span>
+          <% end %>
+          <span class="text-[9px] font-light text-center leading-tight" style="color: rgba(255,255,255,0.35);">
+            <%= card[:sub] %>
+          </span>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <%# Mobile layout %>
+  <div class="md:hidden absolute inset-0 z-10 flex flex-col overflow-hidden"
+    style="padding: clamp(20px, 5%, 36px) 14px clamp(18px, 5%, 32px);">
+
+    <%# Live label %>
+    <div class="flex justify-center mb-3 pointer-events-none shrink-0"
+      style="animation: ev-label-enter 0.9s ease 0.8s both;">
+      <div class="flex items-center gap-2 uppercase tracking-[0.26em] text-[9px] font-semibold"
+        style="color: rgba(255,255,255,0.45);">
+        <span style="animation: ev-pulse 1.4s infinite;">&bull;</span>
+        Executive Operations. Live.
+      </div>
+    </div>
+
+    <%# Top 2 cards %>
+    <div class="flex gap-2.5 shrink-0">
+      <% cards.first(2).each do |card| %>
+        <div class="flex-1 rounded-2xl px-3 py-2.5 glass-card-green"
+          style="animation: ev-card-enter 1.1s cubic-bezier(0.16, 1, 0.3, 1) <%= card[:delay] %>s both, <%= card[:float_anim] %> <%= card[:dur] %>s ease-in-out infinite;">
+          <p class="text-[8px] font-semibold tracking-widest uppercase mb-1.5 text-center"
+            style="color: rgba(255,255,255,0.35);"><%= card[:label] %></p>
+          <p class="text-xl font-light leading-none mb-2 text-center"
+            style="color: rgba(255,255,255,0.52);"><%= card[:value] %></p>
+          <div class="flex items-center justify-center gap-1.5">
+            <% if card[:dot] %>
+              <span class="w-1 h-1 rounded-full shrink-0" style="background: <%= green %>;"></span>
+            <% end %>
+            <span class="text-[9px] font-light text-center leading-tight" style="color: rgba(255,255,255,0.35);"><%= card[:sub] %></span>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <%# Spacer for logo %>
+    <div class="flex-1 min-h-0"></div>
+
+    <%# Bottom 2x2 grid %>
+    <div class="grid grid-cols-2 gap-2.5 shrink-0">
+      <% cards.drop(2).each do |card| %>
+        <div class="rounded-2xl px-3 py-2.5 glass-card-green"
+          style="animation: ev-card-enter 1.1s cubic-bezier(0.16, 1, 0.3, 1) <%= card[:delay] %>s both, <%= card[:float_anim] %> <%= card[:dur] %>s ease-in-out infinite;">
+          <p class="text-[8px] font-semibold tracking-widest uppercase mb-1.5 text-center"
+            style="color: rgba(255,255,255,0.35);"><%= card[:label] %></p>
+          <p class="text-xl font-light leading-none mb-2 text-center"
+            style="color: rgba(255,255,255,0.52);"><%= card[:value] %></p>
+          <div class="flex items-center justify-center gap-1.5">
+            <% if card[:dot] %>
+              <span class="w-1 h-1 rounded-full shrink-0" style="background: <%= green %>;"></span>
+            <% end %>
+            <span class="text-[9px] font-light text-center leading-tight" style="color: rgba(255,255,255,0.35);"><%= card[:sub] %></span>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <%# Progress bar %>
+  <div class="absolute bottom-0 left-0 w-full h-[2px] bg-white/5 z-30">
+    <div style="height: 100%; background: linear-gradient(90deg, <%= green %>, hsl(155,50%,46%)); animation: ev-progress 3s linear forwards;"></div>
+  </div>
+</div>

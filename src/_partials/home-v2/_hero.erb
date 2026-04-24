@@ -1,0 +1,50 @@
+<%
+  gauge_value = 87
+  gauge_size = 200
+  r = (gauge_size / 2.0) * 0.72
+  circ = 2 * Math::PI * r
+  arc = circ * 0.75
+%>
+<section style="min-height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: center; background: var(--hv2-bg); padding: 120px 24px 80px; text-align: center;">
+  <p style="font-family: var(--hv2-sans); font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--hv2-muted); margin: 0 0 24px; animation: hv2-fade-up 0.65s cubic-bezier(0.22,1,0.36,1) 0.05s both;">
+    Strategic Operating System
+  </p>
+  <h1 style="font-family: var(--hv2-serif); font-size: clamp(42px, 6vw, 80px); font-weight: 500; color: var(--hv2-ink); line-height: 1.05; margin: 0 0 28px; max-width: 820px; animation: hv2-fade-up 0.65s cubic-bezier(0.22,1,0.36,1) 0.15s both;">
+    Turn vision into strategy.<br>Strategy into execution.<br>Execution into momentum.
+  </h1>
+  <p style="font-family: var(--hv2-sans); font-size: clamp(16px, 2vw, 20px); color: var(--hv2-muted); line-height: 1.6; margin: 0 0 14px; max-width: 560px; font-weight: 400; animation: hv2-fade-up 0.65s cubic-bezier(0.22,1,0.36,1) 0.28s both;">
+    Right now, you don't know if your team's work actually adds up to your goal.
+  </p>
+  <p style="font-family: var(--hv2-sans); font-size: clamp(14px, 1.6vw, 16px); color: var(--hv2-muted); line-height: 1.6; margin: 0 0 44px; max-width: 480px; opacity: 0.75; animation: hv2-fade-up 0.65s cubic-bezier(0.22,1,0.36,1) 0.36s both;">
+    Saulto connects your financial systems, runs 10,000 simulated futures, and shows you exactly where you're headed. Then tells every person in the org exactly what to do.
+  </p>
+  <div class="no-print" style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-bottom: 72px; animation: hv2-fade-up 0.65s cubic-bezier(0.22,1,0.36,1) 0.44s both;" data-controller="print">
+    <button data-action="click->print#print"
+      style="background: var(--hv2-dark); color: #fff; border: none; border-radius: 100px; padding: 14px 36px; font-family: var(--hv2-sans); font-size: 15px; font-weight: 700; cursor: pointer; letter-spacing: 0.03em;">
+      Save as PDF
+    </button>
+  </div>
+
+  <%# Gauge %>
+  <div style="display: flex; flex-direction: column; align-items: center; gap: 12px; animation: hv2-fade-in 0.55s cubic-bezier(0.22,1,0.36,1) 0.55s both;"
+       data-controller="gauge" data-gauge-value-value="<%= gauge_value %>" data-gauge-size-value="<%= gauge_size %>">
+    <div style="position: relative; width: <%= gauge_size %>px; height: <%= (gauge_size * 0.82).round %>px; flex-shrink: 0;">
+      <svg width="<%= gauge_size %>" height="<%= (gauge_size * 0.82).round %>" viewBox="0 0 <%= gauge_size %> <%= (gauge_size * 0.82).round %>">
+        <circle cx="<%= gauge_size/2 %>" cy="<%= (gauge_size*0.58).round %>" r="<%= r.round %>" fill="none" stroke="rgba(0,0,0,0.07)" stroke-width="<%= (gauge_size*0.055).round %>"
+          stroke-dasharray="<%= arc.round %> <%= (circ - arc).round %>" stroke-dashoffset="<%= (-arc*0.375).round %>" stroke-linecap="round" />
+        <circle data-gauge-target="arc" cx="<%= gauge_size/2 %>" cy="<%= (gauge_size*0.58).round %>" r="<%= r.round %>" fill="none" stroke="var(--hv2-green)" stroke-width="<%= (gauge_size*0.055).round %>"
+          stroke-dasharray="<%= arc.round %> <%= (circ - arc).round %>" stroke-dashoffset="<%= (-arc*0.375 + arc).round %>" stroke-linecap="round"
+          style="transition: stroke-dashoffset 0.04s linear;" />
+      </svg>
+      <div style="position: absolute; bottom: 2px; left: 0; right: 0; text-align: center;">
+        <span data-gauge-target="number" style="font-family: var(--hv2-serif); font-size: <%= (gauge_size * 0.25).round %>px; font-weight: 500; color: var(--hv2-ink); line-height: 1;">0%</span>
+      </div>
+    </div>
+    <p style="font-family: var(--hv2-sans); font-size: 13px; color: var(--hv2-muted); margin: 0; letter-spacing: 0.04em;">
+      87% confidence of hitting your annual goal
+    </p>
+    <p style="font-family: var(--hv2-sans); font-size: 11px; color: var(--hv2-muted); margin: 0; opacity: 0.55;">
+      Based on 10,000 simulated futures. Updated continuously.
+    </p>
+  </div>
+</section>

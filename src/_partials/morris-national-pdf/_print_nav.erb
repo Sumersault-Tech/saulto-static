@@ -1,0 +1,8 @@
+<div class="no-print" style="position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--mn-border); display: flex; align-items: center; justify-content: space-between; padding: 12px 32px; gap: 16px;"
+     data-controller="print">
+  <img src="<%= relative_url '/images/saulto-logo.png' %>" alt="Saulto" style="height: 20px; filter: brightness(0) saturate(100%) invert(17%) sepia(44%) saturate(700%) hue-rotate(120deg) brightness(85%) contrast(95%);" />
+  <button data-action="click->print#print"
+    style="background: var(--mn-dark); color: #fff; border: none; border-radius: 8px; padding: 9px 22px; font-family: var(--mn-sans); font-size: 13px; font-weight: 700; cursor: pointer; letter-spacing: 0.04em;">
+    Save as PDF
+  </button>
+</div>

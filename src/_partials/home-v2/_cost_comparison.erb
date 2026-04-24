@@ -1,0 +1,53 @@
+<section class="reveal" data-controller="reveal" style="background: var(--hv2-bg); padding: 100px 24px;">
+  <div style="max-width: 900px; margin: 0 auto;">
+    <div style="text-align: center; margin-bottom: 56px;">
+      <p style="font-family: var(--hv2-sans); font-size: 10px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: var(--hv2-muted); margin: 0 0 20px;">The cost of doing this without Saulto</p>
+      <h2 style="font-family: var(--hv2-serif); font-size: clamp(32px, 3.5vw, 52px); font-weight: 500; color: var(--hv2-ink); line-height: 1.1; margin: 0 0 20px;">
+        This used to cost $300K to $1M a year.
+      </h2>
+      <p style="font-family: var(--hv2-sans); font-size: 17px; color: var(--hv2-muted); line-height: 1.65; margin: 0 auto; max-width: 560px;">
+        Only companies with 5 to 8 specialists (data engineers, data scientists, BI developers) got this level of strategic clarity. Everyone else flew blind.
+      </p>
+    </div>
+    <div class="hv2-two-col" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+      <%# Old way %>
+      <div style="background: #fff; border: 1.5px solid var(--hv2-border); border-radius: 16px; padding: 28px;">
+        <p style="font-family: var(--hv2-sans); font-size: 10px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: var(--hv2-muted); margin: 0 0 20px;">To build this yourself</p>
+        <% [
+          { role: "Data Engineers (2-3)",   cost: "$150K to $250K each" },
+          { role: "Data Scientists (1-2)",  cost: "$150K to $200K each" },
+          { role: "BI Developers (1-2)",    cost: "$120K to $180K each" },
+          { role: "Implementation time",    cost: "12 to 18 months" },
+        ].each do |r| %>
+          <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--hv2-border);">
+            <span style="font-family: var(--hv2-sans); font-size: 13px; color: var(--hv2-muted);"><%= r[:role] %></span>
+            <span style="font-family: var(--hv2-sans); font-size: 13px; font-weight: 700; color: var(--hv2-ink);"><%= r[:cost] %></span>
+          </div>
+        <% end %>
+        <div style="margin-top: 18px;">
+          <p style="font-family: var(--hv2-sans); font-size: 11px; color: var(--hv2-muted); margin: 0 0 4px;">Total annual cost</p>
+          <p style="font-family: var(--hv2-serif); font-size: 40px; font-weight: 500; color: var(--hv2-ink); margin: 0;">$300K to $1M</p>
+        </div>
+      </div>
+      <%# Saulto %>
+      <div style="background: var(--hv2-dark); border-radius: 16px; padding: 28px;">
+        <p style="font-family: var(--hv2-sans); font-size: 10px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: var(--hv2-gold); margin: 0 0 20px;">With Saulto</p>
+        <% [
+          "No data engineering team required.",
+          "No data science team required.",
+          "No BI developers required.",
+          "Zero to configured in one session.",
+        ].each do |item| %>
+          <div style="display: flex; align-items: flex-start; gap: 10px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.08);">
+            <span style="color: var(--hv2-gold); font-weight: 700; flex-shrink: 0; margin-top: 1px;">&check;</span>
+            <p style="font-family: var(--hv2-sans); font-size: 13px; color: rgba(255,255,255,0.7); margin: 0; line-height: 1.5;"><%= item %></p>
+          </div>
+        <% end %>
+        <div style="margin-top: 18px;">
+          <p style="font-family: var(--hv2-sans); font-size: 11px; color: rgba(255,255,255,0.4); margin: 0 0 4px;">One subscription replaces</p>
+          <p style="font-family: var(--hv2-serif); font-size: 40px; font-weight: 500; color: #fff; margin: 0;">5 to 8 specialists</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

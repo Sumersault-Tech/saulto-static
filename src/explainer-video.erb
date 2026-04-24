@@ -1,0 +1,42 @@
+---
+layout: video
+title: "Saulto | Executive Operations"
+page_class: explainer-video
+---
+
+<style>
+  .explainer-video { overflow: hidden; }
+
+  .glass-card-green {
+    background: linear-gradient(140deg, rgba(100,210,150,0.07) 0%, rgba(255,255,255,0.03) 45%, rgba(51,170,100,0.05) 100%);
+    box-shadow: 0 0 0 0.5px rgba(100,210,150,0.18), 0 0 0 0.5px rgba(51,170,100,0.10) inset, 0 8px 32px rgba(0,0,0,0.14);
+    backdrop-filter: blur(18px);
+  }
+
+  @keyframes ev-card-enter {
+    from { opacity: 0; transform: translateY(20px) scale(0.96); }
+    to   { opacity: 0.42; transform: translateY(0) scale(1); }
+  }
+
+  @keyframes ev-logo-enter {
+    from { opacity: 0; transform: translate(-50%, -50%) scale(0.88); }
+    to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  }
+
+  @keyframes ev-label-enter {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes ev-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.2; }
+  }
+
+  @keyframes ev-progress {
+    from { width: 0%; }
+    to   { width: 100%; }
+  }
+</style>
+
+<%= render "explainer-video/scene" %>

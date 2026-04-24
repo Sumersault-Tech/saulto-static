@@ -1,0 +1,26 @@
+<section class="reveal" data-controller="reveal" style="background: var(--hv2-bg); padding: 100px 24px;">
+  <div style="max-width: 960px; margin: 0 auto;">
+    <div style="text-align: center; margin-bottom: 56px;">
+      <p style="font-family: var(--hv2-sans); font-size: 10px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: var(--hv2-muted); margin: 0 0 16px;">How it works</p>
+      <h2 style="font-family: var(--hv2-serif); font-size: clamp(32px, 3.5vw, 52px); font-weight: 500; color: var(--hv2-ink); line-height: 1.1; margin: 0;">
+        Three steps. Zero specialists required.
+      </h2>
+    </div>
+    <div class="hv2-three-col" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;">
+      <% [
+        { n: "1", title: "Connect", body: "Link your existing tools. AI analyzes your business and builds your full strategic framework in one session. No consultants. No requirements documents.", tag: "One session" },
+        { n: "2", title: "Simulate", body: "See outcome confidence across four time horizons. Model decisions before committing. 10,000 simulated futures from your numbers.", tag: "10,000 simulated futures" },
+        { n: "3", title: "Execute", body: "Track initiatives. Monitor team KPIs. Get real-time health assessments with specific, dollar-denominated recommendations. Every person traces back to your number.", tag: "Updated continuously" },
+      ].each do |s| %>
+        <div style="background: #fff; border: 1.5px solid var(--hv2-border); border-radius: 16px; padding: 28px 24px;">
+          <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--hv2-dark); display: flex; align-items: center; justify-content: center; margin-bottom: 18px;">
+            <span style="font-family: var(--hv2-serif); font-size: 22px; font-weight: 500; color: #fff;"><%= s[:n] %></span>
+          </div>
+          <h3 style="font-family: var(--hv2-serif); font-size: 26px; font-weight: 500; color: var(--hv2-ink); margin: 0 0 12px;"><%= s[:title] %></h3>
+          <p style="font-family: var(--hv2-sans); font-size: 14px; color: var(--hv2-muted); line-height: 1.65; margin: 0 0 18px;"><%= s[:body] %></p>
+          <span style="font-family: var(--hv2-sans); font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--hv2-dark); background: rgba(11,61,46,0.06); border: 1px solid var(--hv2-border); border-radius: 100px; padding: 5px 12px;"><%= s[:tag] %></span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
