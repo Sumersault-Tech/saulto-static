@@ -1,24 +1,24 @@
 import { Controller } from "@hotwired/stimulus"
 
-// SVG circle gauge with animated counter, triggered by IntersectionObserver.
+// SVG circle gauge with animated counter.
 // Usage: data-controller="gauge" data-gauge-value-value="87" data-gauge-size-value="180"
 export default class extends Controller {
   static values = { value: { type: Number, default: 87 }, size: { type: Number, default: 180 }, color: { type: String, default: "#1E6B3C" }, animated: { type: Boolean, default: true } }
   static targets = ["number", "arc"]
 
   connect() {
-    this.displayed = this.animatedValue ? 0 : this.valueValue
+    this.displayed = 0
     this.render()
     if (this.animatedValue) {
-      this.observer = new IntersectionObserver(([entry]) => {
-        if (entry.isIntersecting) { this.animate(); this.observer.disconnect() }
-      }, { threshold: 0.3 })
-      this.observer.observe(this.element)
+      this.timer = setTimeout(() => this.animate(), 600)
+    } else {
+      this.displayed = this.valueValue
+      this.render()
     }
   }
 
   disconnect() {
-    if (this.observer) this.observer.disconnect()
+    if (this.timer) clearTimeout(this.timer)
     if (this.raf) cancelAnimationFrame(this.raf)
   }
 
