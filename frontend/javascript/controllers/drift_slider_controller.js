@@ -40,20 +40,15 @@ const RED = "#f87171"
 export default class extends Controller {
   static targets = [
     "track", "thumb", "fillLeft", "fillRight",
-    "probValue", "probLabel", "probSublabel",
+    "probValue", "probSublabel",
     "recovery", "nosaulto", "detGuide", "detDot", "detDotPulse",
     "clipBefore", "clipAfter",
     "badge", "badgeDot", "badgeText",
-    "saultoLabel", "tradLabel",
   ]
 
   connect() {
     this.value = 0.11
-    this._onPointerMove = this._onPointerMove.bind(this)
-    this._onPointerUp = this._onPointerUp.bind(this)
     this._update()
-
-    // Start chart animation after a short delay
     this._animateIn()
   }
 
@@ -66,15 +61,6 @@ export default class extends Controller {
     if (e.buttons > 0) {
       this._updateFromEvent(e)
     }
-  }
-
-  _onPointerMove(e) {
-    this._updateFromEvent(e)
-  }
-
-  _onPointerUp() {
-    document.removeEventListener("pointermove", this._onPointerMove)
-    document.removeEventListener("pointerup", this._onPointerUp)
   }
 
   _updateFromEvent(e) {

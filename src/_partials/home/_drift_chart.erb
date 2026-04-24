@@ -30,7 +30,7 @@
         <div class="mb-5">
           <p class="font-display font-light leading-none tabular-nums transition-colors duration-200"
              style="font-size: clamp(2.4rem, 3.5vw, 3.5rem); color: hsl(155,68%,58%);"
-             data-drift-slider-target="probability">
+             data-drift-slider-target="probValue">
             87%
           </p>
           <p class="text-sm font-light mt-2" style="color: rgba(255,255,255,0.40);">
@@ -38,7 +38,7 @@
           </p>
           <p class="text-[10px] font-semibold tracking-[0.18em] uppercase mt-2 transition-colors duration-200"
              style="color: hsl(155,68%,58%);"
-             data-drift-slider-target="label">
+             data-drift-slider-target="probSublabel">
             Saulto catches drift early. Strong recovery.
           </p>
         </div>
@@ -59,12 +59,12 @@
           <div class="relative flex items-center cursor-pointer select-none"
                style="height: 44px;"
                data-drift-slider-target="track"
-               data-action="pointerdown->drift-slider#onPointerDown pointermove->drift-slider#onPointerMove">
+               data-action="pointerdown->drift-slider#pointerDown pointermove->drift-slider#pointerMove">
             <%# Track background %>
             <div class="absolute inset-x-0 rounded-full" style="height: 5px; background: rgba(255,255,255,0.08);"></div>
             <%# Fill (green side) %>
             <div class="absolute left-0 rounded-full" style="height: 5px; width: 11%; background: linear-gradient(to right, hsl(155,55%,42%), hsl(155,68%,58%));"
-                 data-drift-slider-target="fill"></div>
+                 data-drift-slider-target="fillLeft"></div>
             <%# Fill (red side) %>
             <div class="absolute right-0 rounded-full" style="height: 5px; width: 89%; background: linear-gradient(to right, rgba(200,185,122,0.15), rgba(248,113,113,0.32));"
                  data-drift-slider-target="fillRight"></div>
@@ -87,11 +87,11 @@
             <div class="absolute inset-0">
               <svg class="absolute inset-0 w-full h-full" viewBox="0 0 1000 300" preserveAspectRatio="none" data-drift-slider-target="chart">
                 <defs>
-                  <clipPath id="clip-before">
-                    <rect x="0" y="0" width="200" height="300" data-drift-slider-target="clipBefore" />
+                  <clipPath id="clip-before" data-drift-slider-target="clipBefore">
+                    <rect x="0" y="0" width="200" height="300" />
                   </clipPath>
-                  <clipPath id="clip-after">
-                    <rect x="200" y="0" width="800" height="300" data-drift-slider-target="clipAfter" />
+                  <clipPath id="clip-after" data-drift-slider-target="clipAfter">
+                    <rect x="200" y="0" width="800" height="300" />
                   </clipPath>
                 </defs>
 
@@ -118,16 +118,20 @@
                 <path d="M 50,48 Q 200,54 380,88 T 700,196 T 980,278" clip-path="url(#clip-before)" stroke="hsl(155,55%,42%)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
 
                 <%# Without Saulto continuation — dashed after detection %>
-                <path d="M 200,56 C 445,74 690,258 980,290" clip-path="url(#clip-after)" stroke="rgba(255,255,255,0.22)" stroke-width="1.5" fill="none" stroke-dasharray="6 5" stroke-linecap="round" data-drift-slider-target="nosaultoPath" />
+                <path d="M 200,56 C 445,74 690,258 980,290" clip-path="url(#clip-after)" stroke="rgba(255,255,255,0.22)" stroke-width="1.5" fill="none" stroke-dasharray="6 5" stroke-linecap="round" data-drift-slider-target="nosaulto" />
 
                 <%# Recovery line — with Saulto %>
-                <path d="M 200,56 C 270,50 530,50 980,38" clip-path="url(#clip-after)" stroke="hsl(155,68%,58%)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" data-drift-slider-target="recoveryPath" />
+                <path d="M 200,56 C 270,50 530,50 980,38" clip-path="url(#clip-after)" stroke="hsl(155,68%,58%)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" data-drift-slider-target="recovery" />
 
                 <%# Vertical detection guide %>
-                <path d="M 200,30 L 200,56" stroke="rgba(255,255,255,0.25)" stroke-width="1" stroke-dasharray="4 4" fill="none" data-drift-slider-target="detectionGuide" />
+                <path d="M 200,30 L 200,56" stroke="rgba(255,255,255,0.25)" stroke-width="1" stroke-dasharray="4 4" fill="none" data-drift-slider-target="detGuide" />
 
                 <%# Detection dot %>
-                <circle cx="200" cy="56" r="6" fill="white" data-drift-slider-target="detectionDot" />
+                <circle cx="200" cy="56" r="6" fill="white" data-drift-slider-target="detDot" />
+                <circle cx="200" cy="56" r="6" fill="white" opacity="0.4" data-drift-slider-target="detDotPulse">
+                  <animate attributeName="r" values="6;14;6" dur="2s" repeatCount="indefinite" />
+                  <animate attributeName="opacity" values="0.4;0;0.4" dur="2s" repeatCount="indefinite" />
+                </circle>
               </svg>
 
               <%# GOAL label %>
