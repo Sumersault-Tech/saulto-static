@@ -1,0 +1,23 @@
+<div data-morris-national-target="phase" data-phase="prologue" style="display: none; min-height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 76px 28px 80px; text-align: center;">
+  <p style="font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mn-muted); margin-bottom: 30px;">Here is what happens inside Morris National</p>
+  <div style="max-width: 520px; width: 100%;">
+    <% [
+      "Morris National is a growing business. Revenue is up. New accounts are opening. The team is executing.",
+      "But growth creates complexity. More products, more customers, more cost, more moving parts.",
+      "The real challenge is knowing which parts of the business are actually on track to hit the annual number.",
+      "By the time a problem shows up in the results, it has already cost you something.",
+    ].each_with_index do |line, i| %>
+      <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 18px; text-align: left;">
+        <div style="width: 22px; height: 22px; border-radius: 50%; background: var(--mn-accent-l); border: 1.5px solid var(--mn-border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 3px;">
+          <span style="font-size: 10px; font-weight: 800; color: var(--mn-accent);"><%= i + 1 %></span>
+        </div>
+        <p style="font-family: 'Cormorant Garamond', serif; font-size: clamp(18px, 4.5vw, 23px); font-weight: 500; color: var(--mn-text); line-height: 1.35; margin: 0;"><%= line %></p>
+      </div>
+    <% end %>
+  </div>
+  <button data-action="click->morris-national#advance"
+    style="margin-top: 36px; background: var(--mn-accent); color: #fff; border: none; border-radius: 100px; cursor: pointer; padding: 16px 44px; font-size: 15px; font-weight: 700; font-family: 'Inter', sans-serif; letter-spacing: 0.04em;">
+    See how Saulto changes this
+  </button>
+  <button data-action="click->morris-national#back" style="margin-top: 14px; background: none; border: none; cursor: pointer; font-size: 13px; color: var(--mn-muted); font-family: 'Inter', sans-serif;">Back</button>
+</div>

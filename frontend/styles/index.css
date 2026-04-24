@@ -183,6 +183,16 @@
   transform: translateY(0);
 }
 
+/* SVG draw animation */
+.svg-draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 0.9s ease-in-out;
+}
+.svg-draw.is-drawn {
+  stroke-dashoffset: 0;
+}
+
 /* Print utilities */
 @media print {
   .no-print { display: none !important; }

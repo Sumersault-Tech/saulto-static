@@ -1,0 +1,26 @@
+---
+layout: video
+title: "Morris National | Interactive Case Study"
+page_class: morris-national
+---
+
+<style>
+  :root {
+    --mn-accent: #0B3D2E;
+    --mn-accent-l: #e8f5ef;
+    --mn-muted: #6b9080;
+    --mn-border: #deeee7;
+    --mn-text: #0c1f16;
+    --mn-warn: #7a3010;
+    --mn-warn-l: #fdf2e9;
+    --mn-warn-b: #e8a97a;
+  }
+  .morris-national { font-family: 'Inter', sans-serif; overflow-x: hidden; }
+
+  @keyframes mn-fade-in {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>
+
+<%= render "morris-national/app" %>

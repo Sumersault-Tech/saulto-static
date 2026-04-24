@@ -17,6 +17,9 @@ import PlatformStoryController from "./controllers/platform_story_controller.js"
 import PrintController from "./controllers/print_controller.js"
 import GaugeController from "./controllers/gauge_controller.js"
 import DashboardChaosController from "./controllers/dashboard_chaos_controller.js"
+import MorrisNationalController from "./controllers/morris_national_controller.js"
+import ProbabilitySimulatorController from "./controllers/probability_simulator_controller.js"
+import SvgLineGraphController from "./controllers/svg_line_graph_controller.js"
 
 application.register("navbar", NavbarController)
 application.register("reveal", RevealController)
@@ -26,3 +29,6 @@ application.register("platform-story", PlatformStoryController)
 application.register("print", PrintController)
 application.register("gauge", GaugeController)
 application.register("dashboard-chaos", DashboardChaosController)
+application.register("morris-national", MorrisNationalController)
+application.register("probability-simulator", ProbabilitySimulatorController)
+application.register("svg-line-graph", SvgLineGraphController)

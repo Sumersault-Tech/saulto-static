@@ -1,0 +1,26 @@
+<div data-morris-national-target="phase" data-phase="value" style="display: none; min-height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 76px 28px 80px; text-align: center;">
+  <p style="font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mn-muted); margin-bottom: 20px;">What Saulto does</p>
+  <h2 style="font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 7vw, 48px); font-weight: 500; color: var(--mn-text); line-height: 1.1; margin: 0 0 42px; max-width: 480px;">
+    Three things. Nothing more.
+  </h2>
+  <div style="display: flex; flex-direction: column; width: 100%; max-width: 480px;">
+    <% [
+      { n: "1", title: "Connects to your accounting system and business data.", body: "Your ERP, accounting software, and CRM. Saulto normalizes your financial data automatically. No manual exports. Nothing to rebuild. One connection, continuous data." },
+      { n: "2", title: "Tracks financial health and team performance every day.", body: "Revenue, margin, team capacity, and goal pace together as one picture. We know what on-track looks like for your business, and we know the moment the numbers start to drift." },
+      { n: "3", title: "Shows you the probability of hitting your targets, and exactly what to do.", body: "Not after a retailer calls you. Not after a ship date is missed. Weeks ahead, with specific actions ranked by their impact on your numbers." },
+    ].each_with_index do |item, i| %>
+      <div style="display: flex; gap: 20px; text-align: left; padding: 22px 0; <%= i < 2 ? "border-bottom: 1px solid var(--mn-border);" : "" %>">
+        <span style="font-family: 'Cormorant Garamond', serif; font-size: 44px; font-weight: 400; color: var(--mn-border); line-height: 1; flex-shrink: 0; width: 36px; text-align: right;"><%= item[:n] %></span>
+        <div>
+          <p style="font-family: 'Cormorant Garamond', serif; font-size: clamp(20px, 5vw, 26px); font-weight: 500; color: var(--mn-text); line-height: 1.2; margin: 0 0 8px;"><%= item[:title] %></p>
+          <p style="font-size: clamp(13px, 3.5vw, 15px); color: var(--mn-muted); line-height: 1.65; margin: 0;"><%= item[:body] %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <button data-action="click->morris-national#advance"
+    style="margin-top: 38px; background: var(--mn-accent); color: #fff; border: none; border-radius: 100px; cursor: pointer; padding: 16px 44px; font-size: 15px; font-weight: 700; font-family: 'Inter', sans-serif; letter-spacing: 0.04em;">
+    See it working at Morris National
+  </button>
+  <button data-action="click->morris-national#back" style="margin-top: 14px; background: none; border: none; cursor: pointer; font-size: 13px; color: var(--mn-muted); font-family: 'Inter', sans-serif;">Back</button>
+</div>

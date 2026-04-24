@@ -1,0 +1,51 @@
+<div data-morris-national-target="phase" data-phase="modeling" style="display: none; min-height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 76px 24px 80px; text-align: center;">
+  <p style="font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mn-muted); margin-bottom: 22px;">How it works</p>
+  <h2 style="font-family: 'Cormorant Garamond', serif; font-size: clamp(26px, 6.5vw, 44px); font-weight: 500; color: var(--mn-text); line-height: 1.1; margin: 0 0 10px; max-width: 500px;">
+    Saulto connects to the data Morris National already has.
+  </h2>
+  <p style="font-size: clamp(14px, 3.5vw, 16px); color: var(--mn-muted); line-height: 1.6; margin: 0 0 28px; max-width: 400px;">
+    Your accounting system, your CRM, your team KPIs. We normalize your financial data and build the full picture from what is already there.
+  </p>
+
+  <%# Data connection cards %>
+  <div style="display: flex; flex-direction: column; gap: 16px; width: 100%; max-width: 340px; margin-bottom: 16px;">
+    <% [
+      { heading: "Financial and business data", items: [
+        { name: "QuickBooks Online", what: "Monthly P&L, revenue by product line, COGS, gross margin", icon: "QBO" },
+        { name: "CRM / Sales data", what: "Booked orders, key account status, pipeline by channel", icon: "CRM" },
+        { name: "Team KPI data", what: "Sales, operations, and fulfillment performance vs. target", icon: "KPI" },
+      ]},
+      { heading: "Strategic context", items: [
+        { name: "Company targets", what: "Q4 revenue goal, EBITDA target, North Star metric", icon: "TGT" },
+        { name: "Capacity and headcount", what: "Team utilization, active initiatives, available bandwidth", icon: "CAP" },
+      ]},
+    ].each do |group| %>
+      <div>
+        <p style="font-size: 9px; font-weight: 700; letter-spacing: 0.16em; color: var(--mn-muted); text-transform: uppercase; margin: 0 0 8px; text-align: left;"><%= group[:heading] %></p>
+        <div style="display: flex; flex-direction: column; gap: 7px;">
+          <% group[:items].each do |s| %>
+            <div style="background: #fff; border: 1.5px solid var(--mn-border); border-radius: 12px; padding: 11px 14px; display: flex; align-items: flex-start; gap: 12px; text-align: left;">
+              <div style="width: 34px; height: 34px; border-radius: 8px; flex-shrink: 0; background: var(--mn-accent-l); border: 1.5px solid var(--mn-border); display: flex; align-items: center; justify-content: center;">
+                <span style="font-size: 9px; font-weight: 800; color: var(--mn-accent); letter-spacing: 0.04em;"><%= s[:icon] %></span>
+              </div>
+              <div style="flex: 1; min-width: 0;">
+                <p style="font-size: 12px; font-weight: 700; color: var(--mn-text); margin: 0 0 2px;"><%= s[:name] %></p>
+                <p style="font-size: 10px; color: var(--mn-muted); margin: 0; line-height: 1.4;"><%= s[:what] %></p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+    <div style="padding: 12px 16px; border-radius: 12px; background: var(--mn-accent-l); border: 1.5px solid var(--mn-border); text-align: center;">
+      <p style="font-size: 12px; font-weight: 700; color: var(--mn-accent); margin: 0 0 2px;">One connection. Continuous data.</p>
+      <p style="font-size: 11px; color: var(--mn-muted); margin: 0;">Saulto normalizes what Morris National already tracks. Nothing to rebuild.</p>
+    </div>
+  </div>
+
+  <button data-action="click->morris-national#advance"
+    style="background: var(--mn-accent); color: #fff; border: none; border-radius: 100px; cursor: pointer; padding: 16px 44px; font-size: 15px; font-weight: 700; font-family: 'Inter', sans-serif; letter-spacing: 0.04em;">
+    See it in action
+  </button>
+  <button data-action="click->morris-national#back" style="margin-top: 14px; background: none; border: none; cursor: pointer; font-size: 13px; color: var(--mn-muted); font-family: 'Inter', sans-serif;">Back</button>
+</div>

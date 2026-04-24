@@ -1,0 +1,49 @@
+<div data-morris-national-target="phase" data-phase="steps" data-step="5" style="display: none; min-height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 76px 24px 120px; text-align: center;">
+  <p style="font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mn-muted); margin-bottom: 26px;">Step 5 of 5</p>
+
+  <%# Interactive probability simulator %>
+  <div data-controller="probability-simulator" style="display: flex; flex-direction: column; gap: 12px; width: 308px; margin-bottom: 28px; text-align: left;">
+    <%# Probability display %>
+    <div style="background: var(--mn-accent-l); border: 1.5px solid var(--mn-border); border-radius: 16px; padding: 20px;">
+      <p style="font-size: 10px; font-weight: 700; color: var(--mn-muted); letter-spacing: 0.14em; text-transform: uppercase; margin: 0 0 4px;">Probability of hitting annual goal</p>
+      <div style="display: flex; align-items: baseline; gap: 6px; margin-bottom: 10px;">
+        <span data-probability-simulator-target="number" style="font-family: 'Cormorant Garamond', serif; font-size: 56px; font-weight: 500; color: var(--mn-accent); line-height: 1;">62%</span>
+      </div>
+      <div style="height: 6px; border-radius: 4px; background: #fff; overflow: hidden; margin-bottom: 8px;">
+        <div data-probability-simulator-target="bar" style="width: 62%; height: 100%; border-radius: 4px; background: var(--mn-accent); transition: width 0.5s cubic-bezier(0.22,1,0.36,1);"></div>
+      </div>
+      <p data-probability-simulator-target="hint" style="font-size: 11px; color: var(--mn-muted); margin: 0;">Tap an action below to see how the outcome changes.</p>
+    </div>
+
+    <%# Action cards %>
+    <p style="font-size: 10px; font-weight: 700; letter-spacing: 0.14em; color: var(--mn-muted); text-transform: uppercase; margin: 0;">Actions to take</p>
+    <% [
+      { action: "Accelerate the 3 product lines with fastest revenue growth",    tag: "Highest impact",    revenue: "+$180K", from: 62, to: 74 },
+      { action: "Reallocate team capacity from low-margin work to key accounts", tag: "Fastest path",      revenue: "+$120K", from: 74, to: 81 },
+      { action: "Protect commitments to your top 5 retail accounts",            tag: "Protects accounts", revenue: "+$120K", from: 81, to: 87 },
+    ].each_with_index do |p, i| %>
+      <button data-probability-simulator-target="card" data-index="<%= i %>" data-action="click->probability-simulator#activate"
+        style="background: #fff; border: 1.5px solid var(--mn-border); border-radius: 14px; padding: 13px 14px; text-align: left; cursor: pointer; width: 100%; transition: all 0.25s ease;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px;">
+          <p style="font-size: 13px; font-weight: 700; color: var(--mn-text); line-height: 1.3; margin: 0; flex: 1;"><%= p[:action] %></p>
+          <span style="font-size: 13px; font-weight: 800; color: var(--mn-accent); margin-left: 10px; flex-shrink: 0;"><%= p[:revenue] %></span>
+        </div>
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+          <span style="font-size: 10px; font-weight: 700; color: var(--mn-muted); background: rgba(11,61,46,0.08); padding: 3px 8px; border-radius: 100px;"><%= p[:tag] %></span>
+          <span data-range style="display: none; font-size: 11px; font-weight: 700; color: var(--mn-accent);"><%= p[:from] %>% to <%= p[:to] %>%</span>
+          <span data-tap style="<%= i == 0 ? '' : 'display: none;' %> font-size: 10px; color: var(--mn-muted);">Tap to activate</span>
+        </div>
+      </button>
+    <% end %>
+  </div>
+
+  <h2 style="font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 7vw, 48px); font-weight: 500; color: var(--mn-text); line-height: 1.1; margin: 0 0 14px; max-width: 480px;">
+    You fix it.
+  </h2>
+  <p style="font-size: clamp(14px, 3.5vw, 17px); color: var(--mn-muted); line-height: 1.7; margin: 0 0 44px; max-width: 420px;">
+    Saulto shows you the fastest way to fix it. Tap each action to see how the outcome changes.
+  </p>
+
+  <button data-action="click->morris-national#advance" style="background: var(--mn-accent); color: #fff; border: none; border-radius: 100px; cursor: pointer; padding: 16px 44px; font-size: 15px; font-weight: 700; font-family: 'Inter', sans-serif; letter-spacing: 0.04em;">See the result</button>
+  <button data-action="click->morris-national#back" style="margin-top: 14px; background: none; border: none; cursor: pointer; font-size: 13px; color: var(--mn-muted); font-family: 'Inter', sans-serif;">Back</button>
+</div>

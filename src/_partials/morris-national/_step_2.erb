@@ -1,0 +1,38 @@
+<div data-morris-national-target="phase" data-phase="steps" data-step="2" style="display: none; min-height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 76px 24px 120px; text-align: center;">
+  <p style="font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mn-muted); margin-bottom: 26px;">Step 2 of 5</p>
+
+  <%# Visual: Capacity bars %>
+  <div style="display: flex; flex-direction: column; gap: 14px; width: 300px; margin-bottom: 28px; text-align: left;">
+    <p style="font-size: 10px; font-weight: 700; letter-spacing: 0.14em; color: var(--mn-muted); text-transform: uppercase; margin: 0 0 2px;">Operational capacity</p>
+    <% [
+      { label: "Q4 revenue pace",      fill: 88, color: "var(--mn-accent)", sub: "Revenue vs. annual goal. Running strong." },
+      { label: "Operations team",      fill: 96, color: "var(--mn-warn-b)", sub: "Near full utilization. Stretched thin." },
+      { label: "Cost vs. budget",      fill: 91, color: "#b07030",          sub: "Spending ahead of pace. Margin at risk." },
+      { label: "Fulfillment capacity", fill: 79, color: "var(--mn-muted)",  sub: "CA, ON, QC, BC. Filling fast." },
+    ].each do |lane| %>
+      <div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+          <span style="font-size: 12px; font-weight: 700; color: var(--mn-text);"><%= lane[:label] %></span>
+          <span style="font-size: 12px; font-weight: 800; color: <%= lane[:color] %>;"><%= lane[:fill] %>%</span>
+        </div>
+        <div style="height: 8px; border-radius: 6px; background: #f0f0ee; overflow: hidden;">
+          <div style="width: <%= lane[:fill] %>%; height: 100%; border-radius: 6px; background: <%= lane[:color] %>;"></div>
+        </div>
+        <p style="font-size: 10px; color: var(--mn-muted); margin-top: 3px;"><%= lane[:sub] %></p>
+      </div>
+    <% end %>
+    <div style="margin-top: 2px; padding: 10px 14px; border-radius: 10px; background: var(--mn-warn-l); border: 1px solid var(--mn-warn-b);">
+      <p style="font-size: 12px; font-weight: 700; color: var(--mn-warn); margin: 0;">Revenue, cost, and capacity move together. Saulto tracks all of it as one picture.</p>
+    </div>
+  </div>
+
+  <h2 style="font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 7vw, 48px); font-weight: 500; color: var(--mn-text); line-height: 1.1; margin: 0 0 14px; max-width: 480px;">
+    Cost and capacity start tightening.
+  </h2>
+  <p style="font-size: clamp(14px, 3.5vw, 17px); color: var(--mn-muted); line-height: 1.7; margin: 0 0 44px; max-width: 420px;">
+    Your operations team is near full utilization. Costs are running ahead of budget. Revenue, cost, and team capacity are connected. Saulto watches them together.
+  </p>
+
+  <button data-action="click->morris-national#advance" style="background: var(--mn-accent); color: #fff; border: none; border-radius: 100px; cursor: pointer; padding: 16px 44px; font-size: 15px; font-weight: 700; font-family: 'Inter', sans-serif; letter-spacing: 0.04em;">Continue</button>
+  <button data-action="click->morris-national#back" style="margin-top: 14px; background: none; border: none; cursor: pointer; font-size: 13px; color: var(--mn-muted); font-family: 'Inter', sans-serif;">Back</button>
+</div>

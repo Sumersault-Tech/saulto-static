@@ -1,0 +1,35 @@
+<div data-morris-national-target="phase" data-phase="steps" data-step="3" style="display: none; min-height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 76px 24px 120px; text-align: center;"
+     data-controller="svg-line-graph">
+  <p style="font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mn-muted); margin-bottom: 26px;">Step 3 of 5</p>
+
+  <%# Visual: Signal cards with SVG lines %>
+  <div style="display: flex; flex-direction: column; gap: 10px; width: 280px; margin-bottom: 28px; text-align: left;">
+    <p style="font-size: 10px; font-weight: 700; letter-spacing: 0.14em; color: var(--mn-muted); text-transform: uppercase; margin: 0 0 2px;">What Saulto sees in your financials</p>
+    <% [
+      { label: "Q4 revenue trajectory",    status: "Accelerating",       status_color: "var(--mn-accent)", note: "Revenue climbing across all channels" },
+      { label: "Revenue pace vs. cost growth", status: "Margin gap opening", status_color: "var(--mn-warn)", note: "Costs rising faster than revenue" },
+      { label: "Annual goal trajectory",    status: "Falling behind pace", status_color: "var(--mn-warn)", note: "Revenue-to-goal gap widening" },
+    ].each do |sig| %>
+      <div style="background: #fff; border: 1.5px solid var(--mn-border); border-radius: 12px; padding: 12px 14px;">
+        <p style="font-size: 10px; font-weight: 700; color: var(--mn-muted); letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 8px;"><%= sig[:label] %></p>
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 4px;">
+          <div style="display: flex; align-items: center; gap: 5px;">
+            <div style="width: 7px; height: 7px; border-radius: 50%; background: <%= sig[:status_color] %>;"></div>
+            <span style="font-size: 10px; font-weight: 700; color: <%= sig[:status_color] %>;"><%= sig[:status] %></span>
+          </div>
+          <span style="font-size: 10px; color: var(--mn-muted);"><%= sig[:note] %></span>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <h2 style="font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 7vw, 48px); font-weight: 500; color: var(--mn-text); line-height: 1.1; margin: 0 0 14px; max-width: 480px;">
+    The numbers start drifting.
+  </h2>
+  <p style="font-size: clamp(14px, 3.5vw, 17px); color: var(--mn-muted); line-height: 1.7; margin: 0 0 44px; max-width: 420px;">
+    Saulto reads your financial data every night. It knows what your seasonal baseline looks like. And it is starting to see something that does not look right.
+  </p>
+
+  <button data-action="click->morris-national#advance" style="background: var(--mn-accent); color: #fff; border: none; border-radius: 100px; cursor: pointer; padding: 16px 44px; font-size: 15px; font-weight: 700; font-family: 'Inter', sans-serif; letter-spacing: 0.04em;">Continue</button>
+  <button data-action="click->morris-national#back" style="margin-top: 14px; background: none; border: none; cursor: pointer; font-size: 13px; color: var(--mn-muted); font-family: 'Inter', sans-serif;">Back</button>
+</div>
