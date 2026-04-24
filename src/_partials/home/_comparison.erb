@@ -1,0 +1,92 @@
+<%# ═══════════════════════════════════════════════════════════════
+   COMPARISON — What your existing stack is missing
+   ═══════════════════════════════════════════════════════════════ %>
+<section class="py-20 md:py-28" style="background: white;">
+  <div class="max-w-5xl mx-auto px-6 md:px-12">
+
+    <%# Desktop header %>
+    <div class="hidden md:block mb-14 reveal" data-controller="reveal">
+      <p class="text-[11px] font-bold tracking-[0.22em] uppercase mb-4" style="color: hsl(155,55%,32%);">
+        What your existing stack is missing
+      </p>
+      <h2 class="font-display font-light leading-[1.08] tracking-tight"
+          style="font-size: clamp(1.8rem, 3.8vw, 3.2rem); color: hsl(155,18%,16%);">
+        Your tools built the data.<br />Saulto reads the signal.
+      </h2>
+    </div>
+
+    <%# Mobile header — minimal %>
+    <div class="md:hidden mb-8 reveal" data-controller="reveal">
+      <p class="text-[11px] font-bold tracking-[0.22em] uppercase mb-4" style="color: hsl(155,55%,32%);">
+        What your stack is missing
+      </p>
+    </div>
+
+    <%# Comparison table %>
+    <div class="reveal" data-controller="reveal">
+
+      <%# Desktop column headers %>
+      <div class="hidden md:grid grid-cols-[1fr_64px_1fr] gap-0 mb-6">
+        <p class="text-[10px] font-bold tracking-[0.18em] uppercase px-6" style="color: hsl(155,12%,42%);">What it gives you today</p>
+        <div></div>
+        <p class="text-[10px] font-bold tracking-[0.18em] uppercase px-6" style="color: hsl(155,55%,32%);">What Saulto adds</p>
+      </div>
+
+      <% rows = [
+        { tool: "BI Dashboards", icon_path: "M3 3h18v18H3zM3 9h18M3 15h18M9 3v18", current: "Historical charts and KPIs. Shows you what happened last month.", saulto: "Forward-looking confidence scores. Shows where you're headed and what moves the number." },
+        { tool: "OKR Platforms", icon_path: "M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11", current: "Red/yellow/green status on goals. No financial linkage or forward projection.", saulto: "Goals connected to live financial trajectory. Each initiative shows its dollar impact on your number." },
+        { tool: "Spreadsheet Forecasts", icon_path: "M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6", current: "Single-point estimates that go stale by mid-quarter. Manual refresh.", saulto: "10,000 simulated futures from live data. Always current. Never one person's guess." },
+        { tool: "Project Tools", icon_path: "M9 17H7A5 5 0 0 1 7 7h2M15 7h2a5 5 0 0 1 0 10h-2M8 12h8", current: "Task completion tracking. No connection between project velocity and company trajectory.", saulto: "Every initiative traces to financial outcomes. Know which projects actually move the number." },
+        { tool: "ERP / Finance", icon_path: "M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6", current: "Accurate books. Backward-looking actuals. Copy-paste into board decks.", saulto: "Auto-normalized financials feeding a simulation engine. Board-ready narrative generated live." },
+      ] %>
+
+      <% rows.each_with_index do |row, i| %>
+        <%# Desktop row %>
+        <div class="hidden md:grid grid-cols-[1fr_64px_1fr] gap-0 items-stretch <%= 'border-t border-[hsl(155,14%,90%)]' unless i == 0 %>">
+          <%# Current capability %>
+          <div class="p-6 flex items-start gap-4" style="background: hsl(155,18%,97%);">
+            <div class="w-8 h-8 rounded-lg border border-[hsl(155,14%,90%)] bg-white flex items-center justify-center shrink-0 mt-0.5">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="hsl(155,12%,42%)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="<%= row[:icon_path] %>" />
+              </svg>
+            </div>
+            <div>
+              <p class="text-sm font-bold mb-1" style="color: hsl(155,18%,16%);"><%= row[:tool] %></p>
+              <p class="text-sm leading-relaxed" style="color: hsl(155,12%,42%);"><%= row[:current] %></p>
+            </div>
+          </div>
+
+          <%# Arrow %>
+          <div class="flex items-center justify-center" style="background: hsl(155,18%,16%);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="hsl(155,48%,58%)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
+            </svg>
+          </div>
+
+          <%# Saulto enhancement %>
+          <div class="p-6" style="background: hsl(155,18%,16%);">
+            <p class="text-sm leading-relaxed text-white/70"><%= row[:saulto] %></p>
+          </div>
+        </div>
+
+        <%# Mobile row — stacked %>
+        <div class="md:hidden <%= 'border-t border-[hsl(155,14%,90%)]' unless i == 0 %> py-6">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-7 h-7 rounded-lg border border-[hsl(155,14%,90%)] bg-[hsl(155,18%,97%)] flex items-center justify-center shrink-0">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="hsl(155,12%,42%)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="<%= row[:icon_path] %>" />
+              </svg>
+            </div>
+            <p class="text-sm font-bold" style="color: hsl(155,18%,16%);"><%= row[:tool] %></p>
+          </div>
+          <p class="text-sm leading-relaxed mb-3" style="color: hsl(155,12%,42%);"><%= row[:current] %></p>
+          <div class="rounded-xl p-4" style="background: hsl(155,18%,16%);">
+            <p class="text-[10px] font-bold tracking-[0.16em] uppercase mb-2" style="color: hsl(155,55%,32%);">With Saulto</p>
+            <p class="text-sm leading-relaxed text-white/70"><%= row[:saulto] %></p>
+          </div>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</section>

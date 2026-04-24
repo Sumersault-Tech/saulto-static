@@ -1,0 +1,228 @@
+<%# ═══════════════════════════════════════════════════════════════
+   PLATFORM STORY — 3-tab product showcase (Inside Saulto)
+   Uses data-controller="platform-story" for Stimulus interactivity
+   ═══════════════════════════════════════════════════════════════ %>
+<section class="pt-10 md:pt-24 pb-10 md:pb-20 border-b border-[hsl(155,14%,90%)]" style="background: hsl(155,18%,97%);" data-controller="platform-story">
+  <div class="max-w-5xl mx-auto px-6 md:px-12">
+
+    <%# Heading %>
+    <div class="mb-10 md:mb-12 reveal" data-controller="reveal">
+      <p class="text-sm font-light leading-relaxed mb-6" style="color: rgba(0,0,0,0.42); max-width: 40rem;">
+        Here&rsquo;s exactly what Saulto shows you from the moment you&rsquo;re connected. Three views. One answer.
+      </p>
+      <p class="text-[11px] font-bold tracking-[0.22em] uppercase mb-4" style="color: hsl(155,55%,32%);">
+        Inside Saulto
+      </p>
+      <h2 class="font-display font-light leading-[1.08] tracking-tight" style="font-size: clamp(2.2rem, 3.8vw, 3.4rem); color: hsl(155,18%,16%);">
+        Your current position. The risk.<br />The plays that fix it.
+      </h2>
+    </div>
+
+    <%# Step tabs %>
+    <div class="flex border border-[hsl(155,14%,90%)] rounded-xl overflow-hidden bg-white mb-8 md:mb-10">
+      <button class="flex-1 text-left px-4 md:px-6 py-4 md:py-5 relative transition-colors duration-200 focus:outline-none border-r border-[hsl(155,14%,90%)]"
+              style="background: hsl(155,28%,13%);"
+              data-platform-story-target="tab"
+              data-action="click->platform-story#switchTab"
+              data-index="0">
+        <p class="text-[10px] font-bold tracking-[0.18em] uppercase mb-1" style="color: rgba(255,255,255,0.38);">01</p>
+        <p class="text-[13px] font-semibold leading-snug text-white">
+          <span class="hidden sm:inline">Where you stand right now</span>
+          <span class="sm:hidden">Right now</span>
+        </p>
+        <div class="absolute bottom-0 left-0 right-0 h-0.5" style="background: hsl(155,55%,32%);" data-platform-story-target="tabIndicator"></div>
+      </button>
+
+      <button class="flex-1 text-left px-4 md:px-6 py-4 md:py-5 relative transition-colors duration-200 focus:outline-none border-r border-[hsl(155,14%,90%)]"
+              style="background: transparent;"
+              data-platform-story-target="tab"
+              data-action="click->platform-story#switchTab"
+              data-index="1">
+        <p class="text-[10px] font-bold tracking-[0.18em] uppercase mb-1" style="color: rgba(0,0,0,0.32);">02</p>
+        <p class="text-[13px] font-semibold leading-snug" style="color: hsl(155,30%,18%);">
+          <span class="hidden sm:inline">What the data is saying</span>
+          <span class="sm:hidden">The data</span>
+        </p>
+      </button>
+
+      <button class="flex-1 text-left px-4 md:px-6 py-4 md:py-5 relative transition-colors duration-200 focus:outline-none"
+              style="background: transparent;"
+              data-platform-story-target="tab"
+              data-action="click->platform-story#switchTab"
+              data-index="2">
+        <p class="text-[10px] font-bold tracking-[0.18em] uppercase mb-1" style="color: rgba(0,0,0,0.32);">03</p>
+        <p class="text-[13px] font-semibold leading-snug" style="color: hsl(155,30%,18%);">
+          <span class="hidden sm:inline">Your next move</span>
+          <span class="sm:hidden">Next move</span>
+        </p>
+      </button>
+    </div>
+
+    <%# Content area %>
+    <div class="grid md:grid-cols-[1fr_1.5fr] gap-8 md:gap-12 items-start">
+
+      <%# Left: copy panels %>
+      <div data-platform-story-target="copyPanel" data-index="0" class="md:pt-2">
+        <h3 class="font-display font-light leading-[1.18] tracking-tight mb-4" style="font-size: clamp(1.45rem, 2.4vw, 2rem); color: hsl(155,28%,13%);">
+          Here&rsquo;s where you actually are.
+        </h3>
+        <p class="text-base font-light leading-relaxed" style="color: hsl(155,12%,42%);">
+          Saulto connects your financial and operational data and runs thousands of simulated futures against your actual business. You get a live confidence score for hitting your goal, updated continuously.
+        </p>
+      </div>
+      <div data-platform-story-target="copyPanel" data-index="1" class="md:pt-2 hidden">
+        <h3 class="font-display font-light leading-[1.18] tracking-tight mb-4" style="font-size: clamp(1.45rem, 2.4vw, 2rem); color: hsl(155,28%,13%);">
+          Here&rsquo;s what the data is telling you.
+        </h3>
+        <p class="text-base font-light leading-relaxed" style="color: hsl(155,12%,42%);">
+          The model detected execution drift in week 3. Sales velocity is down 18% and two AE roles remain unfilled. Left uncorrected, your confidence of hitting ARR drops to 63% by end of quarter.
+        </p>
+      </div>
+      <div data-platform-story-target="copyPanel" data-index="2" class="md:pt-2 hidden">
+        <h3 class="font-display font-light leading-[1.18] tracking-tight mb-4" style="font-size: clamp(1.45rem, 2.4vw, 2rem); color: hsl(155,28%,13%);">
+          Here are the exact plays that move the number.
+        </h3>
+        <p class="text-base font-light leading-relaxed" style="color: hsl(155,12%,42%);">
+          Saulto generates strategic plays, ranked by their impact on your trajectory. Each is assigned to an owner, tracked weekly, and tied back to your live confidence score. You always know what&rsquo;s working.
+        </p>
+      </div>
+
+      <%# Right: dark product visual mockups %>
+      <%# Panel 1 — Current State (87%, On track) %>
+      <div data-platform-story-target="visualPanel" data-index="0"
+           class="rounded-2xl overflow-hidden" style="background: hsl(155,28%,11%); min-height: 290px; box-shadow: 0 28px 72px rgba(0,0,0,0.2), 0 0 0 1px rgba(255,255,255,0.055);">
+        <div class="p-7 flex flex-col gap-5">
+          <div class="flex items-start justify-between">
+            <div>
+              <p class="text-[10px] font-bold tracking-[0.18em] uppercase mb-1.5" style="color: rgba(255,255,255,0.38);">Annual Probability Score</p>
+              <p class="font-display font-light leading-none" style="font-size: clamp(2.8rem, 5vw, 4rem); color: hsl(155,55%,32%);">87%</p>
+              <p class="text-[11px] mt-1.5" style="color: rgba(255,255,255,0.32);">of hitting $4.2M ARR this year</p>
+            </div>
+            <div class="flex items-center gap-1.5 rounded-lg px-3 py-1.5" style="background: rgba(51,170,100,0.14); border: 1px solid rgba(51,170,100,0.28);">
+              <span class="w-1.5 h-1.5 rounded-full" style="background: hsl(155,55%,32%);"></span>
+              <span class="text-[10px] font-bold tracking-[0.15em] uppercase" style="color: hsl(155,55%,32%);">On track</span>
+            </div>
+          </div>
+          <%# Mini chart %>
+          <svg width="100%" height="72" viewBox="0 0 400 72" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="csGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="hsl(155,55%,32%)" stop-opacity="0.28" />
+                <stop offset="100%" stop-color="hsl(155,55%,32%)" stop-opacity="0" />
+              </linearGradient>
+            </defs>
+            <path d="M0,58 C70,52 130,42 200,34 S320,22 400,14" fill="none" stroke="hsl(155,55%,32%)" stroke-width="2" stroke-linecap="round" />
+            <path d="M0,58 C70,52 130,42 200,34 S320,22 400,14 L400,72 L0,72 Z" fill="url(#csGrad)" />
+          </svg>
+          <%# KPI cards %>
+          <div class="grid grid-cols-3 gap-2.5">
+            <div class="rounded-lg p-3" style="background: rgba(255,255,255,0.05);">
+              <p class="text-[10px] font-bold tracking-[0.13em] uppercase mb-1" style="color: rgba(255,255,255,0.34);">ARR Pace</p>
+              <p class="text-[15px] font-semibold text-white leading-tight">$3.66M</p>
+              <p class="text-[10px] mt-1" style="color: hsl(155,55%,32%);">+12% vs plan</p>
+            </div>
+            <div class="rounded-lg p-3" style="background: rgba(255,255,255,0.05);">
+              <p class="text-[10px] font-bold tracking-[0.13em] uppercase mb-1" style="color: rgba(255,255,255,0.34);">Pace Score</p>
+              <p class="text-[15px] font-semibold text-white leading-tight">94 / 100</p>
+              <p class="text-[10px] mt-1" style="color: hsl(155,55%,32%);">Team velocity</p>
+            </div>
+            <div class="rounded-lg p-3" style="background: rgba(255,255,255,0.05);">
+              <p class="text-[10px] font-bold tracking-[0.13em] uppercase mb-1" style="color: rgba(255,255,255,0.34);">Cash Runway</p>
+              <p class="text-[15px] font-semibold text-white leading-tight">18 mo</p>
+              <p class="text-[10px] mt-1" style="color: hsl(155,55%,32%);">vs 14 target</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <%# Panel 2 — Risk (63%, Drift detected) %>
+      <div data-platform-story-target="visualPanel" data-index="1"
+           class="rounded-2xl overflow-hidden hidden" style="background: hsl(155,28%,11%); min-height: 290px; box-shadow: 0 28px 72px rgba(0,0,0,0.2), 0 0 0 1px rgba(255,255,255,0.055);">
+        <div class="p-7 flex flex-col gap-5">
+          <div class="flex items-start justify-between">
+            <div>
+              <p class="text-[10px] font-bold tracking-[0.18em] uppercase mb-1.5" style="color: rgba(255,255,255,0.38);">Annual Probability Score</p>
+              <div class="flex items-baseline gap-2.5">
+                <p class="font-display font-light leading-none" style="font-size: clamp(2.8rem, 5vw, 4rem); color: #f59e0b;">63%</p>
+                <span class="text-sm font-bold" style="color: #ef4444;">&darr; 24pp</span>
+              </div>
+              <p class="text-[11px] mt-1.5" style="color: rgba(255,255,255,0.32);">of hitting $4.2M ARR this year</p>
+            </div>
+            <div class="flex items-center gap-1.5 rounded-lg px-3 py-1.5" style="background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3);">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" /><line x1="12" y1="9" x2="12" y2="13" /><line x1="12" y1="17" x2="12.01" y2="17" /></svg>
+              <span class="text-[10px] font-bold tracking-[0.15em] uppercase" style="color: #ef4444;">Drift detected</span>
+            </div>
+          </div>
+          <%# Risk chart %>
+          <svg width="100%" height="72" viewBox="0 0 400 72" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="rkGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#ef4444" stop-opacity="0.22" />
+                <stop offset="100%" stop-color="#ef4444" stop-opacity="0" />
+              </linearGradient>
+            </defs>
+            <path d="M0,58 C60,52 110,44 190,36" fill="none" stroke="hsl(155,55%,32%)" stroke-width="2" stroke-linecap="round" />
+            <path d="M190,36 C240,36 280,52 330,60 S375,64 400,66" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-dasharray="6 4" />
+            <path d="M190,36 C240,36 280,52 330,60 S375,64 400,66 L400,72 L190,72 Z" fill="url(#rkGrad)" />
+            <circle cx="190" cy="36" r="5" fill="#f59e0b" />
+          </svg>
+          <%# Risk alerts %>
+          <div class="flex flex-col gap-2">
+            <div class="flex items-center gap-2.5 rounded-lg px-3.5 py-2.5" style="background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.18);">
+              <span class="w-1.5 h-1.5 rounded-full shrink-0" style="background: #ef4444;"></span>
+              <p class="text-xs text-white/70 leading-snug">Sales velocity down 18% vs Week 1 baseline</p>
+            </div>
+            <div class="flex items-center gap-2.5 rounded-lg px-3.5 py-2.5" style="background: rgba(245,158,11,0.07); border: 1px solid rgba(245,158,11,0.18);">
+              <span class="w-1.5 h-1.5 rounded-full shrink-0" style="background: #f59e0b;"></span>
+              <p class="text-xs text-white/70 leading-snug">2 open AE roles unfilled since start of quarter</p>
+            </div>
+            <div class="flex items-center gap-2.5 rounded-lg px-3.5 py-2.5" style="background: rgba(245,158,11,0.07); border: 1px solid rgba(245,158,11,0.18);">
+              <span class="w-1.5 h-1.5 rounded-full shrink-0" style="background: #f59e0b;"></span>
+              <p class="text-xs text-white/70 leading-snug">Implementation lag averaging +12 days over target</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <%# Panel 3 — Plays (Recommended, ranked by impact) %>
+      <div data-platform-story-target="visualPanel" data-index="2"
+           class="rounded-2xl overflow-hidden hidden" style="background: hsl(155,28%,11%); min-height: 290px; box-shadow: 0 28px 72px rgba(0,0,0,0.2), 0 0 0 1px rgba(255,255,255,0.055);">
+        <div class="p-7 flex flex-col gap-4">
+          <div class="flex items-center justify-between">
+            <p class="text-[10px] font-bold tracking-[0.18em] uppercase" style="color: rgba(255,255,255,0.38);">Recommended Plays, Ranked by Impact</p>
+            <p class="text-[10px] font-bold tracking-[0.14em] uppercase" style="color: hsl(155,55%,32%);">+16pp if executed</p>
+          </div>
+          <%# Play cards %>
+          <% [
+            { title: "Accelerate Sales Enablement Program", impact: "+8pp", revenue: "+$320K ARR", conf: "91%", owner: "Sarah M." },
+            { title: "Reduce Implementation Lag by 40%", impact: "+5pp", revenue: "+$190K ARR", conf: "84%", owner: "David K." },
+            { title: "Reforecast Q3 Pipeline", impact: "+3pp", revenue: "+$110K ARR", conf: "78%", owner: "Finance" },
+          ].each do |play| %>
+            <div class="rounded-xl p-4" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);">
+              <div class="flex items-start justify-between gap-2 mb-2.5">
+                <p class="text-[13px] font-semibold text-white/90 leading-snug flex-1"><%= play[:title] %></p>
+                <span class="text-[15px] font-bold shrink-0 leading-none" style="color: hsl(155,55%,32%);"><%= play[:impact] %></span>
+              </div>
+              <div class="flex gap-2 flex-wrap">
+                <span class="text-[10px] font-semibold rounded-md px-2 py-0.5" style="color: hsl(155,55%,32%); background: rgba(51,170,100,0.12);"><%= play[:revenue] %></span>
+                <span class="text-[10px] py-0.5" style="color: rgba(255,255,255,0.36);">Conf. <%= play[:conf] %></span>
+                <span class="text-[10px] py-0.5" style="color: rgba(255,255,255,0.36);"><%= play[:owner] %></span>
+              </div>
+            </div>
+          <% end %>
+          <div class="flex items-center gap-1.5">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="hsl(155,55%,32%)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg>
+            <p class="text-[11px]" style="color: rgba(255,255,255,0.32);">Each play tracked from approval to measurable ARR impact</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%# Progress dots %>
+    <div class="flex items-center justify-center gap-2 mt-8">
+      <button class="rounded-full border-0 cursor-pointer p-0 transition-all duration-300" style="width: 22px; height: 6px; background: hsl(155,55%,32%);" data-platform-story-target="dot" data-action="click->platform-story#switchTab" data-index="0"></button>
+      <button class="rounded-full border-0 cursor-pointer p-0 transition-all duration-300" style="width: 6px; height: 6px; background: rgba(0,0,0,0.14);" data-platform-story-target="dot" data-action="click->platform-story#switchTab" data-index="1"></button>
+      <button class="rounded-full border-0 cursor-pointer p-0 transition-all duration-300" style="width: 6px; height: 6px; background: rgba(0,0,0,0.14);" data-platform-story-target="dot" data-action="click->platform-story#switchTab" data-index="2"></button>
+    </div>
+  </div>
+</section>

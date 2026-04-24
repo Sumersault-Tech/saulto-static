@@ -1,0 +1,109 @@
+<%# ═══════════════════════════════════════════════════════════════
+   FOUR PROBLEMS — Where growth-stage companies get stuck
+   ═══════════════════════════════════════════════════════════════ %>
+<section class="relative py-20 md:py-28 overflow-hidden" style="background: hsl(155,18%,97%);">
+
+  <%# Dot grid overlay %>
+  <div class="absolute inset-0 pointer-events-none opacity-40"
+       style="background-image: radial-gradient(circle, rgba(0,0,0,0.06) 1px, transparent 1px); background-size: 34px 34px;"></div>
+
+  <div class="relative z-10 max-w-5xl mx-auto px-6 md:px-12">
+
+    <%# Header %>
+    <div class="mb-12 md:mb-16 reveal" data-controller="reveal">
+      <p class="text-[11px] font-bold tracking-[0.22em] uppercase mb-4" style="color: hsl(155,55%,32%);">
+        Where growth-stage companies get stuck
+      </p>
+      <h2 class="font-display font-light leading-[1.08] tracking-tight"
+          style="font-size: clamp(1.8rem, 3.8vw, 3.2rem); color: hsl(155,18%,16%);">
+        Every team. Every quarter.<br class="hidden md:block" /> The same four walls.
+      </h2>
+    </div>
+
+    <%# Mobile: horizontal scroll snap carousel %>
+    <div class="md:hidden -mx-6 px-6 mb-8">
+      <div class="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 -mx-2 px-2" style="scrollbar-width: none; -ms-overflow-style: none;">
+        <style>.four-problems-scroll::-webkit-scrollbar { display: none; }</style>
+
+        <%# Card 01 %>
+        <div class="snap-center shrink-0 rounded-2xl border border-[hsl(155,14%,90%)] bg-white p-6" style="width: 82vw; max-width: 340px;">
+          <p class="text-[10px] font-bold tracking-[0.2em] uppercase mb-3" style="color: hsl(155,55%,32%);">01</p>
+          <h3 class="font-display font-light text-lg leading-snug mb-3" style="color: hsl(155,18%,16%);">
+            &ldquo;Are we going to hit the number?&rdquo;
+          </h3>
+          <p class="text-sm leading-relaxed mb-4" style="color: hsl(155,12%,42%);">
+            Everyone has a different answer. The CEO, the CFO, and the VP of Sales are all looking at different data. No one can give a straight answer with confidence.
+          </p>
+          <p class="text-xs font-bold" style="color: hsl(155,55%,32%);">8 tools. Zero agreement on the number.</p>
+        </div>
+
+        <%# Card 02 %>
+        <div class="snap-center shrink-0 rounded-2xl border border-[hsl(155,14%,90%)] bg-white p-6" style="width: 82vw; max-width: 340px;">
+          <p class="text-[10px] font-bold tracking-[0.2em] uppercase mb-3" style="color: hsl(155,55%,32%);">02</p>
+          <h3 class="font-display font-light text-lg leading-snug mb-3" style="color: hsl(155,18%,16%);">
+            &ldquo;Why three different revenue numbers?&rdquo;
+          </h3>
+          <p class="text-sm leading-relaxed mb-4" style="color: hsl(155,12%,42%);">
+            The board deck says one thing, the CRM says another, and finance has a third version. Twenty minutes of every leadership meeting is spent reconciling numbers.
+          </p>
+          <p class="text-xs font-bold" style="color: hsl(155,55%,32%);">20 min. every meeting, reconciling data.</p>
+        </div>
+
+        <%# Card 03 %>
+        <div class="snap-center shrink-0 rounded-2xl border border-[hsl(155,14%,90%)] bg-white p-6" style="width: 82vw; max-width: 340px;">
+          <p class="text-[10px] font-bold tracking-[0.2em] uppercase mb-3" style="color: hsl(155,55%,32%);">03</p>
+          <h3 class="font-display font-light text-lg leading-snug mb-3" style="color: hsl(155,18%,16%);">
+            &ldquo;Why doesn&rsquo;t strategy reach the front line?&rdquo;
+          </h3>
+          <p class="text-sm leading-relaxed mb-4" style="color: hsl(155,12%,42%);">
+            The annual plan lives in a slide deck. By Q2, nobody references it. Daily work and strategic goals are completely disconnected.
+          </p>
+          <p class="text-xs font-bold" style="color: hsl(155,55%,32%);">No link between daily work and the plan.</p>
+        </div>
+
+        <%# Card 04 %>
+        <div class="snap-center shrink-0 rounded-2xl border border-[hsl(155,14%,90%)] bg-white p-6" style="width: 82vw; max-width: 340px;">
+          <p class="text-[10px] font-bold tracking-[0.2em] uppercase mb-3" style="color: hsl(155,55%,32%);">04</p>
+          <h3 class="font-display font-light text-lg leading-snug mb-3" style="color: hsl(155,18%,16%);">
+            &ldquo;Why does real intelligence cost $300K?&rdquo;
+          </h3>
+          <p class="text-sm leading-relaxed mb-4" style="color: hsl(155,12%,42%);">
+            Building this kind of strategic visibility used to require a team of data engineers, scientists, and BI developers. Most growth-stage companies can&rsquo;t afford that.
+          </p>
+          <p class="text-xs font-bold" style="color: hsl(155,55%,32%);">$300K+ per year, just for visibility.</p>
+        </div>
+      </div>
+    </div>
+
+    <%# Desktop: 2x2 grid with hover green bar %>
+    <div class="hidden md:grid grid-cols-2 gap-5 mb-14">
+
+      <% [
+        { num: "01", title: "&ldquo;Are we going to hit the number?&rdquo;", body: "Everyone has a different answer. The CEO, the CFO, and the VP of Sales are all looking at different data. No one can give a straight answer with confidence.", stat: "8 tools." },
+        { num: "02", title: "&ldquo;Why three different revenue numbers?&rdquo;", body: "The board deck says one thing, the CRM says another, and finance has a third version. Twenty minutes of every leadership meeting is spent reconciling numbers.", stat: "20 min." },
+        { num: "03", title: "&ldquo;Why doesn&rsquo;t strategy reach the front line?&rdquo;", body: "The annual plan lives in a slide deck. By Q2, nobody references it. Daily work and strategic goals are completely disconnected.", stat: "No link." },
+        { num: "04", title: "&ldquo;Why does real intelligence cost $300K?&rdquo;", body: "Building this kind of strategic visibility used to require a team of data engineers, scientists, and BI developers. Most growth-stage companies can&rsquo;t afford that.", stat: "$300K." },
+      ].each do |card| %>
+        <div class="group relative rounded-2xl border border-[hsl(155,14%,90%)] bg-white p-7 transition-all duration-300 hover:shadow-lg overflow-hidden reveal" data-controller="reveal">
+          <%# Hover bar %>
+          <div class="absolute top-0 left-0 w-1 h-full bg-[hsl(155,55%,32%)] scale-y-0 group-hover:scale-y-100 origin-top transition-transform duration-300"></div>
+          <p class="text-[10px] font-bold tracking-[0.2em] uppercase mb-3" style="color: hsl(155,55%,32%);"><%= card[:num] %></p>
+          <h3 class="font-display font-light text-xl leading-snug mb-3" style="color: hsl(155,18%,16%);">
+            <%= card[:title] %>
+          </h3>
+          <p class="text-sm leading-relaxed mb-4" style="color: hsl(155,12%,42%);">
+            <%= card[:body] %>
+          </p>
+          <p class="text-xs font-bold" style="color: hsl(155,55%,32%);"><%= card[:stat] %></p>
+        </div>
+      <% end %>
+    </div>
+
+    <%# Closing line %>
+    <div class="reveal" data-controller="reveal">
+      <p class="text-base md:text-lg font-light leading-relaxed max-w-2xl" style="color: hsl(155,12%,42%);">
+        None of these are data problems. They&rsquo;re visibility problems. <span class="font-semibold" style="color: hsl(155,18%,16%);">This is where Saulto comes in.</span>
+      </p>
+    </div>
+  </div>
+</section>

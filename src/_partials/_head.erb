@@ -5,6 +5,30 @@
 
 <meta name="description" content="<%= metadata.description %>" />
 
+<!-- Favicon -->
+<link rel="icon" href="<%= relative_url '/images/favicon.svg' %>" type="image/svg+xml" />
+
+<!-- Fonts preconnect -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="<% if resource_title != 'Index' %><%= resource_title %> | <%= metadata.title %><% else %><%= metadata.title %><% end %>" />
+<meta property="og:description" content="<%= metadata.description %>" />
+<meta property="og:image" content="<%= metadata.url %>/images/opengraph.jpg" />
+<meta property="og:url" content="<%= metadata.url %><%= resource.relative_url %>" />
+<meta property="og:site_name" content="<%= metadata.title %>" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="<% if resource_title != 'Index' %><%= resource_title %> | <%= metadata.title %><% else %><%= metadata.title %><% end %>" />
+<meta name="twitter:description" content="<%= metadata.description %>" />
+<meta name="twitter:image" content="<%= metadata.url %>/images/opengraph.jpg" />
+
+<!-- Canonical -->
+<link rel="canonical" href="<%= metadata.url %><%= resource.relative_url %>" />
+
 <link rel="stylesheet" href="<%= asset_path :css %>" />
 <script src="<%= asset_path :js %>" defer></script>
 <%= live_reload_dev_js %>

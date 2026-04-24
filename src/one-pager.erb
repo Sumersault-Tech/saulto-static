@@ -1,0 +1,170 @@
+---
+layout: default
+title: Saulto One-Pager | Founding Partner Program
+---
+
+<section class="py-8">
+  <div class="max-w-[816px] mx-auto px-4">
+
+    <!-- Document -->
+    <div class="bg-white shadow-xl">
+
+      <!-- Header -->
+      <div class="px-12 py-10" style="background-color: #1a3326;">
+        <div class="flex items-start justify-between mb-7">
+          <img src="<%= relative_url '/images/logo.svg' %>" alt="Saulto" class="h-8 w-auto brightness-0 invert" />
+          <div class="text-right">
+            <p class="text-[10px] uppercase tracking-widest font-semibold" style="color: rgba(255,255,255,0.4);">by Sumersault Tech</p>
+            <p class="text-[10px] mt-0.5" style="color: rgba(255,255,255,0.4);">rfrackt@sumersaulttech.com</p>
+          </div>
+        </div>
+
+        <!-- Founding partner badge -->
+        <div class="mb-4 inline-flex items-center gap-2 rounded-full px-3.5 py-1.5" style="border: 1px solid rgba(200,185,122,0.4); background-color: rgba(200,185,122,0.1);">
+          <span class="w-1.5 h-1.5 rounded-full" style="background-color: #c8b97a;"></span>
+          <p class="text-[10px] font-semibold uppercase tracking-widest" style="color: #c8b97a;">Founding Partner Program</p>
+        </div>
+
+        <!-- Stat hook -->
+        <div class="mb-5 inline-block rounded-lg px-3.5 py-2 ml-3" style="border: 1px solid rgba(255,255,255,0.15); background-color: rgba(255,255,255,0.05);">
+          <p class="text-[11px] leading-relaxed" style="color: rgba(255,255,255,0.6);">
+            <span class="font-bold" style="color: #c8b97a;">65% of strategic initiatives miss their targets.</span>
+            Not from bad strategy. From execution drift that leadership could not see in time.
+          </p>
+        </div>
+
+        <h1 class="text-[27px] font-bold leading-[1.2] mb-4" style="color: #ffffff;">
+          Your tools tell you what happened.<br />
+          <span style="color: #c8b97a;">Saulto tells you what to do before it costs you.</span>
+        </h1>
+
+        <p class="text-[13px] leading-relaxed max-w-[560px]" style="color: rgba(255,255,255,0.7);">
+          Saulto connects your business systems into one live performance model, surfaces where execution is heading off track, and tells your leadership team exactly where to focus and what to act on next.
+        </p>
+      </div>
+
+      <!-- Before / After -->
+      <div style="border-bottom: 1px solid #f3f4f6;">
+        <div class="grid grid-cols-2" style="border-bottom: 1px solid #f3f4f6;">
+          <div class="px-10 py-7" style="background-color: #f9fafb; border-right: 1px solid #f3f4f6;">
+            <p class="text-[9px] font-bold uppercase tracking-widest mb-4" style="color: #9ca3af;">How most leadership teams operate today</p>
+            <% [
+              "Find out about execution problems when they show up in the numbers",
+              "Each function running on different data and different priorities",
+              "Leadership alignment requires a meeting, a deck, and a follow-up",
+              "Strategy is clear. Execution is where it goes dark.",
+              "By the time a risk is visible, it has already cost you.",
+            ].each do |item| %>
+              <div class="flex items-start gap-2.5 mb-2.5 last:mb-0">
+                <span class="w-1 h-1 rounded-full mt-1.5 shrink-0" style="background-color: #d1d5db;"></span>
+                <p class="text-[11px] leading-relaxed" style="color: #9ca3af;"><%= item %></p>
+              </div>
+            <% end %>
+          </div>
+          <div class="px-10 py-7 bg-white">
+            <p class="text-[9px] font-bold uppercase tracking-widest mb-4" style="color: #1a3326;">What Saulto makes possible</p>
+            <% [
+              "See execution drift 3 to 4 weeks before it locks into results",
+              "Every function aligned to one model, one set of priorities, in real time",
+              "Leadership always knows where to focus. No meeting required.",
+              "Strategy connected to daily execution across every function, every week",
+              "Risk surfaces early. You act before it costs you.",
+            ].each do |item| %>
+              <div class="flex items-start gap-2.5 mb-2.5 last:mb-0">
+                <span class="w-1 h-1 rounded-full mt-1.5 shrink-0" style="background-color: #1a3326;"></span>
+                <p class="text-[11px] leading-relaxed font-medium" style="color: #1f2937;"><%= item %></p>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <!-- Body -->
+      <div class="px-12 py-9 space-y-9">
+
+        <!-- Capabilities -->
+        <section>
+          <div class="flex items-center gap-3 mb-5">
+            <h2 class="text-[9px] font-bold uppercase tracking-widest whitespace-nowrap" style="color: #1a3326;">What Saulto delivers</h2>
+            <span class="flex-1 h-px" style="background-color: rgba(26,51,38,0.13);"></span>
+          </div>
+          <div class="grid grid-cols-2 gap-x-8 gap-y-5">
+            <% [
+              { title: "Your CFO, CRO, and COO are finally working from the same numbers", body: "Saulto connects CRM, finance, HR, operations, and marketing into one live KPI framework. One model. Every function. No reconciliation, no off-sides conversations." },
+              { title: "You see where execution is heading before it shows up in results", body: "Saulto monitors operating behavior in real time and surfaces drift, risk, and opportunity while there is still time to act. Not after the quarter closes." },
+              { title: "Leadership always knows exactly where to focus", body: "Not just alerts. Prioritized direction. Saulto identifies what requires attention, why it matters, and what action is recommended. Your team stops reacting and starts leading." },
+              { title: "Strategy stays connected to execution every week", body: "Long-term goals translated into shared weekly priorities across every function. Strategy stops fading between the board deck and the floor." },
+            ].each_with_index do |cap, i| %>
+              <div class="flex gap-3">
+                <span class="text-[9px] font-bold mt-0.5 shrink-0 w-4" style="color: rgba(26,51,38,0.31);"><%= (i + 1).to_s.rjust(2, '0') %></span>
+                <div>
+                  <p class="font-bold text-[12px] mb-1 leading-snug" style="color: #111827;"><%= cap[:title] %></p>
+                  <p class="text-[11px] leading-relaxed" style="color: #6b7280;"><%= cap[:body] %></p>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </section>
+
+        <!-- Who It's For -->
+        <section>
+          <div class="flex items-center gap-3 mb-5">
+            <h2 class="text-[9px] font-bold uppercase tracking-widest whitespace-nowrap" style="color: #1a3326;">Built for leaders who cannot afford to be reactive</h2>
+            <span class="flex-1 h-px" style="background-color: rgba(26,51,38,0.13);"></span>
+          </div>
+          <div class="grid grid-cols-3 gap-5">
+            <% [
+              { role: "Founders & CEOs", body: "You should know what is happening in your business before your team brings it to you. Saulto makes that possible without adding headcount or holding more meetings." },
+              { role: "COOs & Operators", body: "Stop spending your week reconciling what happened last quarter. Start leading what happens next. Align every function to shared priorities, in real time." },
+              { role: "PE Firms & Boards", body: "One performance framework across every portfolio company. Execution drift surfaces weeks before the QBR. Less time extracting data, more time on decisions that matter." },
+            ].each do |persona| %>
+              <div class="rounded-xl p-4" style="border: 1px solid #f3f4f6; background-color: #f9fafb;">
+                <p class="font-bold text-[12px] mb-1.5" style="color: #111827;"><%= persona[:role] %></p>
+                <p class="text-[11px] leading-relaxed" style="color: #6b7280;"><%= persona[:body] %></p>
+              </div>
+            <% end %>
+          </div>
+        </section>
+
+        <!-- Founding Partner Journey -->
+        <section>
+          <div class="flex items-center gap-3 mb-5">
+            <h2 class="text-[9px] font-bold uppercase tracking-widest whitespace-nowrap" style="color: #1a3326;">What founding partnership looks like</h2>
+            <span class="flex-1 h-px" style="background-color: rgba(26,51,38,0.13);"></span>
+          </div>
+          <div class="grid grid-cols-3 gap-5">
+            <% [
+              { n: "01", title: "One conversation, no pressure", body: "We sit down with your team to understand your business, your goals, and whether Saulto is the right fit. You decide if you want to move forward." },
+              { n: "02", title: "We build it around you", body: "We connect your systems, build your KPI model, and configure Saulto specifically for how your organization runs. You help shape what gets built." },
+              { n: "03", title: "First year is on us", body: "Founding partners get the full platform complimentary for the first year. In return, your feedback directly shapes the product roadmap." },
+            ].each do |step| %>
+              <div class="flex gap-3">
+                <span class="text-[9px] font-bold mt-0.5 shrink-0" style="color: rgba(26,51,38,0.31);"><%= step[:n] %></span>
+                <div>
+                  <p class="font-bold text-[12px] mb-1 leading-snug" style="color: #111827;"><%= step[:title] %></p>
+                  <p class="text-[11px] leading-relaxed" style="color: #6b7280;"><%= step[:body] %></p>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- Footer -->
+      <div class="px-12 py-7" style="background-color: #1a3326;">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="font-bold text-[13px] mb-1" style="color: #ffffff;">We're looking for a small number of founding partners.</p>
+            <p class="text-[11px] leading-relaxed max-w-[400px]" style="color: rgba(255,255,255,0.5);">We are partnering with a select group of executive teams to build and refine Saulto together. If this sounds like the right fit for your organization, we would love to start a conversation.</p>
+          </div>
+          <div class="text-right shrink-0 ml-10">
+            <p class="font-semibold text-[12px]" style="color: #c8b97a;">rfrackt@sumersaulttech.com</p>
+            <p class="text-[10px] mt-1" style="color: rgba(255,255,255,0.35);">sumersaulttech.com</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

@@ -1,0 +1,122 @@
+<%# ═══════════════════════════════════════════════════════════════
+   NETWORK GRAPH — Desktop-only dark section with connected data visual
+   ═══════════════════════════════════════════════════════════════ %>
+
+<%# ── Mobile pause moment ── %>
+<section class="md:hidden py-16 px-6 text-center" style="background: hsl(155,18%,16%);">
+  <div class="reveal" data-controller="reveal">
+    <p class="font-display font-light text-white/80 leading-tight tracking-tight" style="font-size: clamp(1.6rem, 4vw, 2.2rem);">
+      The data exists.<br />The connection is missing.
+    </p>
+  </div>
+</section>
+
+<%# ── Desktop section ── %>
+<section class="hidden md:block relative py-36 overflow-x-hidden" style="background: linear-gradient(170deg, hsl(155,26%,15%) 0%, hsl(155,22%,19%) 55%, hsl(155,20%,14%) 100%);">
+
+  <%# Dot grid %>
+  <div class="absolute inset-0 pointer-events-none opacity-40"
+       style="background-image: radial-gradient(circle, rgba(255,255,255,0.045) 1px, transparent 1px); background-size: 34px 34px;"></div>
+
+  <%# Ambient glow %>
+  <div class="absolute pointer-events-none"
+       style="right: -5%; top: -10%; width: 600px; height: 600px; background: radial-gradient(ellipse at center, hsla(155,60%,26%,0.4) 0%, transparent 65%); filter: blur(60px);"></div>
+
+  <div class="max-w-7xl mx-auto px-6 md:px-8 relative z-10">
+    <div class="grid md:grid-cols-2 gap-24 items-center">
+
+      <%# Left column — copy %>
+      <div class="reveal" data-controller="reveal">
+        <p class="text-sm font-light leading-relaxed mb-6 text-white/50">
+          The data to answer those questions is already there. It lives in your CRM, your finance system, your ops tools. The problem isn&rsquo;t that it doesn&rsquo;t exist. The problem is nothing is connecting it.
+        </p>
+        <span class="font-semibold tracking-widest uppercase text-xs mb-4 block" style="color: hsl(155,52%,55%);">
+          Your data, finally connected
+        </span>
+        <h2 class="text-3xl md:text-5xl font-display font-light text-white tracking-tight leading-tight mb-5 md:mb-6">
+          The data is already there.<br />It just isn&rsquo;t talking.
+        </h2>
+        <p class="text-white/70 text-lg leading-relaxed mb-8">
+          Saulto connects your CRM, finance system, HR platform, and ops tools into one live model. Every system talking to every other. The picture is always complete and always current.
+        </p>
+        <ul class="space-y-3">
+          <li class="flex items-start gap-3">
+            <div class="w-1.5 h-1.5 rounded-full mt-2 shrink-0" style="background: hsl(155,52%,55%);"></div>
+            <span class="text-white/65 text-sm leading-relaxed">No new software for your team to learn or manage</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="w-1.5 h-1.5 rounded-full mt-2 shrink-0" style="background: hsl(155,52%,55%);"></div>
+            <span class="text-white/65 text-sm leading-relaxed">We handle every integration. You don&rsquo;t touch a line of code</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="w-1.5 h-1.5 rounded-full mt-2 shrink-0" style="background: hsl(155,52%,55%);"></div>
+            <span class="text-white/65 text-sm leading-relaxed">When one system updates, everything else reflects it automatically</span>
+          </li>
+        </ul>
+      </div>
+
+      <%# Right column — static SVG network diagram %>
+      <div class="reveal" data-controller="reveal">
+        <svg viewBox="0 0 400 400" class="w-full max-w-md mx-auto" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="ng-hub-grad" cx="40%" cy="30%" r="60%">
+              <stop offset="0%" stop-color="hsl(155,28%,26%)" />
+              <stop offset="100%" stop-color="hsl(155,24%,13%)" />
+            </radialGradient>
+          </defs>
+
+          <%# Connecting lines — nodes to hub %>
+          <line x1="80"  y1="100" x2="200" y2="200" stroke="rgba(255,255,255,0.18)" stroke-width="1.5" />
+          <line x1="320" y1="100" x2="200" y2="200" stroke="rgba(255,255,255,0.18)" stroke-width="1.5" />
+          <line x1="80"  y1="300" x2="200" y2="200" stroke="rgba(255,255,255,0.18)" stroke-width="1.5" />
+          <line x1="320" y1="300" x2="200" y2="200" stroke="rgba(255,255,255,0.18)" stroke-width="1.5" />
+          <line x1="200" y1="50"  x2="200" y2="200" stroke="rgba(255,255,255,0.18)" stroke-width="1.5" />
+
+          <%# Hub glow %>
+          <circle cx="200" cy="200" r="50" fill="rgba(51,170,100,0.08)" />
+
+          <%# Hub circle %>
+          <circle cx="200" cy="200" r="32" fill="url(#ng-hub-grad)" />
+          <circle cx="200" cy="200" r="32" fill="none" stroke="hsl(155,55%,32%)" stroke-width="1.5" />
+          <text x="200" y="205" text-anchor="middle" fill="white" font-size="11" font-weight="700" font-family="Inter, sans-serif" letter-spacing="0.08em" opacity="0.85">SAULTO</text>
+
+          <%# CRM node — top left %>
+          <circle cx="80" cy="100" r="26" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.2)" stroke-width="1" />
+          <svg x="70" y="90" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" />
+          </svg>
+          <text x="80" y="140" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="8" font-weight="700" letter-spacing="0.12em" font-family="Inter, sans-serif">CRM</text>
+
+          <%# Finance node — top right %>
+          <circle cx="320" cy="100" r="26" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.2)" stroke-width="1" />
+          <svg x="310" y="90" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="1" x2="12" y2="23" /><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+          </svg>
+          <text x="320" y="140" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="8" font-weight="700" letter-spacing="0.12em" font-family="Inter, sans-serif">FINANCE</text>
+
+          <%# HR node — bottom left %>
+          <circle cx="80" cy="300" r="26" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.2)" stroke-width="1" />
+          <svg x="70" y="290" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2" /><line x1="8" y1="21" x2="16" y2="21" /><line x1="12" y1="17" x2="12" y2="21" />
+          </svg>
+          <text x="80" y="340" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="8" font-weight="700" letter-spacing="0.12em" font-family="Inter, sans-serif">HR</text>
+
+          <%# Ops node — bottom right %>
+          <circle cx="320" cy="300" r="26" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.2)" stroke-width="1" />
+          <svg x="310" y="290" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10" /><line x1="22" y1="12" x2="18" y2="12" /><line x1="6" y1="12" x2="2" y2="12" /><line x1="12" y1="6" x2="12" y2="2" /><line x1="12" y1="22" x2="12" y2="18" />
+          </svg>
+          <text x="320" y="340" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="8" font-weight="700" letter-spacing="0.12em" font-family="Inter, sans-serif">OPS</text>
+
+          <%# Marketing node — top center %>
+          <circle cx="200" cy="50" r="26" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.2)" stroke-width="1" />
+          <svg x="190" y="40" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+          </svg>
+          <text x="200" y="16" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="8" font-weight="700" letter-spacing="0.12em" font-family="Inter, sans-serif">MARKETING</text>
+        </svg>
+      </div>
+
+    </div>
+  </div>
+</section>

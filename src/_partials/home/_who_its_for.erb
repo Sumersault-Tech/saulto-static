@@ -1,0 +1,202 @@
+<%# ═══════════════════════════════════════════════════════════════
+   WHO IT'S FOR — Tab-based role selector
+   Uses data-controller="tabs" for Stimulus interactivity
+   ═══════════════════════════════════════════════════════════════ %>
+<section class="py-20 md:py-28" style="background: white;" data-controller="tabs">
+  <div class="max-w-5xl mx-auto px-6 md:px-12">
+
+    <%# Header %>
+    <div class="mb-10 md:mb-14 reveal" data-controller="reveal">
+      <p class="text-sm font-light leading-relaxed mb-6" style="color: rgba(0,0,0,0.42); max-width: 36rem;">
+        Saulto doesn&rsquo;t give everyone the same dashboard. Each leader sees the answer that matters to their role.
+      </p>
+      <p class="text-[11px] font-bold tracking-[0.22em] uppercase mb-4" style="color: hsl(155,55%,32%);">
+        Who it&rsquo;s for
+      </p>
+      <h2 class="font-display font-light leading-[1.08] tracking-tight"
+          style="font-size: clamp(1.8rem, 3.8vw, 3.2rem); color: hsl(155,18%,16%);">
+        Every leader gets the answer they need.
+      </h2>
+    </div>
+
+    <%# Tab bar %>
+    <div class="relative mb-10 border-b border-[hsl(155,14%,90%)]">
+      <div class="flex gap-0 overflow-x-auto" style="scrollbar-width: none; -ms-overflow-style: none;">
+        <button class="relative px-5 md:px-6 py-3.5 text-sm font-semibold whitespace-nowrap transition-colors duration-200 focus:outline-none"
+                style="color: hsl(155,18%,16%);"
+                data-tabs-target="tab" data-action="click->tabs#switchTab" data-index="0">
+          CEO / Founder
+        </button>
+        <button class="relative px-5 md:px-6 py-3.5 text-sm font-semibold whitespace-nowrap transition-colors duration-200 focus:outline-none"
+                style="color: hsl(155,12%,42%);"
+                data-tabs-target="tab" data-action="click->tabs#switchTab" data-index="1">
+          COO / Chief of Staff
+        </button>
+        <button class="relative px-5 md:px-6 py-3.5 text-sm font-semibold whitespace-nowrap transition-colors duration-200 focus:outline-none"
+                style="color: hsl(155,12%,42%);"
+                data-tabs-target="tab" data-action="click->tabs#switchTab" data-index="2">
+          CFO / Finance Leader
+        </button>
+        <button class="relative px-5 md:px-6 py-3.5 text-sm font-semibold whitespace-nowrap transition-colors duration-200 focus:outline-none"
+                style="color: hsl(155,12%,42%);"
+                data-tabs-target="tab" data-action="click->tabs#switchTab" data-index="3">
+          PE Operating Partner
+        </button>
+      </div>
+      <%# Animated underline %>
+      <div class="absolute bottom-0 left-0 h-0.5 transition-all duration-300" style="background: hsl(155,55%,32%); width: 120px;"
+           data-tabs-target="underline"></div>
+    </div>
+
+    <%# Tab panels %>
+
+    <%# Panel 0 — CEO / Founder %>
+    <div data-tabs-target="panel" data-index="0">
+      <h3 class="font-display font-light text-xl md:text-2xl leading-snug mb-8" style="color: hsl(155,18%,16%);">
+        &ldquo;Am I going to hit the number this year?&rdquo;
+      </h3>
+      <div class="grid sm:grid-cols-2 gap-x-10 gap-y-6">
+        <div class="flex items-start gap-3">
+          <div class="w-1.5 h-1.5 rounded-full mt-2 shrink-0" style="background: hsl(155,55%,32%);"></div>
+          <div>
+            <p class="text-sm font-semibold mb-1" style="color: hsl(155,18%,16%);">Live confidence score</p>
+            <p class="text-sm leading-relaxed" style="color: hsl(155,12%,42%);">One number that tells you the probability of hitting your annual goal, updated continuously from live data.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-1.5 h-1.5 rounded-full mt-2 shrink-0" style="background: hsl(155,55%,32%);"></div>
+          <div>
+            <p class="text-sm font-semibold mb-1" style="color: hsl(155,18%,16%);">Scenario intelligence</p>
+            <p class="text-sm leading-relaxed" style="color: hsl(155,12%,42%);">Ask &ldquo;what if&rdquo; questions and get quantified answers. Capacity, cost, P&L shift, and trajectory impact.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-1.5 h-1.5 rounded-full mt-2 shrink-0" style="background: hsl(155,55%,32%);"></div>
+          <div>
+            <p class="text-sm font-semibold mb-1" style="color: hsl(155,18%,16%);">Team-level decomposition</p>
+            <p class="text-sm leading-relaxed" style="color: hsl(155,12%,42%);">See which teams are driving success and which are dragging the company below target. No more guessing.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-1.5 h-1.5 rounded-full mt-2 shrink-0" style="background: hsl(155,55%,32%);"></div>
+          <div>
+            <p class="text-sm font-semibold mb-1" style="color: hsl(155,18%,16%);">Board-ready narrative</p>
+            <p class="text-sm leading-relaxed" style="color: hsl(155,12%,42%);">Generated automatically from live data. No more spending a week building a board deck from spreadsheets.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%# Panel 1 — COO / Chief of Staff %>
+    <div data-tabs-target="panel" data-index="1" class="hidden">
+      <h3 class="font-display font-light text-xl md:text-2xl leading-snug mb-8" style="color: hsl(155,18%,16%);">
+        &ldquo;Is every team executing toward the same goal?&rdquo;
+      </h3>
+      <div class="grid sm:grid-cols-2 gap-x-10 gap-y-6">
+        <div class="flex items-start gap-3">
+          <div class="w-1.5 h-1.5 rounded-full mt-2 shrink-0" style="background: hsl(155,55%,32%);"></div>
+          <div>
+            <p class="text-sm font-semibold mb-1" style="color: hsl(155,18%,16%);">Pace Score per team</p>
+            <p class="text-sm leading-relaxed" style="color: hsl(155,12%,42%);">Velocity, capacity utilization, and output quality for each team, scored against your strategic plan.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-1.5 h-1.5 rounded-full mt-2 shrink-0" style="background: hsl(155,55%,32%);"></div>
+          <div>
+            <p class="text-sm font-semibold mb-1" style="color: hsl(155,18%,16%);">Cross-team dependency tracking</p>
+            <p class="text-sm leading-relaxed" style="color: hsl(155,12%,42%);">See how one team&rsquo;s work affects every other team&rsquo;s trajectory. No more surprise cascading delays.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-1.5 h-1.5 rounded-full mt-2 shrink-0" style="background: hsl(155,55%,32%);"></div>
+          <div>
+            <p class="text-sm font-semibold mb-1" style="color: hsl(155,18%,16%);">Initiative health monitor</p>
+            <p class="text-sm leading-relaxed" style="color: hsl(155,12%,42%);">Every strategic initiative tracked from approval to measurable impact. Know what&rsquo;s on track before the weekly meeting.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-1.5 h-1.5 rounded-full mt-2 shrink-0" style="background: hsl(155,55%,32%);"></div>
+          <div>
+            <p class="text-sm font-semibold mb-1" style="color: hsl(155,18%,16%);">Automated weekly brief</p>
+            <p class="text-sm leading-relaxed" style="color: hsl(155,12%,42%);">A narrative summary of what moved, what didn&rsquo;t, and what to focus on this week. Generated from live data.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%# Panel 2 — CFO / Finance Leader %>
+    <div data-tabs-target="panel" data-index="2" class="hidden">
+      <h3 class="font-display font-light text-xl md:text-2xl leading-snug mb-8" style="color: hsl(155,18%,16%);">
+        &ldquo;Can I trust the forecast I&rsquo;m presenting?&rdquo;
+      </h3>
+      <div class="grid sm:grid-cols-2 gap-x-10 gap-y-6">
+        <div class="flex items-start gap-3">
+          <div class="w-1.5 h-1.5 rounded-full mt-2 shrink-0" style="background: hsl(155,55%,32%);"></div>
+          <div>
+            <p class="text-sm font-semibold mb-1" style="color: hsl(155,18%,16%);">Monte Carlo simulation</p>
+            <p class="text-sm leading-relaxed" style="color: hsl(155,12%,42%);">10,000 simulated futures from live financial data. No more single-point estimates from a spreadsheet.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-1.5 h-1.5 rounded-full mt-2 shrink-0" style="background: hsl(155,55%,32%);"></div>
+          <div>
+            <p class="text-sm font-semibold mb-1" style="color: hsl(155,18%,16%);">Auto-normalized financials</p>
+            <p class="text-sm leading-relaxed" style="color: hsl(155,12%,42%);">Revenue, cost, and cash flow numbers pulled from your ERP and normalized automatically. One source of truth.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-1.5 h-1.5 rounded-full mt-2 shrink-0" style="background: hsl(155,55%,32%);"></div>
+          <div>
+            <p class="text-sm font-semibold mb-1" style="color: hsl(155,18%,16%);">Variance analysis, live</p>
+            <p class="text-sm leading-relaxed" style="color: hsl(155,12%,42%);">See plan vs. actual across every line item, updated in real time. Know where the gaps are before month-end close.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-1.5 h-1.5 rounded-full mt-2 shrink-0" style="background: hsl(155,55%,32%);"></div>
+          <div>
+            <p class="text-sm font-semibold mb-1" style="color: hsl(155,18%,16%);">Scenario cost modeling</p>
+            <p class="text-sm leading-relaxed" style="color: hsl(155,12%,42%);">Run &ldquo;what if&rdquo; scenarios on hiring, projects, and investments. See the P&L impact before you commit.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%# Panel 3 — PE Operating Partner %>
+    <div data-tabs-target="panel" data-index="3" class="hidden">
+      <h3 class="font-display font-light text-xl md:text-2xl leading-snug mb-8" style="color: hsl(155,18%,16%);">
+        &ldquo;Is this portfolio company on track or do I need to intervene?&rdquo;
+      </h3>
+      <div class="grid sm:grid-cols-2 gap-x-10 gap-y-6">
+        <div class="flex items-start gap-3">
+          <div class="w-1.5 h-1.5 rounded-full mt-2 shrink-0" style="background: hsl(155,55%,32%);"></div>
+          <div>
+            <p class="text-sm font-semibold mb-1" style="color: hsl(155,18%,16%);">Portfolio confidence view</p>
+            <p class="text-sm leading-relaxed" style="color: hsl(155,12%,42%);">One screen showing the probability score for every portfolio company. Instantly know which need attention.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-1.5 h-1.5 rounded-full mt-2 shrink-0" style="background: hsl(155,55%,32%);"></div>
+          <div>
+            <p class="text-sm font-semibold mb-1" style="color: hsl(155,18%,16%);">Value creation playbook</p>
+            <p class="text-sm leading-relaxed" style="color: hsl(155,12%,42%);">AI-generated strategic plays ranked by impact on valuation trajectory. Assign, track, and measure from one platform.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-1.5 h-1.5 rounded-full mt-2 shrink-0" style="background: hsl(155,55%,32%);"></div>
+          <div>
+            <p class="text-sm font-semibold mb-1" style="color: hsl(155,18%,16%);">Early drift detection</p>
+            <p class="text-sm leading-relaxed" style="color: hsl(155,12%,42%);">Know when a portfolio company is drifting off trajectory in week 2, not at the quarterly board meeting.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-1.5 h-1.5 rounded-full mt-2 shrink-0" style="background: hsl(155,55%,32%);"></div>
+          <div>
+            <p class="text-sm font-semibold mb-1" style="color: hsl(155,18%,16%);">Standardized reporting</p>
+            <p class="text-sm leading-relaxed" style="color: hsl(155,12%,42%);">Every company using the same metrics framework. No more chasing management teams for inconsistent board updates.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

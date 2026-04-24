@@ -1,7 +1,22 @@
 import "$styles/index.css"
-import "$styles/syntax-highlighting.css"
+
+import { Application } from "@hotwired/stimulus"
 
 // Import all JavaScript & CSS files from src/_components
 import components from "$components/**/*.{js,jsx,js.rb,css}"
 
-console.info("Bridgetown is loaded!")
+// Stimulus setup
+const application = Application.start()
+
+// Import controllers
+import NavbarController from "./controllers/navbar_controller.js"
+import RevealController from "./controllers/reveal_controller.js"
+import TabsController from "./controllers/tabs_controller.js"
+import DriftSliderController from "./controllers/drift_slider_controller.js"
+import PlatformStoryController from "./controllers/platform_story_controller.js"
+
+application.register("navbar", NavbarController)
+application.register("reveal", RevealController)
+application.register("tabs", TabsController)
+application.register("drift-slider", DriftSliderController)
+application.register("platform-story", PlatformStoryController)

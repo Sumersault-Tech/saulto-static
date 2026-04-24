@@ -1,0 +1,82 @@
+<%# ═══════════════════════════════════════════════════════════════
+   HERO — Dark section with CSS-animated orbs and staggered headline
+   ═══════════════════════════════════════════════════════════════ %>
+<section class="relative min-h-[88svh] md:min-h-screen flex flex-col items-center justify-center overflow-hidden" style="background: hsl(155,18%,16%);">
+
+  <%# ── Animated orb background ── %>
+  <style>
+    @keyframes orb-drift-1 {
+      0%   { transform: translate(0, 0) scale(1); }
+      33%  { transform: translate(60px, -40px) scale(1.08); }
+      66%  { transform: translate(-30px, 50px) scale(0.95); }
+      100% { transform: translate(0, 0) scale(1); }
+    }
+    @keyframes orb-drift-2 {
+      0%   { transform: translate(0, 0) scale(1); }
+      33%  { transform: translate(-50px, 30px) scale(1.05); }
+      66%  { transform: translate(40px, -60px) scale(0.92); }
+      100% { transform: translate(0, 0) scale(1); }
+    }
+    @keyframes orb-drift-3 {
+      0%   { transform: translate(0, 0) scale(1); }
+      33%  { transform: translate(30px, 60px) scale(0.96); }
+      66%  { transform: translate(-60px, -20px) scale(1.1); }
+      100% { transform: translate(0, 0) scale(1); }
+    }
+    @keyframes hero-fade-up {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-stagger {
+      animation: hero-fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+  </style>
+
+  <%# Orb 1 — top left %>
+  <div class="absolute rounded-full pointer-events-none"
+       style="top: 15%; left: 20%; width: 340px; height: 340px; background: radial-gradient(circle, hsla(155,55%,32%,0.18) 0%, transparent 70%); filter: blur(140px); opacity: 0.38; animation: orb-drift-1 18s ease-in-out infinite;"></div>
+
+  <%# Orb 2 — top right %>
+  <div class="absolute rounded-full pointer-events-none"
+       style="top: 10%; right: 15%; width: 280px; height: 280px; background: radial-gradient(circle, hsla(145,55%,32%,0.15) 0%, transparent 70%); filter: blur(140px); opacity: 0.38; animation: orb-drift-2 22s ease-in-out infinite;"></div>
+
+  <%# Orb 3 — bottom center %>
+  <div class="absolute rounded-full pointer-events-none"
+       style="bottom: 10%; left: 40%; width: 400px; height: 400px; background: radial-gradient(circle, hsla(155,55%,32%,0.14) 0%, transparent 70%); filter: blur(140px); opacity: 0.38; animation: orb-drift-3 26s ease-in-out infinite;"></div>
+
+  <%# ── Content ── %>
+  <div class="relative z-10 text-center px-6 max-w-3xl mx-auto">
+
+    <%# Headline lines with stagger %>
+    <p class="font-display text-white/45 leading-[1.06] tracking-tight mb-1 hero-stagger"
+       style="font-size: clamp(2.6rem, 6vw, 5rem); animation-delay: 0.1s;">
+      Vision is easy.
+    </p>
+    <p class="font-display text-white/45 leading-[1.06] tracking-tight mb-1 hero-stagger"
+       style="font-size: clamp(2.6rem, 6vw, 5rem); animation-delay: 0.25s;">
+      Direction is hard.
+    </p>
+    <p class="font-display text-white/[0.92] leading-[1.06] tracking-tight mb-8 hero-stagger"
+       style="font-size: clamp(2.6rem, 6vw, 5rem); animation-delay: 0.4s;">
+      Saulto makes it clear.
+    </p>
+
+    <%# Subheadline %>
+    <p class="text-white/50 text-base md:text-lg leading-relaxed max-w-lg mx-auto mb-10 hero-stagger"
+       style="animation-delay: 0.55s;">
+      One connected model of your business. 10,000 simulated futures. Every leader gets a live answer, every week.
+    </p>
+
+    <%# CTA buttons %>
+    <div class="flex flex-wrap items-center justify-center gap-4 hero-stagger" style="animation-delay: 0.7s;">
+      <a href="#book"
+         class="inline-flex items-center justify-center rounded-full bg-white text-[hsl(155,18%,16%)] px-7 py-3.5 text-sm font-bold tracking-wide hover:bg-white/90 transition-colors">
+        Book a Session
+      </a>
+      <a href="#get-started"
+         class="inline-flex items-center justify-center rounded-full border border-white/25 text-white/80 px-7 py-3.5 text-sm font-bold tracking-wide hover:border-white/50 hover:text-white transition-colors">
+        Get Started
+      </a>
+    </div>
+  </div>
+</section>

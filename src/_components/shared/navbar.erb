@@ -1,11 +1,61 @@
-<header>
-  <img src="<%= relative_url '/images/logo.svg' %>" alt="Logo" />
-</header>
+<div data-controller="navbar">
+  <header
+    data-navbar-target="header"
+    class="fixed top-0 inset-x-0 z-40 transition-all duration-300 bg-transparent py-5"
+  >
+    <div class="max-w-7xl mx-auto px-6 md:px-8 flex items-center justify-between">
+      <a href="/" class="flex items-center group">
+        <img
+          src="<%= relative_url '/images/logo.svg' %>"
+          alt="Saulto by Sumersault"
+          data-navbar-logo
+          class="h-12 w-auto transition-all duration-300 group-hover:opacity-90 brightness-0 invert opacity-100"
+        />
+      </a>
 
-<nav>
-  <ul>
-    <li><a href="<%= relative_url '/' %>">Home</a></li>
-    <li><a href="<%= relative_url '/about' %>">About</a></li>
-    <li><a href="<%= relative_url '/posts' %>">Posts</a></li>
-  </ul>
-</nav>
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="/#what-it-is" data-navbar-link class="text-sm font-medium transition-colors text-white/70 hover:text-white">What It Is</a>
+        <a href="/#early-warning" data-navbar-link class="text-sm font-medium transition-colors text-white/70 hover:text-white">See It Work</a>
+        <a href="/#who-its-for" data-navbar-link class="text-sm font-medium transition-colors text-white/70 hover:text-white">Who It's For</a>
+        <a href="https://app.saulto.com"
+          data-navbar-login
+          class="text-sm font-medium transition-colors border rounded-full px-4 py-2 text-white/80 hover:text-white border-white/25 hover:border-white/50"
+        >
+          Client login
+        </a>
+        <a href="mailto:hello@saulto.com"
+          data-navbar-cta
+          class="text-sm font-medium px-5 py-2.5 rounded-full hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 bg-white text-primary hover:bg-white/90"
+        >
+          Request a Session
+        </a>
+      </nav>
+
+      <!-- Mobile Toggle -->
+      <button
+        data-navbar-toggle
+        data-action="click->navbar#toggleMobile"
+        class="md:hidden p-2 transition-colors text-white"
+      >
+        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div
+      data-navbar-target="mobileMenu"
+      class="hidden absolute top-full left-0 w-full bg-background border-b border-border shadow-lg py-4 px-6 flex flex-col gap-4 md:hidden"
+    >
+      <a href="/#what-it-is" data-action="click->navbar#closeMobile" class="text-base font-medium text-foreground py-2 border-b border-border/50">What It Is</a>
+      <a href="/#early-warning" data-action="click->navbar#closeMobile" class="text-base font-medium text-foreground py-2 border-b border-border/50">See It Work</a>
+      <a href="/#who-its-for" data-action="click->navbar#closeMobile" class="text-base font-medium text-foreground py-2 border-b border-border/50">Who It's For</a>
+      <a href="https://app.saulto.com" data-action="click->navbar#closeMobile" class="text-base font-medium text-foreground py-2 border-b border-border/50">Client login</a>
+      <a href="mailto:hello@saulto.com" data-action="click->navbar#closeMobile" class="w-full mt-2 text-center font-medium px-5 py-3 rounded-xl bg-primary text-primary-foreground block">
+        Request a Session
+      </a>
+    </div>
+  </header>
+</div>

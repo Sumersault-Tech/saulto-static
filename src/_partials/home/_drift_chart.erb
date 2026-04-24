@@ -1,0 +1,187 @@
+<%# ═══════════════════════════════════════════════════════════════
+   DRIFT CHART — Interactive slider showing early detection vs. late
+   Uses data-controller="drift-slider" for Stimulus interactivity
+   ═══════════════════════════════════════════════════════════════ %>
+<section class="py-10 md:py-16 border-y border-white/5" id="early-warning" style="background: hsl(155,20%,22%);" data-controller="drift-slider">
+  <div class="max-w-5xl mx-auto px-6 md:px-12">
+    <div class="md:grid md:grid-cols-[2fr_3fr] md:gap-14 md:items-center">
+
+      <%# LEFT — copy + controls %>
+      <div class="reveal" data-controller="reveal">
+        <p class="text-sm font-light leading-relaxed mb-6" style="color: rgba(255,255,255,0.38); max-width: 34rem;">
+          The connection layer shows you what&rsquo;s happening now. The real question is whether you&rsquo;ll see a problem coming, or only find out when it&rsquo;s too late to fix it.
+        </p>
+
+        <p class="text-[11px] font-bold tracking-[0.22em] uppercase mb-4 flex items-center gap-2" style="color: rgba(255,255,255,0.35);">
+          <%# TrendingUp icon %>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18" /><polyline points="17 6 23 6 23 12" /></svg>
+          The cost of finding out late
+        </p>
+
+        <h2 class="font-display font-light text-white leading-[1.06] tracking-tight mb-5" style="font-size: clamp(1.6rem, 2.4vw, 2.4rem);">
+          Saulto catches drift in week 2.<br />Most teams find out at end of quarter.
+        </h2>
+
+        <p class="text-sm font-light mb-6 md:mb-8" style="color: rgba(255,255,255,0.42); max-width: 30rem;">
+          Move the slider to see what early detection is worth. The dashed line shows where the quarter ends without Saulto. The solid line shows the recovery.
+        </p>
+
+        <%# Probability display %>
+        <div class="mb-5">
+          <p class="font-display font-light leading-none tabular-nums transition-colors duration-200"
+             style="font-size: clamp(2.4rem, 3.5vw, 3.5rem); color: hsl(155,68%,58%);"
+             data-drift-slider-target="probability">
+            87%
+          </p>
+          <p class="text-sm font-light mt-2" style="color: rgba(255,255,255,0.40);">
+            confidence of hitting your target
+          </p>
+          <p class="text-[10px] font-semibold tracking-[0.18em] uppercase mt-2 transition-colors duration-200"
+             style="color: hsl(155,68%,58%);"
+             data-drift-slider-target="label">
+            Saulto catches drift early. Strong recovery.
+          </p>
+        </div>
+
+        <%# Drag slider %>
+        <div class="w-full">
+          <div class="flex justify-between mb-3 px-0.5">
+            <div>
+              <p class="text-[11px] font-bold tracking-[0.18em] uppercase" style="color: hsl(155,68%,58%);">Saulto</p>
+              <p class="text-[11px] leading-none mt-0.5" style="color: rgba(255,255,255,0.38);">Detects at week 2</p>
+            </div>
+            <div class="text-right">
+              <p class="text-[11px] font-bold tracking-[0.18em] uppercase" style="color: #f87171;">Traditional</p>
+              <p class="text-[11px] leading-none mt-0.5" style="color: rgba(255,255,255,0.38);">End of quarter</p>
+            </div>
+          </div>
+
+          <div class="relative flex items-center cursor-pointer select-none"
+               style="height: 44px;"
+               data-drift-slider-target="track"
+               data-action="pointerdown->drift-slider#onPointerDown pointermove->drift-slider#onPointerMove">
+            <%# Track background %>
+            <div class="absolute inset-x-0 rounded-full" style="height: 5px; background: rgba(255,255,255,0.08);"></div>
+            <%# Fill (green side) %>
+            <div class="absolute left-0 rounded-full" style="height: 5px; width: 11%; background: linear-gradient(to right, hsl(155,55%,42%), hsl(155,68%,58%));"
+                 data-drift-slider-target="fill"></div>
+            <%# Fill (red side) %>
+            <div class="absolute right-0 rounded-full" style="height: 5px; width: 89%; background: linear-gradient(to right, rgba(200,185,122,0.15), rgba(248,113,113,0.32));"
+                 data-drift-slider-target="fillRight"></div>
+            <%# Thumb %>
+            <div class="absolute rounded-full border-[2.5px] border-white z-10"
+                 style="left: 11%; width: 32px; height: 32px; transform: translateX(-50%); background: hsl(155,68%,58%); box-shadow: 0 0 0 8px rgba(80,200,130,0.22), 0 4px 20px rgba(0,0,0,0.4);"
+                 data-drift-slider-target="thumb"></div>
+          </div>
+          <p class="text-center text-[10px] tracking-[0.16em] uppercase mt-2" style="color: rgba(255,255,255,0.25);">
+            drag to compare
+          </p>
+        </div>
+      </div>
+
+      <%# RIGHT — SVG chart %>
+      <div class="mt-10 md:mt-0 reveal" data-controller="reveal">
+        <div class="relative w-full">
+          <%# Chart card %>
+          <div class="relative w-full rounded-2xl overflow-hidden" style="padding-bottom: 34%; background: hsl(155,16%,27%); box-shadow: 0 0 0 1px rgba(255,255,255,0.07), 0 20px 60px rgba(0,0,0,0.45);">
+            <div class="absolute inset-0">
+              <svg class="absolute inset-0 w-full h-full" viewBox="0 0 1000 300" preserveAspectRatio="none" data-drift-slider-target="chart">
+                <defs>
+                  <clipPath id="clip-before">
+                    <rect x="0" y="0" width="200" height="300" data-drift-slider-target="clipBefore" />
+                  </clipPath>
+                  <clipPath id="clip-after">
+                    <rect x="200" y="0" width="800" height="300" data-drift-slider-target="clipAfter" />
+                  </clipPath>
+                </defs>
+
+                <%# Horizontal grid lines %>
+                <line x1="50" y1="50" x2="980" y2="50" stroke="rgba(255,255,255,0.04)" stroke-width="1" />
+                <line x1="50" y1="110" x2="980" y2="110" stroke="rgba(255,255,255,0.04)" stroke-width="1" />
+                <line x1="50" y1="170" x2="980" y2="170" stroke="rgba(255,255,255,0.04)" stroke-width="1" />
+                <line x1="50" y1="230" x2="980" y2="230" stroke="rgba(255,255,255,0.04)" stroke-width="1" />
+
+                <%# Vertical week markers %>
+                <line x1="50" y1="30" x2="50" y2="270" stroke="rgba(255,255,255,0.04)" stroke-width="1" />
+                <line x1="280" y1="30" x2="280" y2="270" stroke="rgba(255,255,255,0.04)" stroke-width="1" />
+                <line x1="510" y1="30" x2="510" y2="270" stroke="rgba(255,255,255,0.04)" stroke-width="1" />
+                <line x1="740" y1="30" x2="740" y2="270" stroke="rgba(255,255,255,0.04)" stroke-width="1" />
+                <line x1="980" y1="30" x2="980" y2="270" stroke="rgba(255,255,255,0.04)" stroke-width="1" />
+
+                <%# Goal line %>
+                <path d="M 50,40 L 980,40" stroke="rgba(255,255,255,0.28)" stroke-width="1" stroke-dasharray="10 7" fill="none" />
+
+                <%# Drift fill — gap between goal and performance %>
+                <path d="M 50,40 L 50,48 Q 200,54 380,88 T 700,196 T 980,278 L 980,40 Z" fill="#f87171" fill-opacity="0.06" />
+
+                <%# Performance line — before detection %>
+                <path d="M 50,48 Q 200,54 380,88 T 700,196 T 980,278" clip-path="url(#clip-before)" stroke="hsl(155,55%,42%)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+
+                <%# Without Saulto continuation — dashed after detection %>
+                <path d="M 200,56 C 445,74 690,258 980,290" clip-path="url(#clip-after)" stroke="rgba(255,255,255,0.22)" stroke-width="1.5" fill="none" stroke-dasharray="6 5" stroke-linecap="round" data-drift-slider-target="nosaultoPath" />
+
+                <%# Recovery line — with Saulto %>
+                <path d="M 200,56 C 270,50 530,50 980,38" clip-path="url(#clip-after)" stroke="hsl(155,68%,58%)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" data-drift-slider-target="recoveryPath" />
+
+                <%# Vertical detection guide %>
+                <path d="M 200,30 L 200,56" stroke="rgba(255,255,255,0.25)" stroke-width="1" stroke-dasharray="4 4" fill="none" data-drift-slider-target="detectionGuide" />
+
+                <%# Detection dot %>
+                <circle cx="200" cy="56" r="6" fill="white" data-drift-slider-target="detectionDot" />
+              </svg>
+
+              <%# GOAL label %>
+              <div class="absolute" style="top: 10%; left: 5.5%; transform: translateY(-50%);">
+                <span class="text-[9px] font-bold tracking-[0.2em] uppercase font-mono" style="color: rgba(255,255,255,0.32);">GOAL</span>
+              </div>
+
+              <%# Timeline labels %>
+              <div class="absolute bottom-2" style="left: 5%; right: 2%;">
+                <div class="flex justify-between text-[9px] font-mono tracking-widest uppercase" style="color: rgba(255,255,255,0.25);">
+                  <span>Wk 1</span>
+                  <span>Wk 2</span>
+                  <span>Wk 3</span>
+                  <span>Wk 4</span>
+                  <span style="color: rgba(248,113,113,0.7);">EoQ</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <%# Floating badge %>
+          <div class="absolute flex items-center gap-2 rounded-lg px-3 py-1.5 whitespace-nowrap pointer-events-none"
+               style="top: 14%; left: 20%; transform: translate(-50%, 10px); background: hsl(155,18%,18%); border: 1px solid rgba(80,200,130,0.25); box-shadow: 0 2px 10px rgba(0,0,0,0.3); z-index: 10;"
+               data-drift-slider-target="badge">
+            <div class="w-2 h-2 rounded-full shrink-0" style="background: hsl(155,68%,58%);" data-drift-slider-target="badgeDot"></div>
+            <span class="text-xs font-semibold tracking-wide" style="color: rgba(255,255,255,0.82);" data-drift-slider-target="badgeText">Saulto detects drift</span>
+          </div>
+
+          <%# Legend %>
+          <div class="flex flex-wrap items-center gap-x-5 gap-y-2 mt-4 px-1">
+            <div class="flex items-center gap-1.5">
+              <svg width="20" height="10" class="shrink-0"><line x1="0" y1="5" x2="20" y2="5" stroke="rgba(255,255,255,0.32)" stroke-width="1.5" stroke-dasharray="5 4" /></svg>
+              <span class="text-[10px] font-medium tracking-wide" style="color: rgba(255,255,255,0.38);">Target</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <svg width="20" height="10" class="shrink-0"><line x1="0" y1="5" x2="20" y2="5" stroke="hsl(155,55%,42%)" stroke-width="2" /></svg>
+              <span class="text-[10px] font-medium tracking-wide" style="color: rgba(255,255,255,0.38);">Actual trajectory</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <div class="w-2 h-2 rounded-full shrink-0" style="background: rgba(255,255,255,0.85);"></div>
+              <span class="text-[10px] font-medium tracking-wide" style="color: rgba(255,255,255,0.38);">Detection point</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <svg width="20" height="10" class="shrink-0"><line x1="0" y1="5" x2="20" y2="5" stroke="rgba(255,255,255,0.30)" stroke-width="1.5" stroke-dasharray="5 4" /></svg>
+              <span class="text-[10px] font-medium tracking-wide" style="color: rgba(255,255,255,0.38);">Without Saulto</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <svg width="20" height="10" class="shrink-0"><line x1="0" y1="5" x2="20" y2="5" stroke="hsl(155,68%,58%)" stroke-width="2" /></svg>
+              <span class="text-[10px] font-medium tracking-wide" style="color: rgba(255,255,255,0.38);">Recovery with Saulto</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

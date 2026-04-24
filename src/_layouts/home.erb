@@ -3,13 +3,9 @@
   <head>
     <%= render "head", metadata: site.metadata, title: data.title %>
   </head>
-  <body class="<%= data.layout %> <%= data.page_class %> min-h-screen bg-background">
+  <body class="home min-h-screen bg-background">
     <%= render Shared::Navbar.new(metadata: site.metadata, resource: resource) %>
-
-    <main class="pt-24">
-      <%= yield %>
-    </main>
-
+    <%= yield %>
     <%= render "footer", metadata: site.metadata %>
   </body>
 </html>
