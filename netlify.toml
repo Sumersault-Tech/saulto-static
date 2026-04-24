@@ -1,0 +1,7 @@
+[build]
+  command = "bin/bridgetown deploy"
+  publish = "output"
+
+[build.environment]
+  RUBY_VERSION = "3.3.6"
+  NODE_VERSION = "20"
