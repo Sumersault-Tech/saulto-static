@@ -29,6 +29,7 @@ import FlipNumberController from "./controllers/flip_number_controller.js"
 import ExpandableCardController from "./controllers/expandable_card_controller.js"
 import LeverController from "./controllers/lever_controller.js"
 import ScenarioTabsController from "./controllers/scenario_tabs_controller.js"
+import IntroOverlayController from "./controllers/intro_overlay_controller.js"
 
 application.register("navbar", NavbarController)
 application.register("reveal", RevealController)
@@ -50,3 +51,4 @@ application.register("flip-number", FlipNumberController)
 application.register("expandable-card", ExpandableCardController)
 application.register("lever", LeverController)
 application.register("scenario-tabs", ScenarioTabsController)
+application.register("intro-overlay", IntroOverlayController)

@@ -1,0 +1,377 @@
+<%# ═══════════════════════════════════════════════════════════════
+   INTRO OVERLAY — Cinematic branded animation on page load
+   ═══════════════════════════════════════════════════════════════ %>
+
+<%# Synchronously add class before hero HTML parses — prevents animation flash %>
+<script>document.body.classList.add('intro-active');</script>
+
+<%
+desktop_cards = [
+  { icon: "trending_up",  label: "Pipeline Health",  value: "84%",      sub: "+6 pts vs last quarter",  x: "-38%", y: "-34%", delay: 0.05 },
+  { icon: "target",       label: "Pace Score",       value: "87",       sub: "Accelerate · above benchmark", x: "28%",  y: "-38%", delay: 0.12 },
+  { icon: "alert_circle", label: "Needs Attention",  value: "3",        sub: "items flagged this week", x: "-44%", y: "8%",   delay: 0.20 },
+  { icon: "check_circle", label: "Board Readiness",  value: "96/100",   sub: "up 8 pts from last review", x: "34%",  y: "4%",   delay: 0.08 },
+  { icon: "activity",     label: "Team Alignment",   value: "+14%",     sub: "cross-functional cohesion", x: "-30%", y: "42%",  delay: 0.16 },
+  { icon: "users",        label: "Revenue Forecast", value: "On track", sub: "Q3 within 2% of plan",  x: "26%",  y: "38%",  delay: 0.22 },
+]
+
+mobile_cards = [
+  { icon: "trending_up",  label: "Pipeline Health",  value: "84%",      sub: "+6 pts vs last quarter", w: 126, opacity: 0.48, left: -10,  top: 72,  delay: 0.05, fx: -3, fy: 8,  fdur: 4.2 },
+  { icon: "target",       label: "Pace Score",       value: "87",       sub: "Above benchmark",        w: 118, opacity: 0.46, left: 268, top: 148, delay: 0.12, fx: 4,  fy: 7,  fdur: 3.6 },
+  { icon: "check_circle", label: "Board Readiness",  value: "96/100",   sub: "up 8 pts",               w: 122, opacity: 0.41, left: -6,  top: 608, delay: 0.18, fx: -3, fy: 9,  fdur: 4.8 },
+  { icon: "users",        label: "Rev Forecast",     value: "On track", sub: "Q3 on plan",             w: 114, opacity: 0.39, left: 258, top: 680, delay: 0.08, fx: 4,  fy: 7,  fdur: 3.9 },
+]
+
+icons = {
+  "trending_up"  => '<polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>',
+  "target"       => '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>',
+  "alert_circle" => '<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>',
+  "check_circle" => '<circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/>',
+  "activity"     => '<path d="M22 12h-4l-3 9L9 3l-3 9H2"/>',
+  "users"        => '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+}
+%>
+
+<style>
+  /* ── Hero coordination ── */
+  body.intro-active .hero-stagger { animation-name: none; }
+
+  /* ── Overlay ── */
+  .io-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: hsl(155,52%,9%);
+    background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 34px 34px;
+    overflow: hidden;
+  }
+
+  /* ── Glows ── */
+  .io-glow-gold {
+    position: absolute;
+    left: 50%; top: 50%;
+    width: 700px; height: 700px;
+    background: radial-gradient(ellipse at center, rgba(200,185,122,0.32) 0%, transparent 65%);
+    filter: blur(60px);
+    transform: translate(-50%, -50%);
+    animation: io-gold-breathe 5.5s ease-in-out infinite;
+  }
+  .io-glow-green {
+    position: absolute;
+    right: 10%; top: 5%;
+    width: 500px; height: 500px;
+    background: radial-gradient(ellipse at center, hsl(155 60% 22% / 0.38) 0%, transparent 65%);
+    filter: blur(70px);
+    animation: io-green-drift 9s ease-in-out infinite;
+  }
+
+  /* ── Letterbox bars ── */
+  .io-bar {
+    position: absolute;
+    left: 0; right: 0;
+    height: 68px;
+    background: hsl(155,52%,9%);
+    z-index: 10;
+  }
+  .io-bar--top    { top: 0;    animation: io-bar-top 0.45s cubic-bezier(0.22, 1, 0.36, 1) both; }
+  .io-bar--bottom { bottom: 0; animation: io-bar-bottom 0.45s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+  /* ── Desktop cards cluster ── */
+  .io-cluster {
+    position: absolute;
+    inset: 0;
+    animation: io-cluster-drift 14s ease-in-out infinite;
+  }
+
+  /* ── Card layers (3-div nesting: position → entrance → float) ── */
+  .io-card-pos {
+    position: absolute;
+    transform: translate(-50%, -50%);
+  }
+  .io-card-enter {
+    animation: io-card-entrance 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .io-card-float {
+    animation: io-card-float var(--float-dur, 3s) ease-in-out infinite;
+    animation-delay: var(--float-delay, 0s);
+  }
+
+  /* ── Card styling (desktop) ── */
+  .io-card {
+    border-radius: 1rem;
+    padding: 1rem 1.25rem;
+    width: 14rem;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    opacity: 0.55;
+  }
+  .io-card-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+  .io-card-icon  { color: rgba(200,185,122,0.28); }
+  .io-card-label {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    color: rgba(200,185,122,0.40);
+  }
+  .io-card-value {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.52);
+    line-height: 1.2;
+  }
+  .io-card-sub {
+    font-size: 10px;
+    color: rgba(255,255,255,0.20);
+    margin-top: 2px;
+  }
+
+  /* ── Card styling (mobile) ── */
+  .io-card-m {
+    border-radius: 0.75rem;
+    padding: 0.75rem;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  .io-card-m .io-card-label { font-size: 7.5px; }
+  .io-card-m .io-card-value { font-size: 0.875rem; }
+  .io-card-m .io-card-sub   { font-size: 8px; }
+  .io-card-m .io-card-icon svg { width: 10px; height: 10px; }
+
+  /* ── Logo section ── */
+  .io-center {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+    pointer-events: none;
+  }
+  .io-halo {
+    position: absolute;
+    width: 640px; height: 320px;
+    background: radial-gradient(ellipse at center, hsl(155,52%,9%) 30%, transparent 70%);
+    filter: blur(32px);
+    opacity: 0;
+    animation: io-fade-in 0.7s ease both 0.3s;
+  }
+  .io-logo {
+    position: relative;
+    width: 16rem;
+    object-fit: contain;
+    filter: brightness(0) invert(1) brightness(0.96);
+    opacity: 0;
+    animation: io-fade-in 0.12s ease both;
+  }
+  @media (min-width: 768px)  { .io-logo { width: 20rem; } }
+  @media (min-width: 1024px) { .io-logo { width: 24rem; } }
+
+  .io-logo-wrap {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .io-scanline {
+    position: absolute;
+    left: -20%; right: -20%;
+    top: 50%;
+    transform-origin: left center;
+  }
+  .io-scanline--1 {
+    height: 1.5px;
+    background: linear-gradient(90deg, transparent 0%, rgba(200,185,122,0.8) 35%, rgba(255,255,255,0.55) 50%, rgba(200,185,122,0.8) 65%, transparent 100%);
+    animation: io-scan-1 0.6s ease both 0.85s;
+  }
+  .io-scanline--2 {
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(200,185,122,0.5) 35%, rgba(255,255,255,0.35) 50%, rgba(200,185,122,0.5) 65%, transparent 100%);
+    animation: io-scan-2 0.7s ease both 3.2s;
+  }
+
+  .io-tagline {
+    position: relative;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    font-weight: 300;
+    margin-top: 1rem;
+    opacity: 0;
+    animation: io-tagline-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) both 1.05s;
+  }
+
+  /* ── Skip button ── */
+  .io-skip {
+    position: absolute;
+    bottom: 1.5rem; right: 1.25rem;
+    z-index: 30;
+    padding: 0.5rem 1.25rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.55);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: transparent;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .io-skip:hover {
+    color: rgba(255,255,255,0.8);
+    border-color: rgba(255,255,255,0.35);
+  }
+  @media (min-width: 768px) {
+    .io-skip {
+      padding: 0;
+      border-radius: 0;
+      border: 0;
+      bottom: 1.25rem; right: 1.75rem;
+      font-size: 10px;
+      color: rgba(255,255,255,0.3);
+    }
+    .io-skip:hover { color: rgba(255,255,255,0.55); }
+  }
+
+  /* ── Keyframes ── */
+  @keyframes io-gold-breathe {
+    0%, 100% { transform: translate(-50%, -50%) scale(1);    opacity: 0.75; }
+    25%      { transform: translate(-50%, -50%) scale(1.18); opacity: 1; }
+    50%      { transform: translate(-50%, -50%) scale(0.95); opacity: 0.7; }
+    75%      { transform: translate(-50%, -50%) scale(1.1);  opacity: 0.95; }
+  }
+  @keyframes io-green-drift {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33%      { transform: translate(-40px, 30px) scale(1.12); }
+    66%      { transform: translate(20px, -20px) scale(0.94); }
+  }
+  @keyframes io-bar-top {
+    from { transform: translateY(-100%); }
+    to   { transform: translateY(0); }
+  }
+  @keyframes io-bar-bottom {
+    from { transform: translateY(100%); }
+    to   { transform: translateY(0); }
+  }
+  @keyframes io-cluster-drift {
+    0%, 100% { transform: translateY(0); }
+    20%      { transform: translateY(-6px); }
+    50%      { transform: translateY(9px); }
+    75%      { transform: translateY(-4px); }
+  }
+  @keyframes io-card-entrance {
+    from { opacity: 0; transform: translateY(28px) scale(0.94); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  @keyframes io-card-float {
+    0%, 100% { transform: translate(0, 0); }
+    25%      { transform: translate(var(--fx), var(--fy)); }
+    50%      { transform: translate(0, 0); }
+    75%      { transform: translate(calc(-1 * var(--fx)), calc(-1 * var(--fy))); }
+  }
+  @keyframes io-fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes io-scan-1 {
+    0%   { transform: scaleX(0); opacity: 0; }
+    55%  { transform: scaleX(1); opacity: 1; }
+    100% { transform: scaleX(1); opacity: 0; }
+  }
+  @keyframes io-scan-2 {
+    0%   { transform: scaleX(0); opacity: 0; }
+    50%  { transform: scaleX(1); opacity: 0.7; }
+    100% { transform: scaleX(1); opacity: 0; }
+  }
+  @keyframes io-tagline-in {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes intro-exit {
+    to { opacity: 0; transform: scale(1.03); filter: blur(16px); }
+  }
+</style>
+
+<div data-controller="intro-overlay" class="io-overlay">
+
+  <%# ── Glows ── %>
+  <div class="io-glow-gold"></div>
+  <div class="io-glow-green"></div>
+
+  <%# ── Letterbox bars ── %>
+  <div class="io-bar io-bar--top"></div>
+  <div class="io-bar io-bar--bottom"></div>
+
+  <%# ── Desktop cards (6) ── %>
+  <div class="io-cluster hidden md:block">
+    <% desktop_cards.each_with_index do |card, i| %>
+      <%
+        y_amp = i.even? ? -11 : 11
+        x_amp = [7, -6, 5][i % 3]
+        f_dur = 3 + i * 0.35
+        f_delay = i * 0.3
+      %>
+      <div class="io-card-pos" style="left:calc(50% + <%= card[:x] %>); top:calc(50% + <%= card[:y] %>);">
+        <div class="io-card-enter" style="animation-delay:<%= card[:delay] %>s;">
+          <div class="io-card-float" style="--fx:<%= x_amp %>px; --fy:<%= y_amp %>px; --float-dur:<%= f_dur %>s; --float-delay:<%= f_delay %>s;">
+            <div class="io-card">
+              <div class="io-card-header">
+                <svg class="io-card-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><%= icons[card[:icon]] %></svg>
+                <span class="io-card-label"><%= card[:label] %></span>
+              </div>
+              <div class="io-card-value"><%= card[:value] %></div>
+              <div class="io-card-sub"><%= card[:sub] %></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <%# ── Mobile cards (4) ── %>
+  <div class="md:hidden" style="position:absolute; inset:0;">
+    <% mobile_cards.each do |card| %>
+      <div style="position:absolute; left:<%= card[:left] %>px; top:<%= card[:top] %>px;">
+        <div class="io-card-enter" style="animation-delay:<%= card[:delay] %>s;">
+          <div class="io-card-float" style="--fx:<%= card[:fx] %>px; --fy:<%= card[:fy] %>px; --float-dur:<%= card[:fdur] %>s;">
+            <div class="io-card-m" style="width:<%= card[:w] %>px; opacity:<%= card[:opacity] %>;">
+              <div class="io-card-header">
+                <svg class="io-card-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><%= icons[card[:icon]] %></svg>
+                <span class="io-card-label"><%= card[:label] %></span>
+              </div>
+              <div class="io-card-value"><%= card[:value] %></div>
+              <div class="io-card-sub"><%= card[:sub] %></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <%# ── Logo center ── %>
+  <div class="io-center">
+    <div class="io-halo"></div>
+    <div class="io-logo-wrap">
+      <img src="/images/saulto-logo.png" alt="Saulto" class="io-logo" />
+      <div class="io-scanline io-scanline--1"></div>
+      <div class="io-scanline io-scanline--2"></div>
+    </div>
+    <p class="io-tagline">Probability Intelligence</p>
+  </div>
+
+  <%# ── Skip button ── %>
+  <button data-action="click->intro-overlay#dismiss" class="io-skip">Skip</button>
+</div>
